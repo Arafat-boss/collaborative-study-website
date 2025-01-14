@@ -34,8 +34,8 @@ const Tutor = () => {
               </NavLink>
             </li>
         
-
           <div className="divider"></div>
+
           <li>
             <NavLink to="/dashboard">
             <RxDashboard size={25} /> Dashboard

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthProvider';
-import { PropagateLoader } from 'react-spinners';
+import Loader from '../Components/Loader/Loader';
 
 const PrivateRoute = ({children}) => {
     const location = useLocation();
@@ -9,12 +9,7 @@ const PrivateRoute = ({children}) => {
     const {user, loading} = useContext(AuthContext)
 
     if(loading){
-        return (<PropagateLoader
-            cssOverride={{}}
-            loading
-            size={20}
-            speedMultiplier={1}
-          />)  
+        return <Loader></Loader> 
     }
     if(user){
         return children;

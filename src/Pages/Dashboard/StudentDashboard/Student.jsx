@@ -1,10 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { CiViewList } from "react-icons/ci";
 import { IoIosCreate } from "react-icons/io";
 import { RiChatPrivateFill } from "react-icons/ri";
 import { MdOutlineStreetview } from "react-icons/md";
 import { RxDashboard, RxHome } from "react-icons/rx";
+import { FaBookmark } from "react-icons/fa";
 
 const Student = () => {
   return (
@@ -15,22 +15,22 @@ const Student = () => {
          
             <li>
               <NavLink to="/dashboard/viewBookedSession">
-                <CiViewList size={25} /> View Booked Session
+              <FaBookmark size={25} /> View Booked Session
               </NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard/payment">
+              <NavLink to="/dashboard/createNote">
                 <IoIosCreate size={25} />
                 Create Note
               </NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard/history">
+              <NavLink to="/dashboard/personalNotes">
                 <RiChatPrivateFill size={25} /> Manage Personal Notes
               </NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard/cart">
+              <NavLink to="/dashboard/studyMaterials">
                 <MdOutlineStreetview size={25} /> View All Study Materials
               </NavLink>
             </li>

@@ -11,6 +11,10 @@ import PrivateRoute from "./PrivateRoute";
 import ViewAllStudySessions from "../Pages/Dashboard/TutorDashboard/ViewAllStudySessions";
 import UploadMaterials from "../Pages/Dashboard/TutorDashboard/UploadMaterials";
 import ViewAllMaterials from "../Pages/Dashboard/TutorDashboard/ViewAllMaterials";
+import ViewBookedSession from "../Pages/Dashboard/StudentDashboard/ViewBookedSession";
+import CreateNote from "../Pages/Dashboard/StudentDashboard/CreateNote";
+import ManagePersonalNotes from "../Pages/Dashboard/StudentDashboard/ManagePersonalNotes";
+import ViewAllStudyMaterials from "../Pages/Dashboard/StudentDashboard/ViewAllStudyMaterials";
 
     const router = createBrowserRouter([
         {
@@ -36,9 +40,22 @@ import ViewAllMaterials from "../Pages/Dashboard/TutorDashboard/ViewAllMaterials
           path:'/dashboard',
           element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
           children:[
+            //student--------------------
             {
               path:'/dashboard/viewBookedSession',
-              element: <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, distinctio?</p>
+              element: <ViewBookedSession></ViewBookedSession>
+            },
+            {
+              path:'/dashboard/createNote',
+              element: <CreateNote></CreateNote>
+            },
+            {
+              path:'/dashboard/personalNotes',
+              element: <ManagePersonalNotes></ManagePersonalNotes>
+            },
+            {
+              path:'/dashboard/studyMaterials',
+              element: <ViewAllStudyMaterials></ViewAllStudyMaterials>
             },
             //tutor----------------------
             {
@@ -57,6 +74,7 @@ import ViewAllMaterials from "../Pages/Dashboard/TutorDashboard/ViewAllMaterials
               path:'/dashboard/viewAllMaterials',
               element: <ViewAllMaterials></ViewAllMaterials>
             },
+
           ]
         }
       ]);
