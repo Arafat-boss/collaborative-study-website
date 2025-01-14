@@ -6,6 +6,8 @@ import Home from "../Pages/Home/Home";
 import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
 import Dashboard from "../Layouts/Dashboard/Dashboard";
+import CreateStudySession from "../Pages/Dashboard/TutorDashboard/CreateStudySession";
+import PrivateRoute from "./PrivateRoute";
 
     const router = createBrowserRouter([
         {
@@ -29,11 +31,16 @@ import Dashboard from "../Layouts/Dashboard/Dashboard";
         //--------------Dashboard--------------
         {
           path:'/dashboard',
-          element:<Dashboard></Dashboard>,
+          element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
           children:[
             {
               path:'/dashboard/viewBookedSession',
               element: <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, distinctio?</p>
+            },
+            //tutor----------------------
+            {
+              path:'/dashboard/createStudySession',
+              element: <CreateStudySession></CreateStudySession>
             }
           ]
         }

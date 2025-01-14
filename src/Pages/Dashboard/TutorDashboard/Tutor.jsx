@@ -15,7 +15,7 @@ const Tutor = () => {
         <ul className="menu p-4 space-y-3">
       
             <li>
-              <NavLink to="/dashboard/viewBookedSession">
+              <NavLink to="/dashboard/createStudySession">
               <IoCreateOutline size={25} /> Create study session
               </NavLink>
             </li>
