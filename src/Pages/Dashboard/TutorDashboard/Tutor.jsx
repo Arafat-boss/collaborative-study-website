@@ -1,8 +1,6 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { CiViewList } from "react-icons/ci";
-import { IoIosCreate } from "react-icons/io";
-import { RiChatPrivateFill } from "react-icons/ri";
 import { MdOutlineStreetview } from "react-icons/md";
 import { RxDashboard, RxHome } from "react-icons/rx";
 import { IoCloudUploadOutline, IoCreateOutline } from "react-icons/io5";
@@ -26,7 +24,7 @@ const Tutor = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard/history">
+              <NavLink to="/dashboard/uploadMaterials">
               <IoCloudUploadOutline size={25} /> Upload materials
               </NavLink>
             </li>

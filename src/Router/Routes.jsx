@@ -9,6 +9,7 @@ import Dashboard from "../Layouts/Dashboard/Dashboard";
 import CreateStudySession from "../Pages/Dashboard/TutorDashboard/CreateStudySession";
 import PrivateRoute from "./PrivateRoute";
 import ViewAllStudySessions from "../Pages/Dashboard/TutorDashboard/ViewAllStudySessions";
+import UploadMaterials from "../Pages/Dashboard/TutorDashboard/UploadMaterials";
 
     const router = createBrowserRouter([
         {
@@ -46,6 +47,10 @@ import ViewAllStudySessions from "../Pages/Dashboard/TutorDashboard/ViewAllStudy
             {
               path:'/dashboard/viewAllStudySessions',
               element: <ViewAllStudySessions></ViewAllStudySessions>
+            },
+            {
+              path:'/dashboard/uploadMaterials',
+              element: <UploadMaterials></UploadMaterials>
             },
           ]
         }
