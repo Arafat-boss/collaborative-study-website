@@ -1,42 +1,57 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import bgImg from '../../assets/authenticationLogin.png'
+import bgImg from "../../assets/authenticationLogin.png";
 import { AuthContext } from "../../Context/AuthProvider";
+import { LoadCanvasTemplate, loadCaptchaEnginge, validateCaptcha } from "react-simple-captcha";
 
 const Login = () => {
-const {loginUser, googleLogin} = useContext(AuthContext)
+  const { loginUser, googleLogin } = useContext(AuthContext);
+  const [disable, setDisable] = useState(true);
 
+  const handelSubmit = (e) => {
+    e.preventDefault();
 
-    const handelSubmit =(e)=>{
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
 
-        e.preventDefault();
+    //Login fun
+    loginUser(email, password)
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
-        const form = e.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log(email, password);
+  //Login with Google
+  const handelGoogle = () => {
+    googleLogin().then((res) => console.log(res.user));
+  };
 
-        //Login fun
-        loginUser(email, password)
-        .then(res=>{
-            console.log(res.user);
-        })
-        .catch(error => {console.log(error)})
+    //capctcha------
+    useEffect(() => {
+      loadCaptchaEnginge(4);
+    }, []);
+  //captcha function
+  const handelCaptcha = (e) => {
+    const value = e.target.value;
+    console.log(value);
+    if (validateCaptcha(value)) {
+      setDisable(false);
+    } else {
     }
-
-    const handelGoogle = ()=>{
-      googleLogin()
-      .then(res =>console.log(res.user))
-    }
-
+  };
 
   return (
     <div
       className="flex items-center justify-center min-h-screen bg-gray-100"
-    //   style={{
-    //     backgroundImage: `url(${bgImg})`,
-    //   }}
+      //   style={{
+      //     backgroundImage: `url(${bgImg})`,
+      //   }}
     >
       <div
         className=" bg-white shadow-lg rounded-lg overflow-hidden max-w-4xl w-full grid grid-cols-1 md:grid-cols-2"
@@ -75,12 +90,22 @@ const {loginUser, googleLogin} = useContext(AuthContext)
                 className="input input-bordered w-full"
               />
             </div>
-
+            {/* Captcha Section */}
+            <div>
+              <label className="block text-gray-700 mb-2">
+                <LoadCanvasTemplate />
+              </label>
+              <input
+                onBlur={handelCaptcha}
+                type="text"
+                name="captcha"
+                placeholder="Type here"
+                className="input input-bordered w-full mt-2"
+              />
+            </div>
 
             {/* Submit Button */}
-            <button className="btn btn-primary w-full">
-              Log In
-            </button>
+            <button disabled={disable} className="btn btn-primary w-full">Log In</button>
           </form>
 
           {/* Additional Options */}

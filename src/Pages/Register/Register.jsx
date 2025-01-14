@@ -135,13 +135,31 @@ const Register = () => {
                 </p>
               )}
             </div>
-            <select className="select select-bordered w-full max-w-xs">
-              <option disabled selected>
-                Who shot first?
-              </option>
-              <option>Han Solo</option>
-              <option>Greedo</option>
-            </select>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Category</span>
+              </label>
+              <select
+                defaultValue="default"
+                {...register("role", { required: "Category is required" })}
+                className={`select select-bordered w-full ${
+                  errors.role ? "select-error" : ""
+                }`}
+              >
+                <option disabled value="default">
+                  Select a category
+                </option>
+                <option value="admin">Admin</option>
+                <option value="student">Student</option>
+                <option value="tutor">Tutor</option>
+              </select>
+              {errors.role && (
+                <span className="text-red-500 text-sm">
+                  {errors.role.message}
+                </span>
+              )}
+            </div>
+
             <button
               type="submit"
               className="btn btn-primary w-full bg-yellow-500 hover:bg-yellow-600 text-white"

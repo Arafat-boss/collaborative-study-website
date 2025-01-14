@@ -99,7 +99,7 @@ const Navbar = () => {
             </div>
           </div>: ''}
           <li className="flex justify-center items-center">
-            <a>Dashboard</a>
+            <Link to='/dashboard'>Dashboard</Link>
           </li>
 
           <div>
