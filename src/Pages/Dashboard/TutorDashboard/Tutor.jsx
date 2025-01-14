@@ -29,7 +29,7 @@ const Tutor = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard/cart">
+              <NavLink to="/dashboard/viewAllMaterials">
                 <MdOutlineStreetview size={25} />View all materials
               </NavLink>
             </li>

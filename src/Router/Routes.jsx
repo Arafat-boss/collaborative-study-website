@@ -10,6 +10,7 @@ import CreateStudySession from "../Pages/Dashboard/TutorDashboard/CreateStudySes
 import PrivateRoute from "./PrivateRoute";
 import ViewAllStudySessions from "../Pages/Dashboard/TutorDashboard/ViewAllStudySessions";
 import UploadMaterials from "../Pages/Dashboard/TutorDashboard/UploadMaterials";
+import ViewAllMaterials from "../Pages/Dashboard/TutorDashboard/ViewAllMaterials";
 
     const router = createBrowserRouter([
         {
@@ -51,6 +52,10 @@ import UploadMaterials from "../Pages/Dashboard/TutorDashboard/UploadMaterials";
             {
               path:'/dashboard/uploadMaterials',
               element: <UploadMaterials></UploadMaterials>
+            },
+            {
+              path:'/dashboard/viewAllMaterials',
+              element: <ViewAllMaterials></ViewAllMaterials>
             },
           ]
         }
