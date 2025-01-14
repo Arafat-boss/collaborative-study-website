@@ -20,7 +20,7 @@ const Tutor = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard/payment">
+              <NavLink to="/dashboard/viewAllStudySessions">
               <CiViewList size={25} />
                 View all study sessions
               </NavLink>

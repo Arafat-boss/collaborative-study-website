@@ -6,22 +6,22 @@ const CreateStudySession = () => {
     e.preventDefault();
     const form = e.target;
 
-    const sessionData = {
-      sessionTitle: form.sessionTitle.value,
-      tutorName: form.tutorName.value,
-      tutorEmail: form.tutorEmail.value,
-      sessionImage: form.sessionImage.files[0], // File input
-      registrationStartDate: form.registrationStartDate.value,
-      registrationEndDate: form.registrationEndDate.value,
-      classStartTime: form.classStartTime.value,
-      classEndTime: form.classEndTime.value,
-      registrationFee: form.registrationFee.value,
-      maxParticipant: form.maxParticipant.value,
-      sessionDescription: form.sessionDescription.value,
-    };
+      const sessionTitle = form.sessionTitle.value;
+      const tutorName = form.tutorName.value;
+      const tutorEmail = form.tutorEmail.value;
+      const sessionImage = form.sessionImage.files[0]; // File input
+      const registrationStartDate = form.registrationStartDate.value;
+      const registrationEndDate = form.registrationEndDate.value;
+      const classStartTime = form.classStartTime.value;
+      const classEndTime = form.classEndTime.value;
+      const registrationFee = form.registrationFee.value;
+      const maxParticipant = form.maxParticipant.value;
+      const sessionDescription = form.sessionDescription.value;
+ 
+      const sessionData = {sessionTitle, tutorName, tutorEmail, sessionImage, registrationStartDate, registrationEndDate, classStartTime, classEndTime, registrationFee, maxParticipant, sessionDescription}
 
     console.log(sessionData);
-    // Add your API call or other logic here
+    // Add your API call 
   };
 
   return (

@@ -8,6 +8,7 @@ import Login from "../Pages/Login/Login";
 import Dashboard from "../Layouts/Dashboard/Dashboard";
 import CreateStudySession from "../Pages/Dashboard/TutorDashboard/CreateStudySession";
 import PrivateRoute from "./PrivateRoute";
+import ViewAllStudySessions from "../Pages/Dashboard/TutorDashboard/ViewAllStudySessions";
 
     const router = createBrowserRouter([
         {
@@ -41,7 +42,11 @@ import PrivateRoute from "./PrivateRoute";
             {
               path:'/dashboard/createStudySession',
               element: <CreateStudySession></CreateStudySession>
-            }
+            },
+            {
+              path:'/dashboard/viewAllStudySessions',
+              element: <ViewAllStudySessions></ViewAllStudySessions>
+            },
           ]
         }
       ]);
