@@ -1,0 +1,225 @@
+[
+    {
+      "sessionTitle": "Database Management Systems",
+      "tutorName": "Ritika Sen",
+      "averageRating": 4.8,
+      "sessionDescription": "This course covers the principles and practices of database management, essential for storing, retrieving, and managing data efficiently.",
+      "registrationStartDate": "2024-06-05",
+      "registrationEndDate": "2024-09-10",
+      "classStartTime": "2024-09-15T10:00:00",
+      "classEndDate": "2024-12-15",
+      "sessionDuration": "3 months",
+      "registrationFee": "2000",
+      "isRegistrationOpen": false,
+      "reviews": [
+        {
+          "studentName": "John Doe",
+          "rating": 5,
+          "comment": "Excellent course! Learned a lot about database systems."
+        },
+        {
+          "studentName": "Jane Smith",
+          "rating": 4,
+          "comment": "Great content and practical examples, but could use more advanced topics."
+        }
+      ],
+      "actions": {
+        "buttonText": "Registration Closed",
+        "buttonDisabled": true
+      },
+      "additionalInfo": {
+        "courseMode": "Online",
+        "platform": "Zoom",
+        "contactEmail": "support@example.com",
+        "totalSeats": 30,
+        "availableSeats": 0
+      },
+      "role": "tutor"
+    },
+    {
+      "sessionTitle": "Web Development Bootcamp",
+      "tutorName": "Amit Roy",
+      "averageRating": 4.7,
+      "sessionDescription": "Learn to build responsive websites with HTML, CSS, and JavaScript in this hands-on course.",
+      "registrationStartDate": "2024-04-01",
+      "registrationEndDate": "2024-07-15",
+      "classStartTime": "2024-08-01T14:00:00",
+      "classEndDate": "2024-11-01",
+      "sessionDuration": "4 months",
+      "registrationFee": "1500",
+      "isRegistrationOpen": false,
+      "reviews": [
+        {
+          "studentName": "Sara Khan",
+          "rating": 5,
+          "comment": "Fantastic course! I can now build my own websites."
+        },
+        {
+          "studentName": "Ali Ahmed",
+          "rating": 4,
+          "comment": "Good course, but more real-world projects would be helpful."
+        }
+      ],
+      "actions": {
+        "buttonText": "Registration Closed",
+        "buttonDisabled": true
+      },
+      "additionalInfo": {
+        "courseMode": "Hybrid",
+        "platform": "Google Meet",
+        "contactEmail": "webdev@example.com",
+        "totalSeats": 50,
+        "availableSeats": 0
+      },
+      "role": "admin"
+    },
+    {
+      "sessionTitle": "Python Programming Basics",
+      "tutorName": "Nisha Verma",
+      "averageRating": 4.9,
+      "sessionDescription": "Master the basics of Python programming, including syntax, data types, and functions.",
+      "registrationStartDate": "2024-05-01",
+      "registrationEndDate": "2025-08-10",
+      "classStartTime": "2024-08-20T09:00:00",
+      "classEndDate": "2024-11-20",
+      "sessionDuration": "3 months",
+      "registrationFee": "Free",
+      "isRegistrationOpen": false,
+      "reviews": [
+        {
+          "studentName": "Mohit Sharma",
+          "rating": 5,
+          "comment": "Amazing course! Perfect for beginners."
+        },
+        {
+          "studentName": "Priya Gupta",
+          "rating": 5,
+          "comment": "Very well-structured and easy to follow."
+        }
+      ],
+      "actions": {
+        "buttonText": "Registration Closed",
+        "buttonDisabled": true
+      },
+      "additionalInfo": {
+        "courseMode": "Online",
+        "platform": "Microsoft Teams",
+        "contactEmail": "pythoncourse@example.com",
+        "totalSeats": 40,
+        "availableSeats": 0
+      },
+      "role": "student"
+    },
+    {
+      "sessionTitle": "Advanced JavaScript",
+      "tutorName": "Rajesh Patel",
+      "averageRating": 4.6,
+      "sessionDescription": "Deep dive into advanced JavaScript concepts like closures, promises, and async/await.",
+      "registrationStartDate": "2024-03-01",
+      "registrationEndDate": "2024-06-30",
+      "classStartTime": "2024-07-10T15:00:00",
+      "classEndDate": "2024-10-10",
+      "sessionDuration": "3 months",
+      "registrationFee": "1800",
+      "isRegistrationOpen": false,
+      "reviews": [
+        {
+          "studentName": "Ananya Das",
+          "rating": 4,
+          "comment": "Challenging but very rewarding!"
+        },
+        {
+          "studentName": "Karan Mehta",
+          "rating": 5,
+          "comment": "Loved the real-world examples and projects."
+        }
+      ],
+      "actions": {
+        "buttonText": "Registration Closed",
+        "buttonDisabled": true
+      },
+      "additionalInfo": {
+        "courseMode": "In-Person",
+        "platform": "NA",
+        "contactEmail": "jsadvanced@example.com",
+        "totalSeats": 20,
+        "availableSeats": 0
+      },
+      "role": "tutor"
+    },
+    {
+      "sessionTitle": "Machine Learning Essentials",
+      "tutorName": "Dr. Anil Kapoor",
+      "averageRating": 4.9,
+      "sessionDescription": "Get started with machine learning concepts and tools like Python, TensorFlow, and scikit-learn.",
+      "registrationStartDate": "2024-02-01",
+      "registrationEndDate": "2024-05-30",
+      "classStartTime": "2024-06-15T10:30:00",
+      "classEndDate": "2024-09-15",
+      "sessionDuration": "3 months",
+      "registrationFee": "2500",
+      "isRegistrationOpen": false,
+      "reviews": [
+        {
+          "studentName": "Neha Singh",
+          "rating": 5,
+          "comment": "Fantastic introduction to machine learning!"
+        },
+        {
+          "studentName": "Ravi Kumar",
+          "rating": 4,
+          "comment": "Would recommend adding more practical examples."
+        }
+      ],
+      "actions": {
+        "buttonText": "Registration Closed",
+        "buttonDisabled": true
+      },
+      "additionalInfo": {
+        "courseMode": "Online",
+        "platform": "Zoom",
+        "contactEmail": "mlcourse@example.com",
+        "totalSeats": 25,
+        "availableSeats": 0
+      },
+      "role": "admin"
+    },
+    {
+      "sessionTitle": "React.js Masterclass",
+      "tutorName": "Sweta Roy",
+      "averageRating": 4.8,
+      "sessionDescription": "Learn React.js from basics to advanced level, including hooks, context, and state management.",
+      "registrationStartDate": "2024-07-01",
+      "registrationEndDate": "2024-10-15",
+      "classStartTime": "2024-11-01T11:00:00",
+      "classEndDate": "2025-02-01",
+      "sessionDuration": "3 months",
+      "registrationFee": "2200",
+      "isRegistrationOpen": false,
+      "reviews": [
+        {
+          "studentName": "Pooja Nair",
+          "rating": 5,
+          "comment": "Excellent! The best React.js course out there."
+        },
+        {
+          "studentName": "Arun Verma",
+          "rating": 4,
+          "comment": "Very informative and practical."
+        }
+      ],
+      "actions": {
+        "buttonText": "Registration Closed",
+        "buttonDisabled": true
+      },
+      "additionalInfo": {
+        "courseMode": "Online",
+        "platform": "Google Meet",
+        "contactEmail": "reactcourse@example.com",
+        "totalSeats": 30,
+        "availableSeats": 0
+      },
+      "role": "student"
+    }
+  ]
+  

@@ -2,14 +2,13 @@ import React, { useContext } from "react";
 import { FaApple, FaFacebook, FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Context/AuthProvider";
-import bgImg from '../../assets/Sign.png'
+import bgImg from "../../assets/Sign.png";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Register = () => {
-    const {createUserEmailAndPass} = useContext(AuthContext)
-    const navigate = useNavigate()
-    const location = useLocation()
-
+  const { createUserEmailAndPass } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   //using a react-hook-form---Npm--1
   const {
@@ -63,9 +62,9 @@ const Register = () => {
   return (
     <div
       className="min-h-screen flex items-center justify-center bg-cover bg-center"
-    //   style={{
-    //     backgroundImage: `url(${bgImg})`,
-    //   }}
+      //   style={{
+      //     backgroundImage: `url(${bgImg})`,
+      //   }}
     >
       {/* Card */}
       <div
@@ -136,6 +135,13 @@ const Register = () => {
                 </p>
               )}
             </div>
+            <select className="select select-bordered w-full max-w-xs">
+              <option disabled selected>
+                Who shot first?
+              </option>
+              <option>Han Solo</option>
+              <option>Greedo</option>
+            </select>
             <button
               type="submit"
               className="btn btn-primary w-full bg-yellow-500 hover:bg-yellow-600 text-white"

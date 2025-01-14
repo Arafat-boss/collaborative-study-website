@@ -86,11 +86,11 @@ const Navbar = () => {
     // </div>
     <div className="navbar fixed z-10 opacity-90 bg-red-200 flex justify-center items-center">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">Logo</a>
+        <Link to='/' className="btn btn-ghost text-xl">Logo</Link>
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
-          {user ? <div className="btn btn-ghost btn-circle avatar ">
+          {user ? <div className=" avatar ">
             <div className="w-10 rounded-full ">
               <img referrerPolicy="no-referrer"
                 alt="Tailwind CSS Navbar component"
@@ -102,13 +102,13 @@ const Navbar = () => {
             <a>Dashboard</a>
           </li>
 
-          <li>
+          <div>
             {user ? (
               <>
                 <div>
                 <a
                   onClick={handelLogOut}
-                  className="btn btn-sm bg-gradient-to-r from-red-400 to-[#fd0259] text-white "
+                  className="btn btn-sm  bg-gradient-to-r from-red-400 to-[#fd0259] text-white "
                 >
                   <CiLogout></CiLogout> Sign Out
                 </a>
@@ -124,7 +124,7 @@ const Navbar = () => {
                 </Link>
               </div>
             )}
-          </li>
+          </div>
         </ul>
       </div>
     </div>
