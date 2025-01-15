@@ -1,29 +1,132 @@
-import React from "react";
+import React, { useState } from "react";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
+import axios from "axios";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import useAuth from "../../../Hooks/useAuth";
+
+const img_hosting_key = import.meta.env.VITE_IMGBB_KEY;
+const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 
 const CreateStudySession = () => {
-  const handelSubmit = (e) => {
+  const secureAxios = useAxiosSecure();
+  const [isLoading, setIsLoading] = useState(false);
+  const {user} = useAuth()
+
+  const handelSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // Show loading state
     const form = e.target;
 
-      const sessionTitle = form.sessionTitle.value;
-      const tutorName = form.tutorName.value;
-      const tutorEmail = form.tutorEmail.value;
-      const sessionImage = form.sessionImage.files[0]; // File input
-      const registrationStartDate = form.registrationStartDate.value;
-      const registrationEndDate = form.registrationEndDate.value;
-      const classStartTime = form.classStartTime.value;
-      const classEndTime = form.classEndTime.value;
-      const registrationFee = form.registrationFee.value;
-      const maxParticipant = form.maxParticipant.value;
-      const sessionDescription = form.sessionDescription.value;
- 
-      const sessionData = {sessionTitle, tutorName, tutorEmail, sessionImage, registrationStartDate, registrationEndDate, classStartTime, classEndTime, registrationFee, maxParticipant, sessionDescription}
+    const sessionTitle = form.sessionTitle.value;
+    const tutorName = form.tutorName.value;
+    const tutorEmail = form.tutorEmail.value;
+    const sessionImage = form.sessionImage.files[0]; 
+    const registrationStartDate = form.registrationStartDate.value;
+    const registrationEndDate = form.registrationEndDate.value;
+    const classStartTime = form.classStartTime.value;
+    const classEndTime = form.classEndTime.value;
+    const registrationFee = parseInt(form.registrationFee.value);
+    const maxParticipant = form.maxParticipant.value;
+    const sessionDescription = form.sessionDescription.value;
 
-    console.log(sessionData);
-    // Add your API call 
+    try {
+      // Upload the image to IMGBB
+      const formData = new FormData();
+      formData.append("image", sessionImage);
+      const imgResponse = await axios.post(img_hosting_api, formData);
+
+      if (imgResponse.data.success) {
+        const image_url = imgResponse.data.data.display_url;
+
+        // Prepare session data with the image URL
+        const sessionData = {
+          sessionTitle,
+          tutorName,
+          tutorEmail,
+          sessionImage: image_url,
+          registrationStartDate,
+          registrationEndDate,
+          classStartTime,
+          classEndTime,
+          registrationFee,
+          maxParticipant,
+          sessionDescription,
+        };
+
+        // Send the session data to your API
+        const response = await secureAxios.post("/studySession", sessionData);
+
+        if (response.data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `Your study session "${sessionTitle}" has been created successfully!`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          form.reset(); // Clear the form
+        }
+      } else {
+        throw new Error("Image upload failed");
+      }
+    } catch (error) {
+      console.error("Error creating study session:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.message || "Something went wrong!",
+      });
+    } finally {
+      setIsLoading(false); // Hide loading state
+    }
   };
 
+  // const handelSubmit = async(e) => {
+  //   e.preventDefault();
+  //   const form = e.target;
+
+  //     const sessionTitle = form.sessionTitle.value;
+  //     const tutorName = form.tutorName.value;
+  //     const tutorEmail = form.tutorEmail.value;
+  //     const sessionImage = form.sessionImage.files[0]; // File input
+  //     const registrationStartDate = form.registrationStartDate.value;
+  //     const registrationEndDate = form.registrationEndDate.value;
+  //     const classStartTime = form.classStartTime.value;
+  //     const classEndTime = form.classEndTime.value;
+  //     const registrationFee = form.registrationFee.value;
+  //     const maxParticipant = form.maxParticipant.value;
+  //     const sessionDescription = form.sessionDescription.value;
+  //     const image = form.sessionImage.files[0]
+
+  //     const sessionData = {sessionTitle, tutorName, tutorEmail, sessionImage, registrationStartDate, registrationEndDate, classStartTime, classEndTime, registrationFee, maxParticipant, sessionDescription}
+  //   console.log(sessionData);
+
+  //   const formData = new FormData()
+  //   formData.append("image", image)
+  //   console.log(image);
+  //   // send image data to imgbb
+  //   const {data} = await axios.post(img_hosting_api, formData)
+  //   const image_url = data.data.display_url
+  //   console.log(image_url);
+
+  //   if(image_url){
+  //     const setSession = await secureAxios.post('/studySession', sessionData);
+  //     console.log(setSession);
+  //     if(setSession.data.insertedId){
+  //       Swal.fire({
+  //           position: "top-end",
+  //           icon: "success",
+  //           title: `Your ${data.recipeName} Menu has been saved`,
+  //           showConfirmButton: false,
+  //           timer: 1500
+  //         });
+
+  //   }
+
+  //   // Add your API call
+  // };
+  // }
   return (
     <div className="p-8 bg-blue-50 rounded-lg shadow-lg">
       <SectionTitle header="Create a New Study Session" />
@@ -54,6 +157,8 @@ const CreateStudySession = () => {
             name="tutorName"
             placeholder="Tutor Name..."
             className="input input-bordered w-full"
+            value={user.displayName}
+            readOnly
           />
         </div>
 
@@ -67,6 +172,8 @@ const CreateStudySession = () => {
             name="tutorEmail"
             placeholder="example@mail.com"
             className="input input-bordered w-full"
+            value={user.email}
+            readOnly
           />
         </div>
 
@@ -140,6 +247,8 @@ const CreateStudySession = () => {
             name="registrationFee"
             placeholder="0"
             className="input input-bordered w-full"
+            value={0}
+            readOnly
           />
         </div>
 

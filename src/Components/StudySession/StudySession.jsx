@@ -1,16 +1,27 @@
 import { useEffect, useState } from "react";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import StudySessionCard from "../StudySessionCard/StudySessionCard";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const StudySession = () => {
     const [allData, setAllData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const axiosPublic = useAxiosPublic()
 
-    useEffect(()=>{
-        fetch('/data.json')
-        .then(res => res.json())
-        .then(data => setAllData(data))
-    },[])
-
+    
+    const fetchData = async () => {
+      try {
+        const { data } = await axiosPublic.get('/studySession');
+        setAllData(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setLoading(false);
+      }
+    };
+    if (loading) {
+      fetchData();
+    }
 
 
   return (

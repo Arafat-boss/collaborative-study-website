@@ -4,11 +4,18 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Context/AuthProvider";
 import bgImg from "../../assets/Sign.png";
 import { useLocation, useNavigate } from "react-router-dom";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import toast from "react-hot-toast";
+
+const img_hosting_key = import.meta.env.VITE_IMGBB_KEY;
+const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 
 const Register = () => {
-  const { createUserEmailAndPass } = useContext(AuthContext);
+  const { createUserEmailAndPass, userUpdateProfile } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  const publicAxios = useAxiosPublic()
+
 
   //using a react-hook-form---Npm--1
   const {
@@ -19,27 +26,30 @@ const Register = () => {
   } = useForm();
 
   //using a react-hook-form---Npm--2
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
+
+    //create user email and pass
     createUserEmailAndPass(data.email, data.password)
       .then((res) => {
         console.log(res.user);
         navigate(location?.state ? location.state : "/");
         //profile updated
-        // userUpdateProfile(data.name, data.photo)
-        //   .then((res) => {
-        //     const userInfo = {
-        //       name: data.name,
-        //       email: data.email,
-        //     };
-        //     //save user info in database
-        //     publicAxios.post("/users", userInfo).then((res) => {
-        //       console.log(res.data);
-        //       toast.success("Successfully created!");
-        //       navigate("/");
-        //     });
-        //   })
-        //   .then((err) => console.log("err.message"));
+        userUpdateProfile(data.name, data.photo)
+          .then((res) => {
+            const userInfo = {
+              name: data.name,
+              email: data.email,
+            };
+            //save user info in database
+            publicAxios.post("/users", userInfo)
+            .then((res) => {
+              console.log(res.data);
+              toast.success("Successfully created!");
+              // navigate("/");
+            });
+          })
+          .catch((err) => console.log("err.message", err));
       })
       .catch((err) => console.log(err.message));
 
@@ -149,7 +159,6 @@ const Register = () => {
                 <option disabled value="default">
                   Select a category
                 </option>
-                <option value="admin">Admin</option>
                 <option value="student">Student</option>
                 <option value="tutor">Tutor</option>
               </select>

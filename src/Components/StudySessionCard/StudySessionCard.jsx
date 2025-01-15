@@ -8,17 +8,18 @@ const StudySessionCard = ({ data }) => {
     sessionDescription,
     registrationStartDate,
     registrationEndDate,
-    registrationFee
+    registrationFee,
+    sessionImage
   } = data || {};
   return (
     <div className="card w-full bg-base-100 shadow-xl border">
-      {/* <figure>
+      <figure>
         <img
-          src="https://via.placeholder.com/400x200" // Replace with your image URL
+          src={sessionImage} // Replace with your image URL
           alt="Database Management Systems"
           className="w-full h-48 object-cover"
         />
-      </figure> */}
+      </figure>
       <div className="card-body">
         <h2 className="text-lg font-bold text-primary">{tutorName}</h2>
         <div className="flex justify-between items-center">
@@ -35,8 +36,8 @@ const StudySessionCard = ({ data }) => {
           </p>
         </div>
         <div className="card-actions justify-between mt-5">
-          {new Date() >= new Date(registrationStartDate) &&
-          new Date() <= new Date(registrationEndDate) ? (
+          {new Date() <= new Date(registrationStartDate) &&
+          new Date() >= new Date(registrationEndDate) ? (
             <a className="btn btn-warning btn-sm cursor-not-allowed">
               Closed
             </a>
