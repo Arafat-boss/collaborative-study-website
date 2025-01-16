@@ -7,8 +7,8 @@ import Admin from "../../Pages/Dashboard/AdminDashbord/Admin";
 const Dashboard = () => {
 
     const admin = false;
-    const student = true;
-    const tutor = false;
+    const student = false;
+    const tutor = true;
   return (
     <div className="flex">
       {/* dashboard side menu */}

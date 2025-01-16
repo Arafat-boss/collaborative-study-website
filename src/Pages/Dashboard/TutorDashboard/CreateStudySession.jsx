@@ -13,6 +13,9 @@ const CreateStudySession = () => {
   const [isLoading, setIsLoading] = useState(false);
   const {user} = useAuth()
 
+
+
+
   const handelSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true); // Show loading state
@@ -29,6 +32,7 @@ const CreateStudySession = () => {
     const registrationFee = parseInt(form.registrationFee.value);
     const maxParticipant = form.maxParticipant.value;
     const sessionDescription = form.sessionDescription.value;
+    const status = 'pending';
 
     try {
       // Upload the image to IMGBB
@@ -52,6 +56,7 @@ const CreateStudySession = () => {
           registrationFee,
           maxParticipant,
           sessionDescription,
+          status,
         };
 
         // Send the session data to your API
@@ -82,51 +87,6 @@ const CreateStudySession = () => {
     }
   };
 
-  // const handelSubmit = async(e) => {
-  //   e.preventDefault();
-  //   const form = e.target;
-
-  //     const sessionTitle = form.sessionTitle.value;
-  //     const tutorName = form.tutorName.value;
-  //     const tutorEmail = form.tutorEmail.value;
-  //     const sessionImage = form.sessionImage.files[0]; // File input
-  //     const registrationStartDate = form.registrationStartDate.value;
-  //     const registrationEndDate = form.registrationEndDate.value;
-  //     const classStartTime = form.classStartTime.value;
-  //     const classEndTime = form.classEndTime.value;
-  //     const registrationFee = form.registrationFee.value;
-  //     const maxParticipant = form.maxParticipant.value;
-  //     const sessionDescription = form.sessionDescription.value;
-  //     const image = form.sessionImage.files[0]
-
-  //     const sessionData = {sessionTitle, tutorName, tutorEmail, sessionImage, registrationStartDate, registrationEndDate, classStartTime, classEndTime, registrationFee, maxParticipant, sessionDescription}
-  //   console.log(sessionData);
-
-  //   const formData = new FormData()
-  //   formData.append("image", image)
-  //   console.log(image);
-  //   // send image data to imgbb
-  //   const {data} = await axios.post(img_hosting_api, formData)
-  //   const image_url = data.data.display_url
-  //   console.log(image_url);
-
-  //   if(image_url){
-  //     const setSession = await secureAxios.post('/studySession', sessionData);
-  //     console.log(setSession);
-  //     if(setSession.data.insertedId){
-  //       Swal.fire({
-  //           position: "top-end",
-  //           icon: "success",
-  //           title: `Your ${data.recipeName} Menu has been saved`,
-  //           showConfirmButton: false,
-  //           timer: 1500
-  //         });
-
-  //   }
-
-  //   // Add your API call
-  // };
-  // }
   return (
     <div className="p-8 bg-blue-50 rounded-lg shadow-lg">
       <SectionTitle header="Create a New Study Session" />
