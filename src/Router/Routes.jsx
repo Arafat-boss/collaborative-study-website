@@ -16,6 +16,8 @@ import CreateNote from "../Pages/Dashboard/StudentDashboard/CreateNote";
 import ManagePersonalNotes from "../Pages/Dashboard/StudentDashboard/ManagePersonalNotes";
 import ViewAllStudyMaterials from "../Pages/Dashboard/StudentDashboard/ViewAllStudyMaterials";
 import UpdateMaterials from "../Pages/Dashboard/TutorDashboard/UpdateMaterials";
+import ViewAllStudySession from "../Pages/Dashboard/AdminDashbord/ViewAllStudySession";
+import ViewAllUser from "../Pages/Dashboard/AdminDashbord/ViewAllUser";
 
     const router = createBrowserRouter([
         {
@@ -81,6 +83,15 @@ import UpdateMaterials from "../Pages/Dashboard/TutorDashboard/UpdateMaterials";
               element: <PrivateRoute><UpdateMaterials></UpdateMaterials></PrivateRoute>,
               loader:({params})=> fetch(`http://localhost:9000/materials/${params.id}`)
             },
+            //admin==================
+            {
+              path: '/dashboard/viewAllUser',
+              element: <ViewAllUser></ViewAllUser>
+            },
+            {
+              path:'/dashboard/viewAllStudySession',
+              element: <ViewAllStudySession></ViewAllStudySession>
+            }
 
           ]
         }

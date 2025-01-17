@@ -11,13 +11,13 @@ const Admin = () => {
       <div className="w-64 min-h-screen bg-blue-100">
         <ul className="menu p-4 space-y-3">
           <li>
-            <NavLink to="/dashboard/viewBookedSession">
+            <NavLink to="/dashboard/viewAllUser">
               <CiViewList size={25} />
               View all users
             </NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/payment">
+            <NavLink to="/dashboard/viewAllStudySession">
             <LuNotebookPen size={25} />
               View all study session
             </NavLink>

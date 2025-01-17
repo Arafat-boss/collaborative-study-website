@@ -11,11 +11,10 @@ const img_hosting_key = import.meta.env.VITE_IMGBB_KEY;
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 
 const Register = () => {
-  const { createUserEmailAndPass, userUpdateProfile } = useContext(AuthContext);
+  const { createUserEmailAndPass, userUpdateProfile,googleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const publicAxios = useAxiosPublic()
-
+  const publicAxios = useAxiosPublic();
 
   //using a react-hook-form---Npm--1
   const {
@@ -27,7 +26,7 @@ const Register = () => {
 
   //using a react-hook-form---Npm--2
   const onSubmit = async (data) => {
-    console.log(data);
+    console.log(data.role);
 
     //create user email and pass
     createUserEmailAndPass(data.email, data.password)
@@ -40,10 +39,10 @@ const Register = () => {
             const userInfo = {
               name: data.name,
               email: data.email,
+              role: data.role,
             };
             //save user info in database
-            publicAxios.post("/users", userInfo)
-            .then((res) => {
+            publicAxios.post("/users", userInfo).then((res) => {
               console.log(res.data);
               toast.success("Successfully created!");
               // navigate("/");
@@ -57,12 +56,14 @@ const Register = () => {
   };
 
   const handelGoogle = () => {
-    googleUser().then((res) => {
+    googleLogin().then((res) => {
       const userInfo = {
-        email: res.user?.email,
         name: res.user?.displayName,
+        email: res.user?.email,
+        role: 'student'
       };
-      publicAxios.post("/users", userInfo).then((result) => {
+      publicAxios.post("/users", userInfo)
+      .then((result) => {
         console.log(result.data);
       });
       navigate("/");
@@ -79,9 +80,6 @@ const Register = () => {
       {/* Card */}
       <div
         className="bg-white shadow-lg rounded-lg p-8 md:flex md:items-center md:space-x-10 w-full max-w-4xl"
-        // style={{
-        //   backgroundImage: `url(${bgImg})`,
-        // }}
       >
         {/* Form Section */}
         <div className="md:w-1/2">
@@ -185,12 +183,18 @@ const Register = () => {
           <div className="text-center mt-4">
             <p>Or sign up with</p>
             <div className="flex justify-center space-x-4 mt-2">
+              <div className="btn btn-circle btn-outline">
               <FaFacebook className="text-2xl text-blue-600 cursor-pointer" />
-              <span onClick={handelGoogle}>
-                {" "}
-                <FaGoogle className="text-2xl text-red-600 cursor-pointer" />
-              </span>
+              </div>
+              <button
+                onClick={handelGoogle}
+                className="btn btn-circle btn-outline"
+              >
+                <FaGoogle className="text-xl" />
+              </button>
+              <div className="btn btn-circle btn-outline">
               <FaApple className="text-2xl text-gray-800 cursor-pointer" />
+              </div>
             </div>
           </div>
         </div>

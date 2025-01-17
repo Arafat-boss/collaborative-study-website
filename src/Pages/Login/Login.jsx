@@ -1,13 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import bgImg from "../../assets/authenticationLogin.png";
 import { AuthContext } from "../../Context/AuthProvider";
 import { LoadCanvasTemplate, loadCaptchaEnginge, validateCaptcha } from "react-simple-captcha";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+
 
 const Login = () => {
+  const publicAxios = useAxiosPublic()
   const { loginUser, googleLogin } = useContext(AuthContext);
   const [disable, setDisable] = useState(true);
+  const navigate = useNavigate()
 
   const handelSubmit = (e) => {
     e.preventDefault();
@@ -21,6 +25,7 @@ const Login = () => {
     loginUser(email, password)
       .then((res) => {
         console.log(res.user);
+        navigate('/')
       })
       .catch((error) => {
         console.log(error);
@@ -29,7 +34,19 @@ const Login = () => {
 
   //Login with Google
   const handelGoogle = () => {
-    googleLogin().then((res) => console.log(res.user));
+    googleLogin()
+    .then((res) => {
+      const userInfo = {
+        name: res.user?.displayName,
+        email: res.user?.email,
+        role: 'student'
+      };
+      publicAxios.post("/users", userInfo)
+      .then((result) => {
+        console.log(result.data);
+      });
+      navigate("/");
+    });
   };
 
     //capctcha------
