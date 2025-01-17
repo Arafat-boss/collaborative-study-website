@@ -15,6 +15,7 @@ import ViewBookedSession from "../Pages/Dashboard/StudentDashboard/ViewBookedSes
 import CreateNote from "../Pages/Dashboard/StudentDashboard/CreateNote";
 import ManagePersonalNotes from "../Pages/Dashboard/StudentDashboard/ManagePersonalNotes";
 import ViewAllStudyMaterials from "../Pages/Dashboard/StudentDashboard/ViewAllStudyMaterials";
+import UpdateMaterials from "../Pages/Dashboard/TutorDashboard/UpdateMaterials";
 
     const router = createBrowserRouter([
         {
@@ -73,6 +74,12 @@ import ViewAllStudyMaterials from "../Pages/Dashboard/StudentDashboard/ViewAllSt
             {
               path:'/dashboard/viewAllMaterials',
               element: <ViewAllMaterials></ViewAllMaterials>
+            },
+            {
+              //TODO: this route is not work try letter
+              path:'/dashboard/updateMaterial/:id',
+              element: <PrivateRoute><UpdateMaterials></UpdateMaterials></PrivateRoute>,
+              loader:({params})=> fetch(`http://localhost:9000/materials/${params.id}`)
             },
 
           ]
