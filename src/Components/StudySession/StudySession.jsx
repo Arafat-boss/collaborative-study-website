@@ -7,6 +7,7 @@ const StudySession = () => {
     const [allData, setAllData] = useState([]);
     const [loading, setLoading] = useState(true);
     const axiosPublic = useAxiosPublic()
+    console.log(allData);
 
     
     const fetchData = async () => {
