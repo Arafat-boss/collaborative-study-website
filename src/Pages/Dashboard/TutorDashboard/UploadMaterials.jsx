@@ -38,19 +38,19 @@ const UploadMaterials = () => {
   // Modal control
   const handleUploadMaterials = (session) => {
     setSelectedSession(session);
-    setIsModalOpen(true); // Open the modal
+    setIsModalOpen(true); 
   };
 
   const closeModal = () => {
-    setIsModalOpen(false); // Close the modal
-    setSelectedSession(null); // Reset the selected session
+    setIsModalOpen(false); 
+    setSelectedSession(null); 
   };
 
   // Handle upload materials
   const handelUploadModal = async (e) => {
     e.preventDefault();
-    const link = e.target.link.value; // Fetch Google Drive link
-    const uploadImage = e.target.fileUpload.files[0]; // Fetch file input
+    const link = e.target.link.value;
+    const uploadImage = e.target.fileUpload.files[0]; 
 
     if (!link || !uploadImage) {
       Swal.fire({

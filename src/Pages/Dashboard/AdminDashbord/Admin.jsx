@@ -23,13 +23,13 @@ const Admin = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/history">
+            <NavLink to="/dashboard/viewAllMaterials">
             <CiViewTable size={25} /> View all materials
             </NavLink>
           </li>
           <div className="divider"></div>
           <li>
-            <NavLink to="/dashboard">
+            <NavLink to="/">
               <RxDashboard size={25} /> Dashboard
             </NavLink>
           </li>

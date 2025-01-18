@@ -83,9 +83,6 @@ const ViewAllStudySessions = () => {
                   {item.maxParticipant}
                 </p>
               </div>
-              <div className="card-actions mt-4">
-                <button className="btn btn-primary w-full">Register Now</button>
-              </div>
             </div>
           </div>
         ))}

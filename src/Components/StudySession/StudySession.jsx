@@ -24,6 +24,7 @@ const StudySession = () => {
       fetchData();
     }
 
+    const allSessions = allData.filter((session) => session.status === "success");
 
   return (
     <div>
@@ -33,7 +34,7 @@ const StudySession = () => {
       ></SectionTitle>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-5 lg:px-20 md:px-10 px-5">
         {
-           allData.map(data =><StudySessionCard key={data.sessionTitle} data={data}></StudySessionCard>) 
+           allSessions.map(data =><StudySessionCard key={data.sessionTitle} data={data}></StudySessionCard>) 
         }
       </div>
     </div>

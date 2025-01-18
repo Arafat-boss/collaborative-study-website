@@ -18,6 +18,8 @@ import ViewAllStudyMaterials from "../Pages/Dashboard/StudentDashboard/ViewAllSt
 import UpdateMaterials from "../Pages/Dashboard/TutorDashboard/UpdateMaterials";
 import ViewAllStudySession from "../Pages/Dashboard/AdminDashbord/ViewAllStudySession";
 import ViewAllUser from "../Pages/Dashboard/AdminDashbord/ViewAllUser";
+import ViewAllMaterialsAdmin from "../Pages/Dashboard/AdminDashbord/ViewAllMaterialsAdmin";
+import Welcome from "../Components/Welcome";
 
     const router = createBrowserRouter([
         {
@@ -91,6 +93,10 @@ import ViewAllUser from "../Pages/Dashboard/AdminDashbord/ViewAllUser";
             {
               path:'/dashboard/viewAllStudySession',
               element: <ViewAllStudySession></ViewAllStudySession>
+            },
+            {
+              path:'/dashboard/viewAllMaterialsAdmin',
+              element: <ViewAllMaterialsAdmin></ViewAllMaterialsAdmin>
             }
 
           ]
