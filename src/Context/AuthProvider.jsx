@@ -15,6 +15,7 @@ import useAxiosPublic from "../Hooks/useAxiosPublic";
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
+  const [isOpen, setIsModalOpen] = useState(false)
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const axiosPublic = useAxiosPublic();
@@ -109,6 +110,8 @@ const AuthProvider = ({ children }) => {
     LogOutUser,
     googleLogin,
     userUpdateProfile,
+    isOpen,
+    setIsModalOpen,
   };
 
   return (

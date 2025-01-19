@@ -1,28 +1,73 @@
-import React from "react";
-import ReactDOM from "react-dom";
 
-const Modal = ({ title, children, onClose, isOpen }) => {
-  if (!isOpen) return null; // Do not render the modal if it's not open.
+import { useState } from "react";
+import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+
+const Modal = ({ sessionId, onClose, onSubmit }) => {
+  const { isOpen, setIsModalOpen } = useAuth(false);
+  const [tuitionFee, setTuitionFee] = useState("");
+  const axiosPublic = useAxiosPublic();
+
+ 
+  const handleSubmit = async () => {
+    if (!tuitionFee) {
+      toast.error("Please enter a tuition fee.");
+      return;
+    }
+    try {
+      await axiosPublic.patch(`/sessions/fee/${sessionId}`, {tuitionFee});
+      toast.success("Session updated successfully!");
+      refetch(); // Refresh data
+      setIsModalOpen(false); // Close modal
+    } catch (error) {
+      console.error("Error updating session:", error);
+      toast.error("Failed to update session.");
+    }
+
+
+    onSubmit(sessionId, tuitionFee); // Pass sessionId and tuitionFee to parent
+    setTuitionFee(""); // Reset input field
+    setIsModalOpen(false); // Close modal
+  };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white rounded-lg shadow-lg w-96 p-6">
-        {/* Modal Header */}
-        <div className="flex justify-between items-center">
-          <h2 className="text-lg font-bold">{title}</h2>
-          <button
-            onClick={onClose}
-            className="text-gray-500 hover:text-gray-800"
-          >
-            ✕
-          </button>
-        </div>
+    <div>
+      {/* Button to open modal */}
+      <button
+        className="btn btn-primary"
+        onClick={() => setIsModalOpen(true)}
+      >
+        Open Modal
+      </button>
 
-        {/* Modal Body */}
-        <div className="mt-4">{children}</div>
-      </div>
-    </div>,
-    document.getElementById("modal-root") // Ensure you have a `div` with id `modal-root` in your HTML.
+      {/* Modal */}
+      {isOpen && (
+        <div className="modal modal-open">
+          <div className="modal-box bg-blue-200">
+            <h3 className="font-bold text-lg">Modify You Fee.</h3>
+            <p className="py-4">You can add tuition fee here.</p>
+            <input
+             type="number"
+             placeholder="Enter Tuition Fee"
+             className="input input-bordered input-info w-full max-w-xs"
+             value={tuitionFee}
+             onChange={(e) => setTuitionFee(e.target.value)}
+            />
+            <div className="modal-action">
+              {/* update Modal Button */}
+              <button className="btn" onClick={handleSubmit}>
+                Update
+              </button>
+              {/* Close Modal Button */}
+              <button className="btn" onClick={() => setIsModalOpen(false)}>
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 

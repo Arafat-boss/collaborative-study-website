@@ -91,7 +91,7 @@ const UploadMaterials = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          closeModal(); // Close the modal
+          closeModal();
         }
       }
     } catch (error) {

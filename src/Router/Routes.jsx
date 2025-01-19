@@ -20,6 +20,7 @@ import ViewAllStudySession from "../Pages/Dashboard/AdminDashbord/ViewAllStudySe
 import ViewAllUser from "../Pages/Dashboard/AdminDashbord/ViewAllUser";
 import ViewAllMaterialsAdmin from "../Pages/Dashboard/AdminDashbord/ViewAllMaterialsAdmin";
 import Welcome from "../Components/Welcome";
+import CardDetails from "../Pages/Home/CardDetails";
 
     const router = createBrowserRouter([
         {
@@ -37,7 +38,12 @@ import Welcome from "../Components/Welcome";
             {
                 path: '/login',
                 element: <Login></Login>
-            }
+            },
+            {
+                path: '/cardDetails/:id',
+                element: <CardDetails></CardDetails>,
+                loader: ({params})=> fetch(`${import.meta.env.VITE_API_URL}/study/${params.id}`)
+            },
           ]
         },
         //--------------Dashboard--------------

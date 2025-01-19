@@ -13,6 +13,7 @@ const ViewAllUser = () => {
   // console.log(userRole);
   console.log(users);
 
+  //handle Role Change
   const handleRoleChange = (userId, newRole) => {
     Swal.fire({
       title: "Are you sure?",
@@ -157,7 +158,7 @@ const ViewAllUser = () => {
                           className={`inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-yellow-100/60 text-yellow-500`}
                         >
                           <span className={``}>{user?.role}</span>
-                          <h2 className="text-sm font-normal ">{}</h2>
+                          <h2 className="text-sm font-normal "></h2>
                         </div>
                       </td>
 
