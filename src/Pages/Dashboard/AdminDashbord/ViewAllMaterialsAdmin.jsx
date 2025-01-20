@@ -5,16 +5,20 @@ import toast from "react-hot-toast";
 
 const ViewAllMaterialsAdmin = () => {
     // const [materials, refetch] = useUploadeMaterials()
-  const publicAxios = useAxiosPublic();
+  // const publicAxios = useAxiosPublic();
 
 
   const { data: allMaterials = [], refetch } = useQuery({
     queryKey: ["allMaterials"],
     queryFn: async () => {
-      const res = await publicAxios.get("/materials");
+      const res = await publicAxios.get("/allMaterials");
+      console.log(res.data);
       return res.data;
     },
   });
+
+  console.log(allMaterials);
+
 
   // Add a function for handling the delete button
 const handleDelete = async (id) => {

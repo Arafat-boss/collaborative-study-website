@@ -63,6 +63,7 @@ const AuthProvider = ({ children }) => {
           const response = await axiosPublic.post("/jwt", userInfo);
           if (response?.data?.token) {
             localStorage.setItem("access-token", response.data.token);
+            setLoading(false);
           } else {
             console.error("Token not received");
             localStorage.removeItem("access-token");
@@ -73,8 +74,8 @@ const AuthProvider = ({ children }) => {
         }
       } else {
         localStorage.removeItem("access-token");
+        setLoading(false);
       }
-      setLoading(false);
     });
 
     return () => unsubscribe();

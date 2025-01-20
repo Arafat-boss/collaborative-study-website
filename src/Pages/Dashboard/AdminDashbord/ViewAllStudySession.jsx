@@ -1,28 +1,22 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
-
+import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import toast from "react-hot-toast";
-import Modal from "../../../Components/Modal/Modal";
-import { AuthContext } from "../../../Context/AuthProvider";
-import useAuth from "../../../Hooks/useAuth";
 import { useState } from "react";
+import useVIewAllStudy from "../../../Hooks/useVIewAllStudy";
+import { Link } from "react-router-dom";
 
 const ViewAllStudySession = () => {
   const axiosPublic = useAxiosPublic();
-  const { isOpen, setIsModalOpen } = useAuth();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedSessionId, setSelectedSessionId] = useState(null);
+  const [registrationFee, setRegistrationFee] = useState("");
 
-  const { data: sessions = [], refetch } = useQuery({
-    queryKey: ["status"],
-    queryFn: async () => {
-      const res = await axiosPublic.get("/studySession");
-      return res.data;
-    },
-  });
+  const [sessions, refetch] = useVIewAllStudy();
 
-  // Filtering only pending status sessions
+  // Filtering only pending status sessions========
   const pendingSessions = sessions.filter(
     (session) => session.status === "pending"
   );
@@ -33,58 +27,37 @@ const ViewAllStudySession = () => {
     (session) => session.status === "reject"
   );
 
-  //handle Accept
+  //Handel Accept=======================
   const handleAccept = (sessionId) => {
-    setSelectedSessionId(sessionId); // Store sessionId for modal
-    setIsModalOpen(true); // Open modal
+    setSelectedSessionId(sessionId);
+    setIsModalOpen(true);
   };
 
-  const handleUpdateFee = async (sessionId, tuitionFee) => {
+  //handel update registration fee=====================
+  const handleUpdateSession = async () => {
+    if (!registrationFee) {
+      toast.error("Please enter a registration fee.");
+      return;
+    }
+
     try {
-      await axiosPublic.patch(`/sessions/success/${sessionId}`, {
-        tuitionFee,
-        status: "success",
-      });
-      toast.success("Session updated successfully!");
-      refetch(); // Refresh data
-      setIsModalOpen(false); // Close modal
+      const res = await axiosPublic.patch(
+        `/sessions/success/${selectedSessionId}`,
+        { registrationFee }
+      );
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        toast.success("Session accepted and fee updated successfully!");
+        setIsModalOpen(false);
+        setRegistrationFee("");
+      }
     } catch (error) {
       console.error("Error updating session:", error);
-      toast.error("Failed to update session.");
+      toast.error("Failed to update session. Please try again.");
     }
   };
-  // const handleAccept = (sessionId) => {
-  //   console.log(sessionId);
-  //   try {
-  //     // Swal.fire({
-  //     //   title: "Are you sure?",
-  //     //   text: "Do you Accept this session",
-  //     //   icon: "warning",
-  //     //   showCancelButton: true,
-  //     //   confirmButtonColor: "#3085d6",
-  //     //   cancelButtonColor: "#d33",
-  //     //   confirmButtonText: "Yes, Accept.",
-  //     // }).then((result) => {
-  //     //   if (result.isConfirmed) {
-  //     axiosPublic.patch(`/sessions/success/${sessionId}`).then((res) => {
-  //       refetch();
 
-  //       // Swal.fire({
-  //       //   title: "Accepted!",
-  //       //   text: "Your Session has been Accepted.",
-  //       //   icon: "success",
-  //       // });
-  //       setIsOpen(true);
-  //     });
-  //   } catch (error) {
-  //     // });
-  //     //   alert(`Session with ID ${sessionId} has been rejected!`);
-  //     console.error("Error rejecting session:", error);
-  //     toast.error('"Failed to reject session. Please try again."');
-  //   }
-  // };
-
-  // Handle Reject
+  // Handle Reject==================================
   const handleReject = async (sessionId) => {
     try {
       Swal.fire({
@@ -115,6 +88,36 @@ const ViewAllStudySession = () => {
     }
   };
 
+  //handel delete====================================
+  const handleDelete = async (sessionId) => {
+    try {
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "Do you want to delete this session permanently?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Delete it!",
+      });
+
+      if (result.isConfirmed) {
+        const response = await axiosPublic.delete(
+          `/deleted/session/${sessionId}`
+        );
+        if (response.data.deletedCount > 0) {
+          Swal.fire("Deleted!", "The session has been deleted.", "success");
+          refetch(); 
+        } else {
+          toast.error("Failed to delete the session. Please try again.");
+        }
+      }
+    } catch (error) {
+      console.error("Error deleting session:", error);
+      toast.error("An error occurred while deleting the session.");
+    }
+  };
+
   return (
     <div className="p-4 ">
       <SectionTitle
@@ -123,14 +126,10 @@ const ViewAllStudySession = () => {
           "The View All Study Sessions page allows users to search for and participate in study sessions. It shows scheduled meetings, including information such as topic, date, time, and participants."
         }
       ></SectionTitle>
-      <Modal
-        sessionId={selectedSessionId}
-        onClose={() => setIsModalOpen(false)}
-        onSubmit={handleUpdateFee}
-      ></Modal>
       <h4 className="text-xl font-bold mb-4">
         Pending Study Sessions: {pendingSessions.length}
       </h4>
+      {/*============Accept section=========== */}
       <div>
         {pendingSessions.length > 0 ? (
           <div className="overflow-x-auto">
@@ -183,16 +182,15 @@ const ViewAllStudySession = () => {
             </table>
           </div>
         ) : (
-          <p className="flex justify-center  text-red-500">
+          <p className="flex justify-center font-semibold text-red-500">
             No pending sessions found.
           </p>
         )}
       </div>
-
-      {/*============Accept section=========== */}
+      {/*============Approved section=========== */}
       <div className="py-10">
         <h4 className="text-xl font-bold mb-4">
-          Reject Study Sessions: {acceptSessions.length}
+          Approved Study Sessions: {acceptSessions.length}
         </h4>
         {acceptSessions.length > 0 ? (
           <div className="overflow-x-auto">
@@ -230,15 +228,14 @@ const ViewAllStudySession = () => {
                       <p>{session.status}</p>
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
-                      <button
-                        className="bg-blue-300 text-white px-3 py-1 rounded hover:bg-blue-600 mr-2"
-                        onClick={() => handleAccept(session._id)}
-                      >
-                        Update
-                      </button>
+                      <Link to={`viewStudyUpdate/${session._id}`}>
+                        <button className="bg-blue-300 text-white px-3 py-1 rounded hover:bg-blue-600 mr-2">
+                          Update
+                        </button>
+                      </Link>
                       <button
                         className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                        onClick={() => handleReject(session._id)}
+                        onClick={() => handleDelete(session._id)}
                       >
                         Delete
                       </button>
@@ -249,8 +246,8 @@ const ViewAllStudySession = () => {
             </table>
           </div>
         ) : (
-          <p className="flex justify-center text-red-500">
-            No Rejected sessions found.
+          <p className="flex justify-center font-semibold text-red-500">
+            No Approved sessions found.
           </p>
         )}
       </div>
@@ -299,13 +296,50 @@ const ViewAllStudySession = () => {
             </table>
           </div>
         ) : (
-          <p className="flex justify-center text-red-500">
+          <p className="flex justify-center font-semibold text-red-500">
             No Rejected sessions found.
           </p>
         )}
       </div>
+
+      {/* modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="modal-box bg-blue-100 p-6 rounded shadow-md">
+            <h3 className="text-lg font-semibold mb-4">Set Registration Fee</h3>
+            <p className="py-2">
+              Please set the registration fee to ensure better participation and
+              affordability for all attendees
+            </p>
+            <input
+              type="number"
+              placeholder="Enter Registration Fee"
+              className="border border-gray-300 p-2 rounded w-full mb-4"
+              value={registrationFee}
+              onChange={(e) => setRegistrationFee(e.target.value)}
+            />
+            <div className="flex justify-end">
+              <button
+                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mr-2"
+                onClick={handleUpdateSession}
+              >
+                Update
+              </button>
+              <button
+                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                onClick={() => setIsModalOpen(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default ViewAllStudySession;
+
+
+

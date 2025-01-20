@@ -1,14 +1,17 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
-import { MdEmail, MdPerson } from "react-icons/md"; // React Icons for email and tutor name
+import { MdEmail, MdPerson } from "react-icons/md"; 
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
 
 const CardDetails = () => {
     const axiosPublic = useAxiosPublic()
   const specificData = useLoaderData();
+  const {user} = useAuth()
 
   const {
-    _id,
+    
     classEndTime,
     classStartTime,
     maxParticipant,
@@ -23,11 +26,19 @@ const CardDetails = () => {
     tutorName,
   } = specificData;
 
+  const book ={
+
+  }
+
   const handelBookedSession =async (bookedSession)=>{
+    const {_id,...data} = bookedSession;
     try{
-         await axiosPublic.post('/booked-sessions',bookedSession)
+         await axiosPublic.post('/booked-sessions',{...data, sessionId:_id, user: user.email})
         .then(res =>{
             console.log(res.data);
+            if(res.data.insertedId){
+              toast.success('Successfully Booked your session')
+            }
         })
     }
     catch{

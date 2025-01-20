@@ -6,28 +6,17 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Modal = ({ sessionId, onClose, onSubmit }) => {
   const { isOpen, setIsModalOpen } = useAuth(false);
-  const [tuitionFee, setTuitionFee] = useState("");
+  const [registrationFee, setRegistrationFee] = useState("");
   const axiosPublic = useAxiosPublic();
 
  
-  const handleSubmit = async () => {
-    if (!tuitionFee) {
-      toast.error("Please enter a tuition fee.");
+  const handleSubmit = () => {
+    if (!registrationFee) {
+      alert("Please enter a tuition fee.");
       return;
     }
-    try {
-      await axiosPublic.patch(`/sessions/fee/${sessionId}`, {tuitionFee});
-      toast.success("Session updated successfully!");
-      refetch(); // Refresh data
-      setIsModalOpen(false); // Close modal
-    } catch (error) {
-      console.error("Error updating session:", error);
-      toast.error("Failed to update session.");
-    }
-
-
-    onSubmit(sessionId, tuitionFee); // Pass sessionId and tuitionFee to parent
-    setTuitionFee(""); // Reset input field
+    onSubmit(sessionId, registrationFee); // Pass sessionId and tuitionFee to parent
+    setRegistrationFee(""); // Reset input field
     setIsModalOpen(false); // Close modal
   };
 
@@ -51,8 +40,8 @@ const Modal = ({ sessionId, onClose, onSubmit }) => {
              type="number"
              placeholder="Enter Tuition Fee"
              className="input input-bordered input-info w-full max-w-xs"
-             value={tuitionFee}
-             onChange={(e) => setTuitionFee(e.target.value)}
+             value={registrationFee}
+             onChange={(e) => setRegistrationFee(e.target.value)}
             />
             <div className="modal-action">
               {/* update Modal Button */}

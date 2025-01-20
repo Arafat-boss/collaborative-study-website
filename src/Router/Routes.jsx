@@ -21,6 +21,8 @@ import ViewAllUser from "../Pages/Dashboard/AdminDashbord/ViewAllUser";
 import ViewAllMaterialsAdmin from "../Pages/Dashboard/AdminDashbord/ViewAllMaterialsAdmin";
 import Welcome from "../Components/Welcome";
 import CardDetails from "../Pages/Home/CardDetails";
+import BookedDetails from "../Components/StudySessionCard/BookedDetails";
+import UpdateSuccessSession from "../Pages/Dashboard/AdminDashbord/UpdateSuccessSession";
 
     const router = createBrowserRouter([
         {
@@ -44,6 +46,11 @@ import CardDetails from "../Pages/Home/CardDetails";
                 element: <CardDetails></CardDetails>,
                 loader: ({params})=> fetch(`${import.meta.env.VITE_API_URL}/study/${params.id}`)
             },
+            {
+                path: '/bookedDetails/:id',
+                element: <BookedDetails></BookedDetails>,
+                loader: ({params})=> fetch(`${import.meta.env.VITE_API_URL}/bookedDetails/${params.id}`)
+            },
           ]
         },
         //--------------Dashboard--------------
@@ -51,7 +58,7 @@ import CardDetails from "../Pages/Home/CardDetails";
           path:'/dashboard',
           element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
           children:[
-            //student--------------------
+            //student========================================================================
             {
               path:'/dashboard/viewBookedSession',
               element: <ViewBookedSession></ViewBookedSession>
@@ -68,7 +75,7 @@ import CardDetails from "../Pages/Home/CardDetails";
               path:'/dashboard/studyMaterials',
               element: <ViewAllStudyMaterials></ViewAllStudyMaterials>
             },
-            //tutor----------------------
+            //tutor===============================================================================
             {
               path:'/dashboard/createStudySession',
               element: <CreateStudySession></CreateStudySession>
@@ -91,7 +98,7 @@ import CardDetails from "../Pages/Home/CardDetails";
               element: <PrivateRoute><UpdateMaterials></UpdateMaterials></PrivateRoute>,
               loader:({params})=> fetch(`http://localhost:9000/materials/${params.id}`)
             },
-            //admin==================
+            //admin=====================================================================================
             {
               path: '/dashboard/viewAllUser',
               element: <ViewAllUser></ViewAllUser>
@@ -103,6 +110,10 @@ import CardDetails from "../Pages/Home/CardDetails";
             {
               path:'/dashboard/viewAllMaterialsAdmin',
               element: <ViewAllMaterialsAdmin></ViewAllMaterialsAdmin>
+            },
+            {
+              path:'/dashboard/viewAllStudySession/viewStudyUpdate/:id',
+              element:<UpdateSuccessSession></UpdateSuccessSession>,
             }
 
           ]

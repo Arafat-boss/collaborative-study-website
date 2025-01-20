@@ -11,7 +11,7 @@ import Loader from "../../Components/Loader/Loader";
 const Dashboard = () => {
   const { user } = useAuth();
   const [role, isLoading] = useAdmin();
-  console.log(role);
+  // console.log(role);
   if(isLoading){
     return <Loader></Loader>
   }

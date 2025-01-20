@@ -65,7 +65,7 @@ const Login = () => {
 
   return (
     <div
-      className="flex items-center justify-center min-h-screen bg-gray-100"
+      className="flex items-center justify-center min-h-screen my-5"
       //   style={{
       //     backgroundImage: `url(${bgImg})`,
       //   }}
@@ -77,7 +77,7 @@ const Login = () => {
         // }}
       >
         {/* Left Section with Illustration */}
-        <div className="hidden md:flex items-center justify-center p-6">
+        <div className="hidden md:flex items-center justify-center p-6 bg-blue-200">
           <img src={bgImg} alt="Illustration" className="object-contain h-80" />
         </div>
 
