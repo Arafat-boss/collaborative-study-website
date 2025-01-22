@@ -12,20 +12,28 @@ const StudySessionCard = ({ data }) => {
     sessionImage,
     _id,
   } = data || {};
+
+  // Convert registration dates to Date objects for comparison
+  const registrationEnd = new Date(registrationEndDate);
+  const today = new Date();
+
+  // Determine the session status
+  const sessionStatus = today <= registrationEnd ? "Ongoing" : "Closed";
+
   return (
     <div className="card w-full bg-base-100 shadow-xl border">
       <figure>
         <img
           src={sessionImage}
-          alt="Database Management Systems"
+          alt={sessionTitle}
           className="w-full h-48 object-cover"
         />
       </figure>
       <div className="card-body">
-        <h2 className="text-lg font-bold ">{tutorName}</h2>
+        <h2 className="text-lg font-bold">{tutorName}</h2>
         <div className="flex justify-between items-center">
-          <h3 className="text-xl font-extrabold ">{sessionTitle}</h3>
-          <span className="text-lg font-bold ">${registrationFee}</span>
+          <h3 className="text-xl font-extrabold">{sessionTitle}</h3>
+          <span className="text-lg font-bold">${registrationFee}</span>
         </div>
         <p className="text-sm text-gray-600">{sessionDescription}</p>
         <div className="text-sm text-gray-500 mt-3">
@@ -37,24 +45,17 @@ const StudySessionCard = ({ data }) => {
           </p>
         </div>
         <div className="card-actions justify-between mt-5">
-          {new Date() <= new Date(registrationStartDate) &&
-          new Date() >= new Date(registrationEndDate) ? (
-            <a className="btn btn-warning btn-sm cursor-not-allowed">Closed</a>
-          ) : (
-            <a className="btn btn-success btn-sm">Ongoing</a>
-          )}
+          <button className={`btn ${sessionStatus === "Ongoing" ? "bg-green-500" : "bg-red-500"} text-white`}>
+            {sessionStatus}
+          </button>
           <Link to={`/cardDetails/${_id}`}>
-            {/* <button className="btn btn-primary btn-sm flex items-center gap-2">
-              view detail <FaArrowRight />
-            </button> */}
             <button
-              className="group relative inline-block overflow-hidden border border-indigo-600 px-5 py-2 focus:outline-none focus:ring"
-              href="#"
+              className={`group relative inline-block overflow-hidden border border-indigo-600 px-5 py-2 focus:outline-none focus:ring ${sessionStatus === "Closed" ? "cursor-not-allowed opacity-50" : ""}`}
+              disabled={sessionStatus === "Closed"}
             >
               <span className="absolute inset-y-0 left-0 w-[2px] bg-indigo-600 transition-all group-hover:w-full group-active:bg-indigo-500"></span>
-
               <span className="relative text-sm font-medium text-indigo-600 transition-colors group-hover:text-white">
-              View Details
+                View Details
               </span>
             </button>
           </Link>

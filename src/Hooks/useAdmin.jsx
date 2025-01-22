@@ -12,7 +12,7 @@ const axiosPublic = useAxiosPublic()
         queryKey:[user?.email, 'isAdmin'],
         queryFn:async()=>{
             const {data} = await axiosPublic.get(`/user/admin/${user.email}`)
-            console.log(data);
+            // console.log(data);
             return data
         }
     })

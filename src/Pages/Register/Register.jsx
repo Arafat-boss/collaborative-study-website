@@ -12,9 +12,10 @@ const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 
 const Register = () => {
   const { createUserEmailAndPass, userUpdateProfile,googleLogin } = useContext(AuthContext);
+  const publicAxios = useAxiosPublic();
   const navigate = useNavigate();
   const location = useLocation();
-  const publicAxios = useAxiosPublic();
+  const from = location.state?.from || "/";
 
   //using a react-hook-form---Npm--1
   const {
@@ -45,7 +46,7 @@ const Register = () => {
             publicAxios.post("/users", userInfo).then((res) => {
               console.log(res.data);
               toast.success("Successfully created!");
-              // navigate("/");
+              navigate(from, { replace: true });
             });
           })
           .catch((err) => console.log("err.message", err));

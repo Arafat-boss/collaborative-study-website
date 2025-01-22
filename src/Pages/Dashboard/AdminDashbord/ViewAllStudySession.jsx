@@ -1,4 +1,3 @@
-
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
@@ -13,6 +12,8 @@ const ViewAllStudySession = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedSessionId, setSelectedSessionId] = useState(null);
   const [registrationFee, setRegistrationFee] = useState("");
+  const [rejectionReason, setRejectionReason] = useState("");
+  const [isRejectModalOpen, setIsRejectModalOpen] = useState(false);
 
   const [sessions, refetch] = useVIewAllStudy();
 
@@ -58,33 +59,61 @@ const ViewAllStudySession = () => {
   };
 
   // Handle Reject==================================
-  const handleReject = async (sessionId) => {
-    try {
-      Swal.fire({
-        title: "Are you sure?",
-        text: "Do you reject this session",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, Rejected.",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          axiosPublic.patch(`/sessions/reject/${sessionId}`).then((res) => {
-            refetch();
+  // const handleReject = async (sessionId) => {
+  //   try {
+  //     Swal.fire({
+  //       title: "Are you sure?",
+  //       text: "Do you reject this session",
+  //       icon: "warning",
+  //       showCancelButton: true,
+  //       confirmButtonColor: "#3085d6",
+  //       cancelButtonColor: "#d33",
+  //       confirmButtonText: "Yes, Rejected.",
+  //     }).then((result) => {
+  //       if (result.isConfirmed) {
+  //         axiosPublic.patch(`/sessions/reject/${sessionId}`).then((res) => {
+  //           refetch();
 
-            Swal.fire({
-              title: "Rejected!",
-              text: "Your Session has been Rejected.",
-              icon: "success",
-            });
-          });
-        }
-      });
-      //   alert(`Session with ID ${sessionId} has been rejected!`);
+  //           Swal.fire({
+  //             title: "Rejected!",
+  //             text: "Your Session has been Rejected.",
+  //             icon: "success",
+  //           });
+  //         });
+  //       }
+  //     });
+  //     //   alert(`Session with ID ${sessionId} has been rejected!`);
+  //   } catch (error) {
+  //     console.error("Error rejecting session:", error);
+  //     toast.error('"Failed to reject session. Please try again."');
+  //   }
+  // };
+  
+   // Handle Reject==================================
+   const handleReject = (sessionId) => {
+    setSelectedSessionId(sessionId);
+    setIsRejectModalOpen(true);
+  };
+  const handleRejectSession = async () => {
+    if (!rejectionReason) {
+      toast.error("Please provide a reason for rejection.");
+      return;
+    }
+
+    try {
+      const res = await axiosPublic.patch(
+        `/sessions/reject/${selectedSessionId}`,
+        { rejectionReason }
+      );
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        toast.success("Session rejected with a reason.");
+        setIsRejectModalOpen(false);
+        setRejectionReason("");
+      }
     } catch (error) {
       console.error("Error rejecting session:", error);
-      toast.error('"Failed to reject session. Please try again."');
+      toast.error("Failed to reject session. Please try again.");
     }
   };
 
@@ -107,7 +136,7 @@ const ViewAllStudySession = () => {
         );
         if (response.data.deletedCount > 0) {
           Swal.fire("Deleted!", "The session has been deleted.", "success");
-          refetch(); 
+          refetch();
         } else {
           toast.error("Failed to delete the session. Please try again.");
         }
@@ -335,11 +364,40 @@ const ViewAllStudySession = () => {
           </div>
         </div>
       )}
+
+      {/* Reject Modal */}
+      {isRejectModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="modal-box bg-red-100 p-6 rounded shadow-md">
+            <h3 className="text-lg font-semibold mb-4">
+              Provide Rejection Reason
+            </h3>
+            <textarea
+              placeholder="Enter Rejection Reason"
+              className="border border-gray-300 p-2 rounded w-full mb-4"
+              rows="4"
+              value={rejectionReason}
+              onChange={(e) => setRejectionReason(e.target.value)}
+            ></textarea>
+            <div className="flex justify-end">
+              <button
+                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 mr-2"
+                onClick={handleRejectSession}
+              >
+                Reject
+              </button>
+              <button
+                className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+                onClick={() => setIsRejectModalOpen(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default ViewAllStudySession;
-
-
-

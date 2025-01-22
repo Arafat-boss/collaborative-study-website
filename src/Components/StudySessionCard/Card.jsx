@@ -2,6 +2,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Card = ({ session }) => {
+
   return (
     <div className="card w-full bg-base-100 shadow-xl">
       <figure>

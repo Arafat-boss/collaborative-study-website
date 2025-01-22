@@ -65,11 +65,7 @@ const Login = () => {
 
   return (
     <div
-      className="flex items-center justify-center min-h-screen my-5"
-      //   style={{
-      //     backgroundImage: `url(${bgImg})`,
-      //   }}
-    >
+      className="flex items-center justify-center min-h-screen my-5">
       <div
         className=" bg-white shadow-lg rounded-lg overflow-hidden max-w-4xl w-full grid grid-cols-1 md:grid-cols-2">
         {/* Left Section with Illustration */}

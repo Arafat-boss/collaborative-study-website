@@ -5,8 +5,10 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import ReviewForm from "./ReviewForm";
+import useAdmin from "../../Hooks/useAdmin";
 
 const CardDetails = () => {
+  const [role, isRoleLoading] = useAdmin(); // Adjusted to get loading state
   const axiosPublic = useAxiosPublic();
   const specificData = useLoaderData();
   const { user } = useAuth();
@@ -26,9 +28,19 @@ const CardDetails = () => {
     _id,
   } = specificData;
 
-  const handelBookedSession = async (bookedSession) => {
-    const { _id, ...data } = bookedSession;
+  const handleBookedSession = async (specificData, role) => {
+    if (role === "admin") {
+      toast.error("You are an admin and cannot make payment for this session!");
+      return;
+    }
+    if (role === "tutor") {
+      toast.error("You are a tutor and cannot make payment for this session!");
+      return;
+    }
+    
+
     try {
+      const { _id, ...data } = specificData;
       const res = await axiosPublic.post("/booked-sessions", {
         ...data,
         sessionId: _id,
@@ -38,15 +50,17 @@ const CardDetails = () => {
       if (res.data.message === "Session already booked") {
         toast.error("You have already booked this session.");
       } else if (res.data.insertedId) {
-        toast.success(
-          "Successfully booked your session, but payment is pending."
-        );
+        toast.success("Successfully booked your session, but payment is pending.");
       }
     } catch (error) {
       toast.error("Failed to book the session. Please try again.");
       console.error("Booking error:", error);
     }
   };
+
+  if (isRoleLoading) {
+    return <p>Loading...</p>; 
+  }
 
   return (
     <div>
@@ -116,17 +130,16 @@ const CardDetails = () => {
 
           {/* Book Now Button */}
           <div className="mt-4">
-            <Link>
-              <button
-                onClick={() => handelBookedSession(specificData)}
-                className="group relative inline-block overflow-hidden border border-indigo-600 px-5 py-2 focus:outline-none focus:ring w-full"
-              >
-                <span className="absolute inset-y-0 left-0 w-[2px] bg-indigo-600 transition-all group-hover:w-full group-active:bg-indigo-500"></span>
-                <span className="relative text-sm font-medium text-indigo-600 transition-colors group-hover:text-white">
-                  Pay This Session
-                </span>
-              </button>
-            </Link>
+            <button
+              onClick={() => handleBookedSession(specificData, role)}
+              className="group relative inline-block overflow-hidden border border-indigo-600 px-5 py-2 focus:outline-none focus:ring w-full"
+              // disabled={role === "admin" || role === "tutor"}
+            >
+              <span className="absolute inset-y-0 left-0 w-[2px] bg-indigo-600 transition-all group-hover:w-full group-active:bg-indigo-500"></span>
+              <span className="relative text-sm font-medium text-indigo-600 transition-colors group-hover:text-white">
+                Pay This Session
+              </span>
+            </button>
           </div>
         </div>
       </div>

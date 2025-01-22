@@ -1,11 +1,18 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { CiViewList } from "react-icons/ci";
 import { MdOutlineStreetview } from "react-icons/md";
 import { RxDashboard, RxHome } from "react-icons/rx";
 import { IoCloudUploadOutline, IoCreateOutline } from "react-icons/io5";
+import useAuth from "../../../Hooks/useAuth";
+import { RiLogoutCircleLine } from "react-icons/ri";
 
 const Tutor = () => {
+  const {LogOutUser} = useAuth();
+
+  const handelLogOut = () => {
+    LogOutUser();
+  };
   return (
     <div className="flex">
       {/* dashboard side menu */}
@@ -37,14 +44,14 @@ const Tutor = () => {
           <div className="divider"></div>
 
           <li>
-            <NavLink to="/dashboard">
-            <RxDashboard size={25} /> Dashboard
-            </NavLink>
-          </li>
-          <li>
             <NavLink to="/">
               <RxHome size={25} /> Home
             </NavLink>
+          </li>
+          <li>
+            <Link to="" onClick={handelLogOut}>
+            <RiLogoutCircleLine size={25} /> Log out
+            </Link>
           </li>
         </ul>
       </div>

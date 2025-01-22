@@ -2,18 +2,33 @@ import React, { useContext } from "react";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../Context/AuthProvider";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import toast from "react-hot-toast";
 
 const CreateNote = () => {
-    const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic(); 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    const noteData = { ...data, email: user?.email };
+
+    try {
+      const response = await axiosPublic.post("/all-notes", noteData);
+      if (response) {
+        toast.success("Note created successfully!");
+        console.log("Response Data:", response.data);
+      }
+    } catch (error) {
+      console.error("Error creating note:", error);
+      toast.error("An error occurred while submitting the note.");
+    }
   };
+
   return (
     <div>
       <SectionTitle
@@ -21,11 +36,13 @@ const CreateNote = () => {
         subHeader={
           'The "Create Note" feature enables users to jot down and organize important study points, ideas, or reminders effectively.'
         }
-      ></SectionTitle>
+      />
 
-        {/* TODO: from ar function ae kaj baki */}
       <div>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 lg:w-2/4 mx-auto">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="space-y-4 lg:w-2/4 mx-auto"
+        >
           {/* Read-Only Email Field */}
           <div>
             <label
@@ -37,7 +54,7 @@ const CreateNote = () => {
             <input
               id="email"
               type="email"
-              value={user.email} 
+              value={user?.email || ""}
               readOnly
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
             />
