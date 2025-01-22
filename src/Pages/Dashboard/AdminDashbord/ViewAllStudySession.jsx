@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";

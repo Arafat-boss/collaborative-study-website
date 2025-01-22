@@ -1,12 +1,19 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { IoIosCreate } from "react-icons/io";
-import { RiChatPrivateFill } from "react-icons/ri";
+import { RiChatPrivateFill, RiLogoutCircleLine } from "react-icons/ri";
 import { MdOutlineStreetview } from "react-icons/md";
 import { RxDashboard, RxHome } from "react-icons/rx";
 import { FaBookmark } from "react-icons/fa";
+import useAuth from "../../../Hooks/useAuth";
 
 const Student = () => {
+  const {LogOutUser} = useAuth();
+
+  const handelLogOut = () => {
+    LogOutUser();
+  };
+
   return (
     <div className="flex">
       {/* dashboard side menu */}
@@ -37,14 +44,14 @@ const Student = () => {
 
           <div className="divider"></div>
           <li>
-            <NavLink to="/dashboard">
-            <RxDashboard size={25} /> Dashboard
+            <NavLink to="/">
+            <RxHome size={25} /> Home
             </NavLink>
           </li>
           <li>
-            <NavLink to="/">
-              <RxHome size={25} /> Home
-            </NavLink>
+            <Link to="" onClick={handelLogOut}>
+            <RiLogoutCircleLine size={25} /> Log out
+            </Link>
           </li>
         </ul>
       </div>

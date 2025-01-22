@@ -1,10 +1,18 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { CiViewList, CiViewTable } from "react-icons/ci";
 import { RxDashboard, RxHome } from "react-icons/rx";
 import { LuNotebookPen } from "react-icons/lu";
+import useAuth from "../../../Hooks/useAuth";
+import { RiLogoutCircleLine } from "react-icons/ri";
 
 const Admin = () => {
+  const {LogOutUser} = useAuth();
+
+  const handelLogOut = () => {
+    LogOutUser();
+  };
+
   return (
     <div className="flex">
       {/* dashboard side menu */}
@@ -23,20 +31,20 @@ const Admin = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/viewAllMaterials">
+            <NavLink to="/dashboard/viewAllMaterialsAdmin">
             <CiViewTable size={25} /> View all materials
             </NavLink>
           </li>
           <div className="divider"></div>
           <li>
             <NavLink to="/">
-              <RxDashboard size={25} /> Dashboard
+              <RxHome size={25} /> Home
             </NavLink>
           </li>
           <li>
-            <NavLink to="/">
-              <RxHome size={25} /> Home
-            </NavLink>
+            <Link to="" onClick={handelLogOut}>
+            <RiLogoutCircleLine size={25} /> Log out
+            </Link>
           </li>
         </ul>
       </div>

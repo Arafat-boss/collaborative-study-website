@@ -47,10 +47,11 @@ import UpdateSuccessSession from "../Pages/Dashboard/AdminDashbord/UpdateSuccess
                 loader: ({params})=> fetch(`${import.meta.env.VITE_API_URL}/study/${params.id}`)
             },
             {
-                path: '/bookedDetails/:id',
-                element: <BookedDetails></BookedDetails>,
-                loader: ({params})=> fetch(`${import.meta.env.VITE_API_URL}/bookedDetails/${params.id}`)
-            },
+              path: '/bookedDetails/:id',
+              element: <BookedDetails></BookedDetails>,
+              loader: ({ params }) =>
+                  fetch(`http://localhost:9000/bookedDetails/${params.id}`),
+          }
           ]
         },
         //--------------Dashboard--------------

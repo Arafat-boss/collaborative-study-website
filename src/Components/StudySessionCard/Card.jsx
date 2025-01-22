@@ -25,7 +25,7 @@ const Card = ({ session }) => {
         <div className="card-actions mt-4">
           <Link to={`/bookedDetails/${session._id}`}>
             <button className="btn btn-primary w-full flex items-center justify-center gap-2">
-              Read More <FaArrowRight />
+              Pay Session <FaArrowRight />
             </button>
           </Link>
         </div>

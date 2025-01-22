@@ -5,14 +5,14 @@ import toast from "react-hot-toast";
 
 const ViewAllMaterialsAdmin = () => {
     // const [materials, refetch] = useUploadeMaterials()
-  // const publicAxios = useAxiosPublic();
+  const publicAxios = useAxiosPublic();
 
 
-  const { data: allMaterials = [], refetch } = useQuery({
-    queryKey: ["allMaterials"],
+  const { data:allMaterials= [], refetch } = useQuery({
+    queryKey: ["allMaterialsAdmin"],
     queryFn: async () => {
       const res = await publicAxios.get("/allMaterials");
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
   });

@@ -71,11 +71,7 @@ const Login = () => {
       //   }}
     >
       <div
-        className=" bg-white shadow-lg rounded-lg overflow-hidden max-w-4xl w-full grid grid-cols-1 md:grid-cols-2"
-        // style={{
-        //   backgroundImage: `url(${bgImg})`,
-        // }}
-      >
+        className=" bg-white shadow-lg rounded-lg overflow-hidden max-w-4xl w-full grid grid-cols-1 md:grid-cols-2">
         {/* Left Section with Illustration */}
         <div className="hidden md:flex items-center justify-center p-6 bg-blue-200">
           <img src={bgImg} alt="Illustration" className="object-contain h-80" />
