@@ -1,51 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import SectionTitle from "../SectionTitle/SectionTitle";
+import useUsers from "../../Hooks/useUsers";
+import useAuth from "../../Hooks/useAuth";
 
 const AllTutor = () => {
-  const [allData, setAllData] = useState([]);
-
-  useEffect(() => {
-    fetch("/data.json")
-      .then((res) => res.json())
-      .then((data) => setAllData(data));
-  }, []);
-
-  const tutors = allData.filter((item) => item.role === "tutor");
+  const { user } = useAuth();
+  const [users, refetch] = useUsers();
+  const tutors = users.filter((item) => item.role === "tutor");
   console.log(tutors);
 
   return (
     <>
-    <SectionTitle header={'ALl tutor'}></SectionTitle>
-    <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-5 my-10 lg:px-20 md:px-10 px-5">
-      {tutors.map((tutor) => (
-        <div key={tutor.sessionTitle} className="max-w-md p-6 overflow-hidden rounded-lg shadow bg-gray-900 dark:bg-gray-50 text-gray-100 dark:text-gray-800">
-          <article>
-            <h2 className="text-xl font-bold">
-              {tutor.sessionTitle}
-            </h2>
-            <p className="mt-4 text-gray-400 dark:text-gray-600">
-             {tutor.sessionDescription}
-            </p>
-            <div className="flex items-center mt-8 space-x-4">
+      <SectionTitle header={"All Tutors"}></SectionTitle>
+      <div className="grid lg:grid-cols-4 md:grid-cols-3 gap-5 my-10 lg:px-10 md:px-5 px-5">
+        {tutors.map((tutor) => (
+          <div
+            key={tutor._id}
+            className="max-w-sm p-4 overflow-hidden rounded-lg shadow bg-gray-900 dark:bg-gray-50 text-gray-100 dark:text-gray-800"
+          >
+            <article className="flex items-center space-x-4"> {/* Added flex for left-right layout */}
+              {/* Left Side Image */}
               <img
-                src="https://source.unsplash.com/100x100/?portrait"
-                alt=""
-                className="w-10 h-10 rounded-full bg-gray-500 dark:bg-gray-500"
+                src={tutor.image}
+                alt={tutor.name}
+                className="w-16 h-16 rounded-full bg-gray-500 dark:bg-gray-500"
               />
+              {/* Right Side Information */}
               <div>
-                <h3 className="text-sm font-medium">{tutor.tutorName}</h3>
-                <time
-                  datetime="2021-02-18"
-                  className="text-sm text-gray-400 dark:text-gray-600"
-                >
-                 {tutor.registrationEndDate}
-                </time>
+                <h2 className="text-lg font-bold">{tutor.name}</h2>
+                <p className="text-sm text-gray-400 dark:text-gray-600">{tutor.email}</p>
+                <span className="mt-2 inline-block text-sm font-medium text-blue-500">
+                  {tutor.role}
+                </span>
               </div>
-            </div>
-          </article>
-        </div>
-      ))}
-    </div>
+            </article>
+          </div>
+        ))}
+      </div>
     </>
   );
 };

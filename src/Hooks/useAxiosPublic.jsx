@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const publicAxios = axios.create({
-    baseURL: 'http://localhost:9000'
+    baseURL: 'https://collaborative-study-server.vercel.app'
 })
 const useAxiosPublic = () => {
     return publicAxios;

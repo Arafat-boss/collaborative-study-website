@@ -4,6 +4,7 @@ import { CiLogout } from "react-icons/ci";
 import { IoLogInOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
+import logo from '../../assets/logo.png'
 
 const Navbar = () => {
   const { user, LogOutUser } = useContext(AuthContext);
@@ -13,9 +14,10 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar fixed lg:px-20 md:px-10 px-5 z-10 opacity-90 bg-red-200 flex justify-center items-center">
+    <div className="navbar fixed lg:px-20 md:px-10 px-5 z-10 opacity-90 bg-blue-200 flex justify-center items-center">
       <div className="flex-1">
-        <Link to='/' className="btn btn-ghost text-xl">Logo</Link>
+        <Link to='/' className="btn btn-ghost text-xl uppercase font-bold">collaborative <span className="text-blue-600">study</span>
+        </Link>
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1 gap-5">
@@ -37,7 +39,7 @@ const Navbar = () => {
                 <div>
                 <a
                   onClick={handelLogOut}
-                  className="btn btn-sm  bg-gradient-to-r from-red-400 to-[#fd0259] text-white "
+                  className="btn btn-sm  bg-gradient-to-r from-blue-400 to-blue-600 border-none text-white "
                 >
                   <CiLogout></CiLogout> Sign Out
                 </a>
@@ -46,7 +48,7 @@ const Navbar = () => {
             ) : (
               <div>
                 <Link
-                  className="btn btn-sm bg-gradient-to-r from-red-400 to-[#fd0259] text-white"
+                  className="btn btn-sm bg-gradient-to-r from-blue-400 to-blue-600 border-none text-white"
                   to="/login"
                 >
                   <IoLogInOutline></IoLogInOutline> Login

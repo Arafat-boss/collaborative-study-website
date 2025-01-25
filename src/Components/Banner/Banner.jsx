@@ -9,7 +9,7 @@ const Banner = () => {
       <div className="bg-black bg-opacity-50 p-8 md:p-12 lg:p-16 rounded-lg max-w-4xl">
         <h1 className="text-3xl md:text-5xl font-bold">
           Welcome to the{" "}
-          <span className="text-orange-400">Collaborative Learning Platform</span>
+          <span className="text-blue-400">Collaborative Learning Platform</span>
         </h1>
         <p className="mt-4 text-base md:text-lg lg:text-xl">
           Our platform is built to empower collaborative education. With tools for session scheduling, resource sharing, and user management, 

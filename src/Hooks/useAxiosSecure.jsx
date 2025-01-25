@@ -3,7 +3,8 @@ import useAuth from "./useAuth";
 import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
-     baseURL: 'http://localhost:9000'
+     baseURL: 'https://collaborative-study-server.vercel.app'
+    //  baseURL: 'https://collaborative-study-server.vercel.app'
 })
 
 const useAxiosSecure = () => {
@@ -28,8 +29,8 @@ const useAxiosSecure = () => {
         // console.log('innnnnnnnnnnnnnnterrrrrrr',error);
         const status = error.response.status;
         if(status === 401 || status === 403){
-           await LogOutUser();
-            navigate('/login')
+          //  await LogOutUser();
+            // navigate('/login')
         }
         return Promise.reject(error);
       })

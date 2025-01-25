@@ -1,7 +1,6 @@
-import { FaArrowRight } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
 const Card = ({ session }) => {
+  
 
   return (
     <div className="card w-full bg-base-100 shadow-xl">
@@ -24,11 +23,6 @@ const Card = ({ session }) => {
           </span>
         </div>
         <div className="card-actions mt-4">
-          <Link to={`/bookedDetails/${session._id}`}>
-            <button className="btn btn-primary w-full flex items-center justify-center gap-2">
-              Pay Session <FaArrowRight />
-            </button>
-          </Link>
         </div>
       </div>
     </div>

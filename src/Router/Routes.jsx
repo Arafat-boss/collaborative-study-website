@@ -23,11 +23,15 @@ import Welcome from "../Components/Welcome";
 import CardDetails from "../Pages/Home/CardDetails";
 import BookedDetails from "../Components/StudySessionCard/BookedDetails";
 import UpdateSuccessSession from "../Pages/Dashboard/AdminDashbord/UpdateSuccessSession";
+import AdminPrivate from "./AdminPrivate";
+import Payment from "../Pages/Home/Payment";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
     const router = createBrowserRouter([
         {
           path: "/",
           element: <MainLayout></MainLayout>,
+          errorElement: <ErrorPage></ErrorPage>,
           children:[
             {
                 path: '/',
@@ -42,15 +46,21 @@ import UpdateSuccessSession from "../Pages/Dashboard/AdminDashbord/UpdateSuccess
                 element: <Login></Login>
             },
             {
+                path: '/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({ params }) =>
+                  fetch(`https://collaborative-study-server.vercel.app/study/${params.id}`)
+            },
+            {
                 path: '/cardDetails/:id',
-                element: <CardDetails></CardDetails>,
+                element: <PrivateRoute><CardDetails></CardDetails></PrivateRoute>,
                 loader: ({params})=> fetch(`${import.meta.env.VITE_API_URL}/study/${params.id}`)
             },
             {
               path: '/bookedDetails/:id',
               element: <BookedDetails></BookedDetails>,
               loader: ({ params }) =>
-                  fetch(`http://localhost:9000/bookedDetails/${params.id}`),
+                  fetch(`https://collaborative-study-server.vercel.app/bookedDetails/${params.id}`),
           }
           ]
         },
@@ -62,19 +72,19 @@ import UpdateSuccessSession from "../Pages/Dashboard/AdminDashbord/UpdateSuccess
             //student========================================================================
             {
               path:'/dashboard/viewBookedSession',
-              element: <ViewBookedSession></ViewBookedSession>
+              element: <PrivateRoute><ViewBookedSession></ViewBookedSession></PrivateRoute>
             },
             {
               path:'/dashboard/createNote',
-              element: <CreateNote></CreateNote>
+              element: <PrivateRoute><CreateNote></CreateNote></PrivateRoute>
             },
             {
               path:'/dashboard/personalNotes',
-              element: <ManagePersonalNotes></ManagePersonalNotes>
+              element:<ManagePersonalNotes></ManagePersonalNotes>
             },
             {
               path:'/dashboard/studyMaterials',
-              element: <ViewAllStudyMaterials></ViewAllStudyMaterials>
+              element:<PrivateRoute> <ViewAllStudyMaterials></ViewAllStudyMaterials></PrivateRoute>
             },
             //tutor===============================================================================
             {
@@ -97,24 +107,24 @@ import UpdateSuccessSession from "../Pages/Dashboard/AdminDashbord/UpdateSuccess
               //TODO: this route is not work try letter
               path:'/dashboard/updateMaterial/:id',
               element: <PrivateRoute><UpdateMaterials></UpdateMaterials></PrivateRoute>,
-              loader:({params})=> fetch(`http://localhost:9000/materials/${params.id}`)
+              loader:({params})=> fetch(`https://collaborative-study-server.vercel.app/materials/${params.id}`)
             },
             //admin=====================================================================================
             {
               path: '/dashboard/viewAllUser',
-              element: <ViewAllUser></ViewAllUser>
+              element: <AdminPrivate><ViewAllUser></ViewAllUser></AdminPrivate>
             },
             {
               path:'/dashboard/viewAllStudySession',
-              element: <ViewAllStudySession></ViewAllStudySession>
+              element: <AdminPrivate><ViewAllStudySession></ViewAllStudySession></AdminPrivate>
             },
             {
               path:'/dashboard/viewAllMaterialsAdmin',
-              element: <ViewAllMaterialsAdmin></ViewAllMaterialsAdmin>
+              element: <AdminPrivate> <ViewAllMaterialsAdmin></ViewAllMaterialsAdmin></AdminPrivate>
             },
             {
               path:'/dashboard/viewAllStudySession/viewStudyUpdate/:id',
-              element:<UpdateSuccessSession></UpdateSuccessSession>,
+              element:<AdminPrivate><UpdateSuccessSession></UpdateSuccessSession></AdminPrivate>,
             }
 
           ]

@@ -41,10 +41,10 @@ const Register = () => {
               name: data.name,
               email: data.email,
               role: data.role,
+              image:data.photo
             };
             //save user info in database
             publicAxios.post("/users", userInfo).then((res) => {
-              console.log(res.data);
               toast.success("Successfully created!");
               navigate(from, { replace: true });
             });
@@ -170,14 +170,14 @@ const Register = () => {
 
             <button
               type="submit"
-              className="btn btn-primary w-full bg-yellow-500 hover:bg-yellow-600 text-white"
+              className="btn btn-primary w-full bg-blue-500 hover:bg-blue-600 border-none text-white"
             >
               Sign Up
             </button>
           </form>
           <p className="text-center text-sm mt-4">
             Already registered?{" "}
-            <a href="/login" className="text-yellow-500 hover:underline">
+            <a href="/login" className="text-blue-400 hover:underline">
               Go to log in
             </a>
           </p>
@@ -201,11 +201,11 @@ const Register = () => {
         </div>
 
         {/* Image Section */}
-        <div className="hidden md:block md:w-1/2">
+        <div className="hidden md:block md:w-1/2 ">
           <img
             src={bgImg} // Replace with your illustration image URL
             alt="Sign up illustration"
-            className="rounded-lg"
+            className="rounded-lg "
           />
         </div>
       </div>

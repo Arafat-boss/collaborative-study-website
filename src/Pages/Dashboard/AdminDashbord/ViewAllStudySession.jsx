@@ -58,38 +58,7 @@ const ViewAllStudySession = () => {
     }
   };
 
-  // Handle Reject==================================
-  // const handleReject = async (sessionId) => {
-  //   try {
-  //     Swal.fire({
-  //       title: "Are you sure?",
-  //       text: "Do you reject this session",
-  //       icon: "warning",
-  //       showCancelButton: true,
-  //       confirmButtonColor: "#3085d6",
-  //       cancelButtonColor: "#d33",
-  //       confirmButtonText: "Yes, Rejected.",
-  //     }).then((result) => {
-  //       if (result.isConfirmed) {
-  //         axiosPublic.patch(`/sessions/reject/${sessionId}`).then((res) => {
-  //           refetch();
-
-  //           Swal.fire({
-  //             title: "Rejected!",
-  //             text: "Your Session has been Rejected.",
-  //             icon: "success",
-  //           });
-  //         });
-  //       }
-  //     });
-  //     //   alert(`Session with ID ${sessionId} has been rejected!`);
-  //   } catch (error) {
-  //     console.error("Error rejecting session:", error);
-  //     toast.error('"Failed to reject session. Please try again."');
-  //   }
-  // };
-  
-   // Handle Reject==================================
+   // Handle Reject====rejection Reason======================
    const handleReject = (sessionId) => {
     setSelectedSessionId(sessionId);
     setIsRejectModalOpen(true);
@@ -368,7 +337,7 @@ const ViewAllStudySession = () => {
       {/* Reject Modal */}
       {isRejectModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="modal-box bg-red-100 p-6 rounded shadow-md">
+          <div className="modal-box bg-blue-100 p-6 rounded shadow-md">
             <h3 className="text-lg font-semibold mb-4">
               Provide Rejection Reason
             </h3>
