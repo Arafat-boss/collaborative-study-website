@@ -51,15 +51,13 @@ const CardDetails = () => {
     }
   }, [axiosPublic, _id, user?.email]);
 
- 
-
   if (isRoleLoading) {
     return <p>Loading...</p>;
   }
 
   return (
-    <div>
-      <div className="m-10 flex flex-col lg:flex-row shadow-lg rounded-lg overflow-hidden p-4">
+    <div className="">
+      <div className="m-10 flex flex-col lg:flex-row shadow-lg rounded-lg overflow-hidden p-4 bg-blue-100">
         {/* Left: Session Image */}
         <div className="w-full lg:w-1/2">
           <img
@@ -68,6 +66,10 @@ const CardDetails = () => {
             className="w-full h-72 object-cover rounded-lg"
           />
         </div>
+
+
+          <div className="divider divider-horizontal divider-neutral"></div>
+
 
         {/* Right: Card Information */}
         <div className="w-full lg:w-1/2 p-6 flex flex-col justify-between">
