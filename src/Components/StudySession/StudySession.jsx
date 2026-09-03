@@ -80,31 +80,31 @@ const StudySession = () => {
   const sessionsToShow = showAll ? filteredSessions : filteredSessions.slice(0, 6);
 
   return (
-    <section id="study-sessions" className="py-20 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="study-sessions" className="py-6 sm:py-10 lg:py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Header Programming Hero Style */}
-      <div className="text-center max-w-3xl mx-auto space-y-4 mb-10">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-100 dark:bg-violet-500/10 text-violet-700 dark:text-violet-300 text-xs sm:text-sm font-extrabold border border-violet-200 dark:border-violet-500/30 backdrop-blur-md">
+      <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+        <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-violet-100 dark:bg-violet-500/10 text-violet-700 dark:text-violet-300 text-xs sm:text-sm font-extrabold border border-violet-200 dark:border-violet-500/30 backdrop-blur-md">
           <LuSparkles className="text-fuchsia-600 dark:text-fuchsia-400" />
           <span>Interactive Live Batches</span>
         </div>
-        <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white tracking-tight leading-tight">
+        <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-gray-900 dark:text-white tracking-tight leading-tight">
           Explore Available
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 via-violet-600 to-cyan-600 dark:from-fuchsia-400 dark:via-violet-300 dark:to-cyan-300">
             Study Sessions & Batches
           </span>
         </h2>
-        <p className="text-sm sm:text-base text-gray-600 dark:text-slate-400 max-w-xl mx-auto">
+        <p className="text-xs sm:text-sm md:text-base text-gray-600 dark:text-slate-400 max-w-xl mx-auto px-2 sm:px-0">
           Enroll in live interactive batches, access mentor notes, and accelerate your learning journey today.
         </p>
       </div>
 
       {/* Programming Hero Glowing Filter Tabs */}
       {!loading && sortedSessions.length > 0 && (
-        <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 mb-12">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8">
           <button
             onClick={() => { setFilterType("all"); setShowAll(false); }}
-            className={`px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all duration-200 flex items-center gap-2 ${
+            className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all duration-200 flex items-center gap-2 ${
               filterType === "all"
                 ? "bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-lg shadow-violet-600/30 scale-105"
                 : "bg-white dark:bg-[#111827] text-gray-700 dark:text-slate-300 border border-gray-200 dark:border-slate-800 hover:bg-gray-50 dark:hover:bg-[#151e33] shadow-sm"
@@ -116,7 +116,7 @@ const StudySession = () => {
 
           <button
             onClick={() => { setFilterType("ongoing"); setShowAll(false); }}
-            className={`px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all duration-200 flex items-center gap-2 ${
+            className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all duration-200 flex items-center gap-2 ${
               filterType === "ongoing"
                 ? "bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-600/30 scale-105"
                 : "bg-white dark:bg-[#111827] text-gray-700 dark:text-slate-300 border border-gray-200 dark:border-slate-800 hover:bg-gray-50 dark:hover:bg-[#151e33] shadow-sm"
@@ -128,7 +128,7 @@ const StudySession = () => {
 
           <button
             onClick={() => { setFilterType("free"); setShowAll(false); }}
-            className={`px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all duration-200 flex items-center gap-2 ${
+            className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all duration-200 flex items-center gap-2 ${
               filterType === "free"
                 ? "bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-lg shadow-cyan-600/30 scale-105"
                 : "bg-white dark:bg-[#111827] text-gray-700 dark:text-slate-300 border border-gray-200 dark:border-slate-800 hover:bg-gray-50 dark:hover:bg-[#151e33] shadow-sm"
@@ -141,7 +141,7 @@ const StudySession = () => {
       )}
 
       {loading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {[1, 2, 3, 4, 5, 6].map((n) => (
             <div key={n} className="bg-white dark:bg-[#111827] rounded-3xl p-5 border border-gray-200 dark:border-slate-800 shadow-sm animate-pulse space-y-4">
               <div className="aspect-video bg-gray-200 dark:bg-slate-800 rounded-2xl w-full" />
@@ -153,17 +153,17 @@ const StudySession = () => {
         </div>
       ) : filteredSessions.length > 0 ? (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {sessionsToShow.map((session) => (
               <StudySessionCard key={session._id || session.sessionTitle} data={session} />
             ))}
           </div>
 
           {!showAll && filteredSessions.length > 6 && (
-            <div className="flex justify-center mt-14">
+            <div className="flex justify-center mt-8 sm:mt-10">
               <button
                 onClick={() => setShowAll(true)}
-                className="px-9 py-4 rounded-2xl bg-gradient-to-r from-fuchsia-600 via-violet-600 to-indigo-600 hover:from-fuchsia-500 hover:to-indigo-500 text-white font-black text-sm sm:text-base shadow-xl shadow-violet-950/20 dark:shadow-violet-950/40 transition-all duration-200 flex items-center gap-2 active:scale-95"
+                className="px-8 sm:px-9 py-3 sm:py-3.5 rounded-2xl bg-gradient-to-r from-fuchsia-600 via-violet-600 to-indigo-600 hover:from-fuchsia-500 hover:to-indigo-500 text-white font-black text-xs sm:text-sm md:text-base shadow-xl shadow-violet-950/20 dark:shadow-violet-950/40 transition-all duration-200 flex items-center gap-2 active:scale-95"
               >
                 <span>Explore All Sessions ({filteredSessions.length})</span>
                 <LuArrowRight />

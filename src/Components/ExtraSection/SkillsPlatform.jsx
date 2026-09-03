@@ -17,54 +17,55 @@ const categories = [
 
 export default function SkillsPlatform() {
   return (
-    <section className="py-20 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="relative bg-white dark:bg-[#0c1222] border border-gray-200 dark:border-slate-800/90 rounded-[2.5rem] p-6 sm:p-12 lg:p-16 shadow-xl dark:shadow-2xl overflow-hidden transition-colors duration-300">
+    <section className="py-6 sm:py-10 lg:py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative bg-white dark:bg-[#0c1222] border border-gray-200 dark:border-slate-800/90 rounded-3xl sm:rounded-[2.5rem] p-5 sm:p-8 lg:p-12 shadow-xl dark:shadow-2xl overflow-hidden transition-colors duration-300">
         
         {/* Background Ambient Glows */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-violet-500/10 dark:bg-violet-600/15 rounded-full filter blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-fuchsia-500/10 dark:bg-fuchsia-600/15 rounded-full filter blur-[100px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-80 sm:w-96 h-80 sm:h-96 bg-violet-500/10 dark:bg-violet-600/15 rounded-full filter blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-80 sm:w-96 h-80 sm:h-96 bg-fuchsia-500/10 dark:bg-fuchsia-600/15 rounded-full filter blur-[100px] pointer-events-none" />
 
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 relative z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-50 dark:bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs sm:text-sm font-extrabold border border-cyan-200 dark:border-cyan-500/30 backdrop-blur-md">
+        <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 relative z-10">
+          <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-cyan-50 dark:bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 text-xs sm:text-sm font-extrabold border border-cyan-200 dark:border-cyan-500/30 backdrop-blur-md">
             <LuSparkles className="text-cyan-600 dark:text-cyan-400" />
             <span>Curated Interactive Study Tracks</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-gray-900 dark:text-white tracking-tight leading-tight">
             Explore Diverse Learning Fields
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 via-violet-600 to-cyan-600 dark:from-fuchsia-400 dark:via-violet-300 dark:to-cyan-300">
               Tailored For Your Ambition
             </span>
           </h2>
-          <p className="text-sm sm:text-base text-gray-600 dark:text-slate-400 max-w-2xl mx-auto">
+          <p className="text-xs sm:text-sm md:text-base text-gray-600 dark:text-slate-400 max-w-2xl mx-auto px-1">
             Choose from comprehensive live interactive domains and collaborate with peers worldwide.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-2.5 sm:gap-4 pt-2 text-xs sm:text-sm font-semibold">
-            <span className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gray-50 dark:bg-slate-900/80 border border-gray-200 dark:border-slate-800 text-gray-700 dark:text-slate-300 shadow-sm">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 pt-1 sm:pt-2 text-xs sm:text-sm font-semibold">
+            <span className="flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-gray-50 dark:bg-slate-900/80 border border-gray-200 dark:border-slate-800 text-gray-700 dark:text-slate-300 shadow-sm text-xs">
               <LuCheck className="text-cyan-600 dark:text-cyan-400" /> Verified Top Tutors
             </span>
-            <span className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gray-50 dark:bg-slate-900/80 border border-gray-200 dark:border-slate-800 text-gray-700 dark:text-slate-300 shadow-sm">
+            <span className="flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-gray-50 dark:bg-slate-900/80 border border-gray-200 dark:border-slate-800 text-gray-700 dark:text-slate-300 shadow-sm text-xs">
               <LuCheck className="text-violet-600 dark:text-violet-400" /> Live Interactive Rooms
             </span>
-            <span className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gray-50 dark:bg-slate-900/80 border border-gray-200 dark:border-slate-800 text-gray-700 dark:text-slate-300 shadow-sm">
+            <span className="flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-gray-50 dark:bg-slate-900/80 border border-gray-200 dark:border-slate-800 text-gray-700 dark:text-slate-300 shadow-sm text-xs">
               <LuCheck className="text-fuchsia-600 dark:text-fuchsia-400" /> Downloadable Invoices & PDFs
             </span>
           </div>
         </div>
 
         {/* Categories Swiper Carousel */}
-        <div className="relative mt-12 sm:mt-14 px-2 sm:px-8 z-10">
+        <div className="relative mt-8 sm:mt-10 px-1 sm:px-6 z-10">
           <Swiper
             modules={[Navigation, Autoplay]}
-            spaceBetween={18}
-            slidesPerView={1.2}
+            spaceBetween={14}
+            slidesPerView={1.15}
             autoplay={{ delay: 3500, disableOnInteraction: false }}
             breakpoints={{
-              480: { slidesPerView: 1.4, spaceBetween: 18 },
-              640: { slidesPerView: 2.2, spaceBetween: 20 },
-              1024: { slidesPerView: 3.2, spaceBetween: 24 }
+              480: { slidesPerView: 1.35, spaceBetween: 16 },
+              640: { slidesPerView: 2, spaceBetween: 18 },
+              768: { slidesPerView: 2.3, spaceBetween: 20 },
+              1024: { slidesPerView: 3.1, spaceBetween: 22 }
             }}
             navigation={{
               nextEl: '.skills-swiper-next',

@@ -12,14 +12,14 @@ const CorporatePartners = () => {
   ];
 
   return (
-    <section className="py-14 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="bg-gradient-to-r from-blue-50 via-indigo-50/50 to-blue-50 dark:from-[#0c1222] dark:via-[#111827] dark:to-[#0c1222] border border-blue-100 dark:border-slate-800 rounded-3xl p-6 sm:p-10 text-center space-y-6 transition-colors duration-300">
+    <section className="py-6 sm:py-8 lg:py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="bg-gradient-to-r from-blue-50 via-indigo-50/50 to-blue-50 dark:from-[#0c1222] dark:via-[#111827] dark:to-[#0c1222] border border-blue-100 dark:border-slate-800 rounded-3xl p-5 sm:p-8 text-center space-y-4 sm:space-y-5 transition-colors duration-300">
         <div className="flex items-center justify-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
           <LuBuilding2 className="text-base" />
           <span>Academic & Global Community Network</span>
         </div>
 
-        <h2 className="text-xl sm:text-3xl font-extrabold text-gray-900 dark:text-white max-w-2xl mx-auto">
+        <h2 className="text-lg sm:text-2xl lg:text-3xl font-extrabold text-gray-900 dark:text-white max-w-2xl mx-auto">
           Trusted by Academic Groups and Global Study Communities
         </h2>
 

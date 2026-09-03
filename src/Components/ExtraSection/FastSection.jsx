@@ -41,33 +41,33 @@ const roadmapSteps = [
 
 const FastSection = () => {
   return (
-    <section className="py-20 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="relative rounded-[2.5rem] bg-white dark:bg-[#0c1222] border border-gray-200 dark:border-slate-800/90 shadow-xl dark:shadow-2xl p-6 sm:p-12 lg:p-16 overflow-hidden transition-colors duration-300">
+    <section className="py-6 sm:py-10 lg:py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative rounded-3xl sm:rounded-[2.5rem] bg-white dark:bg-[#0c1222] border border-gray-200 dark:border-slate-800/90 shadow-xl dark:shadow-2xl p-5 sm:p-8 lg:p-12 overflow-hidden transition-colors duration-300">
         
         {/* Background Ambient Glows */}
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-fuchsia-500/10 dark:bg-fuchsia-600/10 rounded-full filter blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-cyan-500/10 dark:bg-cyan-600/10 rounded-full filter blur-[100px] pointer-events-none" />
+        <div className="absolute top-0 right-1/4 w-80 sm:w-96 h-80 sm:h-96 bg-fuchsia-500/10 dark:bg-fuchsia-600/10 rounded-full filter blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-1/4 w-80 sm:w-96 h-80 sm:h-96 bg-cyan-500/10 dark:bg-cyan-600/10 rounded-full filter blur-[100px] pointer-events-none" />
 
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16 relative z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-100 dark:bg-violet-500/10 text-violet-700 dark:text-violet-300 text-xs sm:text-sm font-extrabold border border-violet-200 dark:border-violet-500/30 backdrop-blur-md">
+        <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 mb-8 sm:mb-10 relative z-10">
+          <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-violet-100 dark:bg-violet-500/10 text-violet-700 dark:text-violet-300 text-xs sm:text-sm font-extrabold border border-violet-200 dark:border-violet-500/30 backdrop-blur-md">
             <LuSparkles className="text-fuchsia-600 dark:text-fuchsia-400" />
             <span>Structured Learning Experience</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-gray-900 dark:text-white tracking-tight leading-tight">
             How Collaborative Study
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 via-violet-600 to-cyan-600 dark:from-fuchsia-400 dark:via-violet-300 dark:to-cyan-300">
               Accelerates Your Success
             </span>
           </h2>
-          <p className="text-sm sm:text-base text-gray-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm md:text-base text-gray-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed px-1">
             Follow a proven, structured milestone roadmap from session enrollment to interactive mentorship and career breakthroughs.
           </p>
         </div>
 
         {/* 4 Steps Roadmap Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 relative z-10">
           {roadmapSteps.map((item, index) => {
             const Icon = item.icon;
             return (
