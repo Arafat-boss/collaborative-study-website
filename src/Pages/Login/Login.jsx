@@ -6,6 +6,7 @@ import { AuthContext } from "../../Context/AuthProvider";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 import { LuMail, LuLock, LuArrowRight, LuSparkles } from "react-icons/lu";
+import { Fade } from "react-awesome-reveal";
 
 const Login = () => {
   const publicAxios = useAxiosPublic();
@@ -91,7 +92,8 @@ const Login = () => {
 
   return (
     <div className="min-h-[calc(100vh-160px)] flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-950 transition-colors">
-      <div className="bg-white dark:bg-slate-900 shadow-2xl rounded-3xl overflow-hidden max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 border border-gray-100 dark:border-slate-800 transition-colors">
+      <Fade triggerOnce className="max-w-4xl w-full">
+        <div className="bg-white dark:bg-slate-900 shadow-2xl rounded-3xl overflow-hidden max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 border border-gray-100 dark:border-slate-800 transition-colors">
 
         {/* Left Section with Illustration */}
         <div className="hidden md:flex flex-col items-center justify-center p-8 lg:p-12 bg-gradient-to-br from-blue-600 via-indigo-600 to-blue-700 text-white relative overflow-hidden">
@@ -228,7 +230,8 @@ const Login = () => {
           </div>
         </div>
 
-      </div>
+        </div>
+      </Fade>
     </div>
   );
 };

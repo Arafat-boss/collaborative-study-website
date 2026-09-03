@@ -7,6 +7,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 import { LuUser, LuMail, LuLock, LuImage, LuGraduationCap, LuSparkles } from "react-icons/lu";
+import { Fade } from "react-awesome-reveal";
 
 const Register = () => {
   const { createUserEmailAndPass, userUpdateProfile, googleLogin } = useContext(AuthContext);
@@ -84,16 +85,17 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-160px)] flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8 bg-slate-50">
-      <div className="bg-white shadow-2xl rounded-3xl overflow-hidden max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 border border-gray-100">
-        
+    <div className="min-h-[calc(100vh-160px)] flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-950 transition-colors">
+      <Fade triggerOnce className="max-w-4xl w-full">
+        <div className="bg-white dark:bg-slate-900 shadow-2xl rounded-3xl overflow-hidden max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 border border-gray-100 dark:border-slate-800 transition-colors">
+
         {/* Left Section - Form */}
         <div className="p-6 sm:p-10 lg:p-12 flex flex-col justify-center">
           <div className="text-center sm:text-left mb-6 space-y-1">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">
               Create an Account
             </h2>
-            <p className="text-xs sm:text-sm text-gray-500">
+            <p className="text-xs sm:text-sm text-gray-500 dark:text-slate-400">
               Join as a student or tutor to get started
             </p>
           </div>
@@ -255,7 +257,8 @@ const Register = () => {
           </div>
         </div>
 
-      </div>
+        </div>
+      </Fade>
     </div>
   );
 };

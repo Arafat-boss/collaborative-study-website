@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   LuArrowRight,
   LuFlame
 } from "react-icons/lu";
+import CountUp from "react-countup";
+import ScrollTrigger from "react-scroll-trigger";
 
 const Banner = () => {
+  const [counterOn, setCounterOn] = useState(false);
+
   return (
     <section className="relative min-h-[580px] sm:min-h-[640px] lg:min-h-[680px] flex items-center justify-center overflow-hidden bg-transparent text-gray-900 dark:text-white py-16 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
       {/* Radiant Glow Lights (Programming Hero Signature Spotlight) */}
@@ -56,25 +60,51 @@ const Banner = () => {
           </Link>
         </div>
 
-        {/* Programming Hero Stats Highlight Bar */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-8 border-t border-gray-200 dark:border-slate-800/80 max-w-3xl mx-auto">
-          <div className="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 text-center shadow-sm">
-            <div className="text-xl sm:text-2xl font-black text-fuchsia-600 dark:text-fuchsia-400">500+</div>
-            <div className="text-[11px] text-gray-500 dark:text-slate-400 font-medium mt-0.5">Active Learners</div>
+        {/* Programming Hero Stats Highlight Bar with Animated ScrollTrigger CountUp */}
+        <ScrollTrigger onEnter={() => setCounterOn(true)} onExit={() => setCounterOn(false)}>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-8 border-t border-gray-200 dark:border-slate-800/80 max-w-3xl mx-auto">
+            <div className="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 text-center shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-xl sm:text-2xl font-black text-fuchsia-600 dark:text-fuchsia-400">
+                {counterOn ? (
+                  <CountUp start={0} end={500} duration={2.5} suffix="+" />
+                ) : (
+                  "0+"
+                )}
+              </div>
+              <div className="text-[11px] text-gray-500 dark:text-slate-400 font-medium mt-0.5">Active Learners</div>
+            </div>
+            <div className="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 text-center shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-xl sm:text-2xl font-black text-cyan-600 dark:text-cyan-400">
+                {counterOn ? (
+                  <CountUp start={0} end={50} duration={2.5} suffix="+" />
+                ) : (
+                  "0+"
+                )}
+              </div>
+              <div className="text-[11px] text-gray-500 dark:text-slate-400 font-medium mt-0.5">Top Instructors</div>
+            </div>
+            <div className="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 text-center shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-xl sm:text-2xl font-black text-violet-600 dark:text-violet-400">
+                {counterOn ? (
+                  <CountUp start={0} end={100} duration={2.5} suffix="%" />
+                ) : (
+                  "0%"
+                )}
+              </div>
+              <div className="text-[11px] text-gray-500 dark:text-slate-400 font-medium mt-0.5">Verified Sessions</div>
+            </div>
+            <div className="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 text-center shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-xl sm:text-2xl font-black text-amber-600 dark:text-amber-400">
+                {counterOn ? (
+                  <CountUp start={0} end={24} duration={2} suffix="/7" />
+                ) : (
+                  "0/7"
+                )}
+              </div>
+              <div className="text-[11px] text-gray-500 dark:text-slate-400 font-medium mt-0.5">Resource Access</div>
+            </div>
           </div>
-          <div className="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 text-center shadow-sm">
-            <div className="text-xl sm:text-2xl font-black text-cyan-600 dark:text-cyan-400">50+</div>
-            <div className="text-[11px] text-gray-500 dark:text-slate-400 font-medium mt-0.5">Top Instructors</div>
-          </div>
-          <div className="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 text-center shadow-sm">
-            <div className="text-xl sm:text-2xl font-black text-violet-600 dark:text-violet-400">100%</div>
-            <div className="text-[11px] text-gray-500 dark:text-slate-400 font-medium mt-0.5">Verified Sessions</div>
-          </div>
-          <div className="p-3 rounded-2xl bg-white/80 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 text-center shadow-sm">
-            <div className="text-xl sm:text-2xl font-black text-amber-600 dark:text-amber-400">24/7</div>
-            <div className="text-[11px] text-gray-500 dark:text-slate-400 font-medium mt-0.5">Resource Access</div>
-          </div>
-        </div>
+        </ScrollTrigger>
 
       </div>
     </section>

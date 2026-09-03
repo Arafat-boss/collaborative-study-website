@@ -7,6 +7,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import useAdmin from "../../Hooks/useAdmin";
+import { Fade } from "react-awesome-reveal";
 
 const CardDetails = () => {
   const [role, isRoleLoading] = useAdmin();
@@ -108,7 +109,8 @@ const CardDetails = () => {
         <span>Back to All Sessions</span>
       </Link>
 
-      <div className="bg-white dark:bg-slate-900 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0 transition-colors">
+      <Fade triggerOnce>
+        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0 transition-colors">
         
         {/* Left Column: Image & Tutor Card */}
         <div className="lg:col-span-5 p-6 sm:p-8 bg-slate-50/70 dark:bg-slate-800/50 border-b lg:border-b-0 lg:border-r border-gray-100 dark:border-slate-800 flex flex-col justify-between space-y-6">
@@ -256,7 +258,8 @@ const CardDetails = () => {
 
         </div>
 
-      </div>
+        </div>
+      </Fade>
     </div>
   );
 };
