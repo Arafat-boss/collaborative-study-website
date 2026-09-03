@@ -1,16 +1,21 @@
 import React from 'react';
 
 const Loader = () => {
-    return (
-        <div className="flex items-center justify-center min-h-screen">
-        <div className="text-center">
-          <p className="text-lg font-semibold">Loading ...</p>
-          <div className="mt-4">
-            <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 border-blue-500 rounded-full"></div>
-          </div>
-        </div>
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[50vh] sm:min-h-screen py-12 w-full">
+      <div className="loader-con flex items-center justify-center">
+        <div style={{ "--i": 0 }} className="pfile"></div>
+        <div style={{ "--i": 1 }} className="pfile"></div>
+        <div style={{ "--i": 2 }} className="pfile"></div>
+        <div style={{ "--i": 3 }} className="pfile"></div>
+        <div style={{ "--i": 4 }} className="pfile"></div>
+        <div style={{ "--i": 5 }} className="pfile"></div>
       </div>
-    );
+      <p className="text-xs sm:text-sm font-bold tracking-widest uppercase text-gray-500 dark:text-slate-400 mt-2">
+        Loading...
+      </p>
+    </div>
+  );
 };
 
 export default Loader;

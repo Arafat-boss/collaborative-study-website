@@ -1,58 +1,56 @@
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { LuArrowLeft, LuHouse } from 'react-icons/lu';
 
 const ErrorPage = () => {
+  const navigate = useNavigate();
+
   return (
-    <section className='bg-white '>
-      <div className='container min-h-screen px-6 py-12 mx-auto lg:flex lg:items-center lg:gap-12'>
-        <div className='wf-ull lg:w-1/2'>
-          <p className='text-sm font-medium text-gray-500'>404 error</p>
-          <h1 className='mt-3 text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl'>
-            Page not found
+    <section className="min-h-screen bg-slate-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl w-full bg-white rounded-3xl border border-gray-100 shadow-2xl p-6 sm:p-12 flex flex-col-reverse lg:flex-row items-center gap-8 lg:gap-12">
+        
+        {/* Left text */}
+        <div className="w-full lg:w-1/2 text-center lg:text-left space-y-4">
+          <span className="px-3 py-1 rounded-full bg-red-50 text-red-600 text-xs font-bold uppercase tracking-wider border border-red-100">
+            404 Error
+          </span>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 tracking-tight">
+            Page Not Found
           </h1>
-          <p className='mt-4 text-gray-500 dark:text-gray-400'>
-            Sorry, the page you are looking for doesnt exist.Here are some
-            helpful links:
+          <p className="text-sm sm:text-base text-gray-500 max-w-md">
+            The page you are looking for might have been moved, removed, or doesn't exist. Let's get you back on track!
           </p>
 
-          <div className='flex items-center mt-6 gap-x-3'>
-            <button className='flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto hover:bg-gray-100 '>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                fill='none'
-                viewBox='0 0 24 24'
-                strokeWidth='1.5'
-                stroke='currentColor'
-                className='w-5 h-5 rtl:rotate-180'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  d='M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18'
-                />
-              </svg>
-
-              <span>Go back</span>
-            </button>
-
-            <Link
-              to='/'
-              className='w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-gray-500 rounded-lg shrink-0 sm:w-auto hover:bg-gray-600'
+          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-2">
+            <button
+              onClick={() => navigate(-1)}
+              className="w-full sm:w-auto px-6 py-3 rounded-xl border border-gray-200 hover:bg-gray-50 text-gray-700 font-semibold text-sm flex items-center justify-center gap-2 transition-colors"
             >
-              Take me home
+              <LuArrowLeft />
+              <span>Go Back</span>
+            </button>
+            <Link
+              to="/"
+              className="w-full sm:w-auto px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm shadow-md shadow-blue-500/20 flex items-center justify-center gap-2 transition-all"
+            >
+              <LuHouse />
+              <span>Take Me Home</span>
             </Link>
           </div>
         </div>
 
-        <div className='relative w-full mt-8 lg:w-1/2 lg:mt-0'>
+        {/* Right illustration */}
+        <div className="w-full lg:w-1/2 flex justify-center">
           <img
-            className=' w-full lg:h-[32rem] h-80 md:h-96 rounded-lg object-cover '
-            src='https://images.unsplash.com/photo-1613310023042-ad79320c00ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80'
-            alt=''
+            src="https://images.unsplash.com/photo-1584824486509-112e4181ff6b?w=600&auto=format&fit=crop&q=80"
+            alt="404 illustration"
+            className="w-full max-w-sm h-64 sm:h-80 object-cover rounded-2xl shadow-md"
           />
         </div>
+
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default ErrorPage
+export default ErrorPage;

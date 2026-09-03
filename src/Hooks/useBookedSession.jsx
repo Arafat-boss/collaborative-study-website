@@ -7,14 +7,15 @@ const useBookedSession = () => {
     const axiosPublic = useAxiosPublic();
     const {user} = useAuth();
 
-    const {data: booked=[]} = useQuery({
-        queryKey:['bookedSession'],
-        queryFn:async()=>{
-            const res = axiosPublic.get(`/booked-sessions`)
-            return (await res).data;
+    const { data: booked = [], refetch, isLoading } = useQuery({
+        queryKey: ['bookedSession', user?.email],
+        enabled: !!user?.email,
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/bookedSessions/${user.email}`);
+            return Array.isArray(res.data) ? res.data : [];
         }
-    })
-    return [booked]
+    });
+    return [booked, refetch, isLoading];
 };
 
 export default useBookedSession;

@@ -1,10 +1,11 @@
 import axios from "axios";
 
 const publicAxios = axios.create({
-    baseURL: 'https://collaborative-study-server.vercel.app'
-})
+  baseURL: import.meta.env.VITE_API_URL || "https://collaborative-study-server.vercel.app",
+});
+
 const useAxiosPublic = () => {
-    return publicAxios;
+  return publicAxios;
 };
 
 export default useAxiosPublic;

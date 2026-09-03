@@ -15,20 +15,23 @@ import useAxiosPublic from "../Hooks/useAxiosPublic";
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
-  const [isOpen, setIsModalOpen] = useState(false)
+  const [isOpen, setIsModalOpen] = useState(false);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const axiosPublic = useAxiosPublic();
 
   const provider = new GoogleAuthProvider();
+  provider.setCustomParameters({
+    prompt: "select_account",
+  });
 
-  //Google login
+  // Google login
   const googleLogin = () => {
     setLoading(true);
     return signInWithPopup(auth, provider);
   };
 
-  //create user with email and pass
+  // create user with email and pass
   const createUserEmailAndPass = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -39,21 +42,22 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
-  //log out
+
+  // log out
   const LogOutUser = () => {
     setLoading(true);
     return signOut(auth);
   };
-  //update user
+
+  // update user
   const userUpdateProfile = (name, photo) => {
-    setLoading(false);
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
     });
   };
 
-  //save user
+  // Auth State Listener
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
@@ -63,14 +67,14 @@ const AuthProvider = ({ children }) => {
           const response = await axiosPublic.post("/jwt", userInfo);
           if (response?.data?.token) {
             localStorage.setItem("access-token", response.data.token);
-            setLoading(false);
           } else {
-            console.error("Token not received");
             localStorage.removeItem("access-token");
           }
         } catch (error) {
-          console.error("Error fetching token:", error);
+          console.error("Error fetching JWT token:", error);
           localStorage.removeItem("access-token");
+        } finally {
+          setLoading(false);
         }
       } else {
         localStorage.removeItem("access-token");
@@ -80,28 +84,6 @@ const AuthProvider = ({ children }) => {
 
     return () => unsubscribe();
   }, [axiosPublic]);
-  // useEffect(()=>{
-  //     const unsubscribe = onAuthStateChanged(auth, currentUser=>{
-  //         console.log(currentUser);
-  //         setUser(currentUser)
-  //         if(currentUser){
-  //             const userInfo = {email: currentUser.email}
-  //             axiosPublic.post('/jwt', userInfo)
-  //             .then(res =>{
-  //                 if(res.data.token){
-  //                     localStorage.setItem('access-token', res.data.token)
-  //                 }
-  //             })
-  //         }
-  //         else{
-  //             localStorage.removeItem('access-token')
-  //         }
-  //         setLoading(false)
-  //     })
-  //     return()=>{
-  //         unsubscribe();
-  //     }
-  // },[])
 
   const authInfo = {
     user,

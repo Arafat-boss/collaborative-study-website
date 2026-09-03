@@ -1,42 +1,47 @@
-import React, { useState } from "react"; 
+import React, { useState } from "react";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+import { LuPencil, LuTrash2, LuPlus, LuFileText, LuX, LuSave } from "react-icons/lu";
 
 const ManagePersonalNotes = () => {
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
-  const [selectedNote, setSelectedNote] = useState(null); // Selected note for update
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedNote, setSelectedNote] = useState(null);
+  const [isUpdating, setIsUpdating] = useState(false);
 
-  // Fetch all notes
-  const { data: notes = [], refetch } = useQuery({
-    queryKey: ["all-notes"],
+  // Fetch all notes for the current user
+  const { data: notes = [], refetch, isLoading } = useQuery({
+    queryKey: ["all-notes", user?.email],
+    enabled: !!user?.email,
     queryFn: async () => {
       const res = await axiosPublic.get(`/all-notes/${user.email}`);
-      return res.data;
+      return Array.isArray(res.data) ? res.data : [];
     },
   });
 
-  // Handle Delete Note with SweetAlert
   const handleDelete = (id) => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Delete Note?",
+      text: "This note will be permanently removed.",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: "#ef4444",
+      cancelButtonColor: "#64748b",
+      confirmButtonText: "Yes, Delete",
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
           const res = await axiosPublic.delete(`/all-notes/${id}`);
-          if (res.status === 200) {
+          if (res.status === 200 || res.data.deletedCount > 0) {
             Swal.fire("Deleted!", "Your note has been deleted.", "success");
             refetch();
           }
@@ -48,19 +53,16 @@ const ManagePersonalNotes = () => {
     });
   };
 
-  // Handle Update Note (Open Modal)
   const handleUpdate = (note) => {
-    setSelectedNote(note); // Set the selected note for updating
-    setIsModalOpen(true); // Open the modal
+    setSelectedNote(note);
+    setIsModalOpen(true);
   };
 
-  // Close the Modal
   const closeModal = () => {
     setIsModalOpen(false);
-    setSelectedNote(null); // Clear selected note
+    setSelectedNote(null);
   };
 
-  // Handle Update Submit
   const handleUpdateSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -69,129 +71,156 @@ const ManagePersonalNotes = () => {
       description: form.description.value,
     };
 
+    setIsUpdating(true);
     try {
       const res = await axiosPublic.put(`/all-notes/${selectedNote._id}`, updatedNote);
-      if (res.status === 200) {
+      if (res.status === 200 || res.data?.modifiedCount > 0) {
         toast.success("Note updated successfully!");
-        refetch(); // Refresh notes
-        closeModal(); // Close modal after update
+        refetch();
+        closeModal();
       }
     } catch (error) {
       console.error("Error updating note:", error);
       toast.error("Failed to update note.");
+    } finally {
+      setIsUpdating(false);
     }
   };
 
   return (
-    <div>
-      <SectionTitle
-        header={"Manage Your Personal Notes"}
-        subHeader={
-          "You can manage personal notes by updating or deleting them easily from this page."
-        }
-      ></SectionTitle>
-
-      {/* Notes List */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-        {notes.map((note) => (
-          <div
-            key={note._id}
-            className="relative block overflow-hidden rounded-lg border border-gray-100 p-4 sm:p-6 lg:p-8"
-          >
-            <span className="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"></span>
-
-            <div className="sm:flex sm:justify-between sm:gap-4">
-              <div>
-                <h3 className="text-lg font-bold text-gray-900 sm:text-xl">
-                  {note.title}
-                </h3>
-                <p className="mt-1 text-xs font-medium text-gray-600">
-                  By {note.email}
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-4">
-              <p className="text-sm text-gray-500">{note.description}</p>
-            </div>
-
-            {/* Update & Delete Buttons */}
-            <div className="mt-4 flex justify-between">
-              <button
-                onClick={() => handleUpdate(note)}
-                className="px-4 py-2 bg-blue-300 text-white rounded-md hover:bg-blue-700"
-              >
-                Update
-              </button>
-              <button
-                onClick={() => handleDelete(note._id)}
-                className="px-4 py-2 bg-red-400 text-white rounded-md hover:bg-red-700"
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        ))}
+    <div className="space-y-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <SectionTitle
+          header="Manage Personal Study Notes"
+          subHeader="Organize, edit, or delete your personal revision notes and key insights."
+        />
+        <Link
+          to="/dashboard/createNote"
+          className="flex-shrink-0 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-blue-500/20 flex items-center gap-1.5"
+        >
+          <LuPlus className="text-lg" />
+          <span>New Note</span>
+        </Link>
       </div>
 
-      {/* Modal */}
-      {isModalOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
-          role="dialog"
-          aria-modal="true"
-        >
-          <div className="relative bg-white rounded-lg shadow-lg w-full max-w-md">
-            {/* Modal Header */}
-            <div className="flex justify-between items-center p-4 border-b">
-              <h3 className="text-lg font-semibold">Update Note</h3>
+      {isLoading ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[1, 2, 3].map((n) => (
+            <div key={n} className="bg-white dark:bg-slate-900 rounded-3xl p-6 border border-gray-100 dark:border-slate-800 animate-pulse space-y-3">
+              <div className="h-6 bg-gray-200 dark:bg-slate-800 rounded w-3/4" />
+              <div className="h-16 bg-gray-200 dark:bg-slate-800 rounded w-full" />
+            </div>
+          ))}
+        </div>
+      ) : notes.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {notes.map((note) => (
+            <div
+              key={note._id}
+              className="bg-white dark:bg-slate-900 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 p-6 flex flex-col justify-between space-y-4"
+            >
+              <div className="space-y-2">
+                <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white line-clamp-1">
+                  {note.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-gray-500 dark:text-slate-400 line-clamp-4 leading-relaxed whitespace-pre-line">
+                  {note.description}
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-gray-100 dark:border-slate-800 flex items-center justify-between gap-2">
+                <button
+                  onClick={() => handleUpdate(note)}
+                  className="flex-1 py-2 px-3 rounded-xl bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-slate-700 text-xs font-bold flex items-center justify-center gap-1.5 transition-colors"
+                >
+                  <LuPencil /> Edit Note
+                </button>
+                <button
+                  onClick={() => handleDelete(note._id)}
+                  className="p-2 text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 rounded-xl text-base transition-colors"
+                  title="Delete Note"
+                >
+                  <LuTrash2 />
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="py-16 text-center text-gray-500 dark:text-slate-400 bg-white dark:bg-slate-900 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-sm space-y-3">
+          <LuFileText className="text-4xl mx-auto text-gray-400 dark:text-slate-500 mb-2" />
+          <p className="font-bold text-gray-700 dark:text-slate-200 text-base">No Personal Notes Found</p>
+          <p className="text-xs text-gray-400 dark:text-slate-500 max-w-sm mx-auto">
+            You haven't written any personal study notes yet. Create one to organize your learning!
+          </p>
+          <Link
+            to="/dashboard/createNote"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-blue-600 text-white text-xs font-bold shadow-md hover:bg-blue-700"
+          >
+            <LuPlus /> Create Your First Note
+          </Link>
+        </div>
+      )}
+
+      {/* Update Note Modal */}
+      {isModalOpen && selectedNote && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm">
+          <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl space-y-5 border border-gray-100 dark:border-slate-800">
+            <div className="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-slate-800">
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white">Edit Study Note</h3>
               <button
                 onClick={closeModal}
-                className="text-gray-400 hover:text-gray-600"
+                className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 dark:hover:text-white"
               >
-                ✖
+                <LuX className="text-xl" />
               </button>
             </div>
 
-            {/* Modal Body */}
-            <div className="p-4">
-              <form onSubmit={handleUpdateSubmit}>
-                <div className="mb-4">
-                  <label
-                    htmlFor="title"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Title
-                  </label>
-                  <input
-                    type="text"
-                    name="title"
-                    id="title"
-                    defaultValue={selectedNote?.title}
-                    className="mt-1 block w-full border rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
-                    required
-                  />
-                </div>
-                <div className="mb-4">
-                  <label
-                    htmlFor="description"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Description
-                  </label>
-                  <textarea
-                    name="description"
-                    id="description"
-                    defaultValue={selectedNote?.description}
-                    className="mt-1 block w-full border rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
-                    required
-                  ></textarea>
-                </div>
-                <button type="submit" className="btn btn-primary w-full">
-                  Update Note
+            <form onSubmit={handleUpdateSubmit} className="space-y-4">
+              <div className="space-y-1.5">
+                <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-slate-300">
+                  Note Title
+                </label>
+                <input
+                  type="text"
+                  name="title"
+                  required
+                  defaultValue={selectedNote.title}
+                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-slate-300">
+                  Detailed Notes & Content
+                </label>
+                <textarea
+                  name="description"
+                  rows={5}
+                  required
+                  defaultValue={selectedNote.description}
+                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
+                />
+              </div>
+
+              <div className="flex justify-end gap-2 pt-2">
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="px-4 py-2 rounded-xl border border-gray-200 dark:border-slate-700 text-xs sm:text-sm font-semibold text-gray-600 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800"
+                >
+                  Cancel
                 </button>
-              </form>
-            </div>
+                <button
+                  type="submit"
+                  disabled={isUpdating}
+                  className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold shadow-md shadow-blue-500/20 flex items-center gap-1.5"
+                >
+                  <LuSave />
+                  <span>{isUpdating ? "Saving..." : "Save Changes"}</span>
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}

@@ -1,23 +1,21 @@
-import React, { useContext } from "react";
-import { FaApple, FaFacebook, FaGoogle } from "react-icons/fa";
+import React, { useContext, useState } from "react";
+import { FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Context/AuthProvider";
 import bgImg from "../../assets/Sign.png";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import toast from "react-hot-toast";
-
-const img_hosting_key = import.meta.env.VITE_IMGBB_KEY;
-const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
+import { LuUser, LuMail, LuLock, LuImage, LuGraduationCap, LuSparkles } from "react-icons/lu";
 
 const Register = () => {
-  const { createUserEmailAndPass, userUpdateProfile,googleLogin } = useContext(AuthContext);
+  const { createUserEmailAndPass, userUpdateProfile, googleLogin } = useContext(AuthContext);
   const publicAxios = useAxiosPublic();
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from || "/";
 
-  //using a react-hook-form---Npm--1
   const {
     register,
     handleSubmit,
@@ -25,189 +23,238 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  //using a react-hook-form---Npm--2
   const onSubmit = async (data) => {
-    console.log(data.role);
+    setIsLoading(true);
+    try {
+      const res = await createUserEmailAndPass(data.email, data.password);
+      await userUpdateProfile(data.name, data.photo || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200");
 
-    //create user email and pass
-    createUserEmailAndPass(data.email, data.password)
-      .then((res) => {
-        console.log(res.user);
-        navigate(location?.state ? location.state : "/");
-        //profile updated
-        userUpdateProfile(data.name, data.photo)
-          .then((res) => {
-            const userInfo = {
-              name: data.name,
-              email: data.email,
-              role: data.role,
-              image:data.photo
-            };
-            //save user info in database
-            publicAxios.post("/users", userInfo).then((res) => {
-              toast.success("Successfully created!");
-              navigate(from, { replace: true });
-            });
-          })
-          .catch((err) => console.log("err.message", err));
-      })
-      .catch((err) => console.log(err.message));
+      const userInfo = {
+        name: data.name,
+        email: data.email,
+        role: data.role,
+        image: data.photo || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200"
+      };
 
-    reset();
+      await publicAxios.post("/users", userInfo);
+      toast.success("Account created successfully!");
+      reset();
+      navigate(from, { replace: true });
+    } catch (err) {
+      console.error("Registration error:", err);
+      toast.error(err.message?.includes("email-already-in-use")
+        ? "This email is already registered. Please sign in instead."
+        : err.message || "Failed to create account.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handelGoogle = () => {
-    googleLogin().then((res) => {
+  const handleGoogle = async () => {
+    try {
+      setIsLoading(true);
+      const res = await googleLogin();
       const userInfo = {
         name: res.user?.displayName,
         email: res.user?.email,
-        role: 'student'
+        image: res.user?.photoURL,
+        role: "student"
       };
-      publicAxios.post("/users", userInfo)
-      .then((result) => {
-        console.log(result.data);
+
+      await publicAxios.post("/users", userInfo).catch((err) => {
+        console.log("User may already exist:", err);
       });
-      navigate("/");
-    });
+
+      toast.success("Account created with Google!");
+      navigate(from, { replace: true });
+    } catch (error) {
+      console.error("Google sign-up error:", error);
+      if (error.code === "auth/popup-closed-by-user") {
+        toast.error("Google sign-in popup was closed before completion.");
+      } else if (error.code === "auth/invalid-api-key" || error.message?.includes("API key not valid")) {
+        toast.error("Invalid Firebase API Key! Please set your real Firebase credentials in .env.local file.");
+      } else if (error.code === "auth/unauthorized-domain") {
+        toast.error("Domain unauthorized in Firebase Console. Add localhost under Authentication Settings.");
+      } else {
+        toast.error(error.message || "Google sign-up failed. Check your Firebase keys.");
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <div
-      className="min-h-screen flex items-center justify-center bg-cover bg-center"
-      //   style={{
-      //     backgroundImage: `url(${bgImg})`,
-      //   }}
-    >
-      {/* Card */}
-      <div
-        className="bg-white shadow-lg rounded-lg p-8 md:flex md:items-center md:space-x-10 w-full max-w-4xl"
-      >
-        {/* Form Section */}
-        <div className="md:w-1/2">
-          <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
-          {/* Form Section */}
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Name
+    <div className="min-h-[calc(100vh-160px)] flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8 bg-slate-50">
+      <div className="bg-white shadow-2xl rounded-3xl overflow-hidden max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 border border-gray-100">
+        
+        {/* Left Section - Form */}
+        <div className="p-6 sm:p-10 lg:p-12 flex flex-col justify-center">
+          <div className="text-center sm:text-left mb-6 space-y-1">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
+              Create an Account
+            </h2>
+            <p className="text-xs sm:text-sm text-gray-500">
+              Join as a student or tutor to get started
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-3.5">
+            {/* Full Name */}
+            <div className="space-y-1">
+              <label className="block text-xs font-bold uppercase tracking-wider text-gray-700">
+                Full Name
               </label>
-              <input
-                type="text"
-                //using a react-hook-form---Npm---3
-                {...register("name", { required: true })}
-                placeholder="Type here"
-                className="input input-bordered w-full"
-              />
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                  <LuUser />
+                </div>
+                <input
+                  type="text"
+                  {...register("name", { required: "Name is required" })}
+                  placeholder="John Doe"
+                  className="w-full pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all"
+                />
+              </div>
+              {errors.name && <p className="text-red-500 text-xs">{errors.name.message}</p>}
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Photo
+
+            {/* Photo URL */}
+            <div className="space-y-1">
+              <label className="block text-xs font-bold uppercase tracking-wider text-gray-700">
+                Profile Photo URL
               </label>
-              <input
-                type="text"
-                //using a react-hook-form---Npm---3
-                {...register("photo", { required: true })}
-                placeholder="Type here"
-                className="input input-bordered w-full"
-              />
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                  <LuImage />
+                </div>
+                <input
+                  type="url"
+                  {...register("photo")}
+                  placeholder="https://example.com/avatar.jpg (optional)"
+                  className="w-full pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all"
+                />
+              </div>
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                Email
+
+            {/* Email */}
+            <div className="space-y-1">
+              <label className="block text-xs font-bold uppercase tracking-wider text-gray-700">
+                Email Address
               </label>
-              <input
-                type="email"
-                //using a react-hook-form---Npm
-                {...register("email", { required: true })}
-                placeholder="Type here"
-                className="input input-bordered w-full"
-              />
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                  <LuMail />
+                </div>
+                <input
+                  type="email"
+                  {...register("email", { required: "Email is required" })}
+                  placeholder="name@example.com"
+                  className="w-full pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all"
+                />
+              </div>
+              {errors.email && <p className="text-red-500 text-xs">{errors.email.message}</p>}
             </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
+
+            {/* Password */}
+            <div className="space-y-1">
+              <label className="block text-xs font-bold uppercase tracking-wider text-gray-700">
                 Password
               </label>
-              <input
-                type="password"
-                //using a react-hook-form---Npm
-                {...register("password", {
-                  required: true,
-                  pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$/,
-                })}
-                placeholder="Enter your password"
-                className="input input-bordered w-full"
-              />
-              {errors.password?.type === "pattern" && (
-                <p className="text-red-400">
-                  Password must contain at least 1 A-Z, 1 a-z, 1 number, and be
-                  at least 6 characters long.
-                </p>
-              )}
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                  <LuLock />
+                </div>
+                <input
+                  type="password"
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: { value: 6, message: "Password must be at least 6 characters" },
+                  })}
+                  placeholder="••••••••"
+                  className="w-full pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all"
+                />
+              </div>
+              {errors.password && <p className="text-red-500 text-xs">{errors.password.message}</p>}
             </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Category</span>
+
+            {/* Category / Role */}
+            <div className="space-y-1">
+              <label className="block text-xs font-bold uppercase tracking-wider text-gray-700">
+                I am joining as
               </label>
-              <select
-                defaultValue="default"
-                {...register("role", { required: "Category is required" })}
-                className={`select select-bordered w-full ${
-                  errors.role ? "select-error" : ""
-                }`}
-              >
-                <option disabled value="default">
-                  Select a category
-                </option>
-                <option value="student">Student</option>
-                <option value="tutor">Tutor</option>
-              </select>
-              {errors.role && (
-                <span className="text-red-500 text-sm">
-                  {errors.role.message}
-                </span>
-              )}
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                  <LuGraduationCap />
+                </div>
+                <select
+                  defaultValue="student"
+                  {...register("role", { required: "Please select a category" })}
+                  className="w-full pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 bg-white transition-all"
+                >
+                  <option value="student">Student (Learn & Book Sessions)</option>
+                  <option value="tutor">Tutor / Instructor (Teach & Publish)</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-sm shadow-md shadow-blue-500/25 hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 mt-2"
+            >
+              <span>{isLoading ? "Creating Account..." : "Create Account"}</span>
+            </button>
+          </form>
+
+          {/* Social Google Login */}
+          <div className="mt-5 space-y-3">
+            <div className="relative flex items-center justify-center">
+              <div className="border-t border-gray-200 w-full" />
+              <span className="bg-white px-3 text-xs text-gray-400 uppercase font-semibold absolute">
+                Or sign up with
+              </span>
             </div>
 
             <button
-              type="submit"
-              className="btn btn-primary w-full bg-blue-500 hover:bg-blue-600 border-none text-white"
+              onClick={handleGoogle}
+              disabled={isLoading}
+              className="w-full py-2.5 px-4 rounded-xl border border-gray-200 hover:bg-gray-50 text-gray-700 font-semibold text-sm flex items-center justify-center gap-3 transition-colors shadow-sm"
             >
-              Sign Up
+              <FaGoogle className="text-red-500 text-base" />
+              <span>Google Account</span>
             </button>
-          </form>
-          <p className="text-center text-sm mt-4">
-            Already registered?{" "}
-            <a href="/login" className="text-blue-400 hover:underline">
-              Go to log in
-            </a>
-          </p>
-          <div className="text-center mt-4">
-            <p>Or sign up with</p>
-            <div className="flex justify-center space-x-4 mt-2">
-              <div className="btn btn-circle btn-outline">
-              <FaFacebook className="text-2xl text-blue-600 cursor-pointer" />
-              </div>
-              <button
-                onClick={handelGoogle}
-                className="btn btn-circle btn-outline"
-              >
-                <FaGoogle className="text-xl" />
-              </button>
-              <div className="btn btn-circle btn-outline">
-              <FaApple className="text-2xl text-gray-800 cursor-pointer" />
-              </div>
-            </div>
+          </div>
+
+          <div className="text-center mt-5 text-xs sm:text-sm text-gray-500">
+            Already have an account?{" "}
+            <Link to="/login" className="text-blue-600 font-bold hover:underline">
+              Sign In
+            </Link>
           </div>
         </div>
 
-        {/* Image Section */}
-        <div className="hidden md:block md:w-1/2 ">
-          <img
-            src={bgImg} // Replace with your illustration image URL
-            alt="Sign up illustration"
-            className="rounded-lg "
-          />
+        {/* Right Section with Illustration */}
+        <div className="hidden md:flex flex-col items-center justify-center p-8 lg:p-12 bg-gradient-to-br from-indigo-600 via-blue-600 to-blue-700 text-white relative overflow-hidden">
+          <div className="absolute -top-20 -right-20 w-60 h-60 bg-white/10 rounded-full filter blur-2xl pointer-events-none" />
+          <div className="relative z-10 text-center space-y-4">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 text-blue-100 text-xs font-semibold backdrop-blur-md">
+              <LuSparkles /> Collaborative Study
+            </div>
+            <h2 className="text-2xl lg:text-3xl font-black leading-tight">
+              Join a Community of Lifelong Learners
+            </h2>
+            <p className="text-xs lg:text-sm text-blue-100 max-w-xs mx-auto">
+              Schedule sessions, exchange resources, and achieve your academic goals together.
+            </p>
+            <img
+              src={bgImg}
+              alt="Sign up illustration"
+              className="object-contain h-56 lg:h-64 mt-4 drop-shadow-xl"
+            />
+          </div>
         </div>
+
       </div>
     </div>
   );

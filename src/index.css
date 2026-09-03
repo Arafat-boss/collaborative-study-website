@@ -1,3 +1,125 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html.dark, [data-theme="dark"] {
+  color-scheme: dark;
+}
+
+body {
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+html.dark body {
+  background-color: #0f172a;
+  color: #f8fafc;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .printable-area, .printable-area * {
+    visibility: visible;
+  }
+  .printable-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: white !important;
+    color: black !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* ================= Custom Animated File Loader ================= */
+.loader-con {
+  position: relative;
+  width: 240px;
+  height: 100px;
+  overflow: hidden;
+}
+
+.pfile {
+  position: absolute;
+  bottom: 22px;
+  width: 40px;
+  height: 50px;
+  background: linear-gradient(90deg, #b324db, #ac8dcb);
+  border-radius: 4px;
+  transform-origin: center;
+  animation: flyRight 3s ease-in-out infinite;
+  opacity: 0;
+  box-shadow: 0 4px 14px rgba(179, 36, 219, 0.35);
+}
+
+.pfile::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 28px;
+  height: 4px;
+  background-color: #ffffff;
+  border-radius: 2px;
+}
+
+.pfile::after {
+  content: "";
+  position: absolute;
+  top: 13px;
+  left: 6px;
+  width: 18px;
+  height: 4px;
+  background-color: #ffffff;
+  border-radius: 2px;
+}
+
+@keyframes flyRight {
+  0% {
+    left: -10%;
+    transform: scale(0) rotate(-10deg);
+    opacity: 0;
+  }
+  50% {
+    left: 42%;
+    transform: scale(1.2) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    transform: scale(0) rotate(10deg);
+    opacity: 0;
+  }
+}
+
+.pfile {
+  animation-delay: calc(var(--i) * 0.5s);
+}
+
+/* ================= Graph / Blueprint Grid Pattern ================= */
+.bg-graph-grid {
+  background-size: 28px 28px;
+  background-image: 
+    linear-gradient(to right, rgba(148, 163, 184, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+}
+
+html.dark .bg-graph-grid, 
+[data-theme="dark"] .bg-graph-grid,
+.dark .bg-graph-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+}
