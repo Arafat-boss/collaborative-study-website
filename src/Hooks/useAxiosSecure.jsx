@@ -4,7 +4,7 @@ import useAuth from "./useAuth";
 import { useNavigate } from "react-router-dom";
 
 const axiosSecure = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "https://collaborative-study-server.vercel.app",
+  baseURL: import.meta.env.VITE_API_URL || "https://collaborative-study-server-az9x.vercel.app",
 });
 
 const useAxiosSecure = () => {

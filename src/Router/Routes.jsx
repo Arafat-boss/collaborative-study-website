@@ -26,7 +26,7 @@ import UpdateSuccessSession from "../Pages/Dashboard/AdminDashbord/UpdateSuccess
 import Payment from "../Pages/Home/Payment";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
-const apiUrl = import.meta.env.VITE_API_URL || "https://collaborative-study-server.vercel.app";
+const apiUrl = import.meta.env.VITE_API_URL || "https://collaborative-study-server-az9x.vercel.app";
 
 const router = createBrowserRouter([
   {
