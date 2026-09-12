@@ -38,7 +38,7 @@ const InvoiceModal = ({ isOpen, onClose, data }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm overflow-y-auto">
       {/* Modal Container */}
-      <div className="relative w-full max-w-2xl bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-gray-100 dark:border-slate-800 overflow-hidden my-8 transition-all">
+      <div className="relative w-full max-w-2xl bg-white dark:bg-slate-900 rounded-[5px] shadow-2xl border border-gray-100 dark:border-slate-800 overflow-hidden my-8 transition-all">
         
         {/* Top Control Bar (Hidden on Print) */}
         <div className="no-print px-6 py-4 bg-slate-50 dark:bg-slate-800/60 border-b border-gray-100 dark:border-slate-800 flex items-center justify-between">
@@ -48,14 +48,14 @@ const InvoiceModal = ({ isOpen, onClose, data }) => {
           <div className="flex items-center gap-2">
             <button
               onClick={handlePrint}
-              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm shadow-blue-500/20 transition-all"
+              className="px-4 py-2 rounded-[5px] bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all"
             >
               <LuPrinter className="text-sm" />
               <span>Print / Save PDF</span>
             </button>
             <button
               onClick={onClose}
-              className="p-2 rounded-xl text-gray-400 hover:text-gray-700 dark:hover:text-slate-200 hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
+              className="p-2 rounded-[5px] text-gray-400 hover:text-gray-700 dark:hover:text-slate-200 hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
               aria-label="Close invoice"
             >
               <LuX className="text-xl" />
@@ -69,7 +69,7 @@ const InvoiceModal = ({ isOpen, onClose, data }) => {
           {/* Header */}
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 border-b border-gray-100 dark:border-slate-800">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/30">
+              <div className="w-12 h-12 rounded-[5px] bg-blue-600 flex items-center justify-center text-white shadow-sm">
                 <LuGraduationCap className="text-2xl" />
               </div>
               <div>
@@ -82,7 +82,7 @@ const InvoiceModal = ({ isOpen, onClose, data }) => {
 
             <div className="text-left sm:text-right space-y-1">
               <span
-                className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
+                className={`inline-flex items-center gap-1 px-3 py-1 rounded-[5px] text-xs font-bold uppercase tracking-wider ${
                   isPaid
                     ? "bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800"
                     : "bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800"
@@ -99,7 +99,7 @@ const InvoiceModal = ({ isOpen, onClose, data }) => {
 
           {/* Metadata Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs">
-            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-gray-100 dark:border-slate-800/80 space-y-2">
+            <div className="p-4 rounded-[5px] bg-slate-50 dark:bg-slate-800/50 border border-gray-100 dark:border-slate-800/80 space-y-2">
               <p className="font-bold text-gray-400 dark:text-slate-400 uppercase tracking-wider text-[10px]">
                 Billed To (Student)
               </p>
@@ -107,14 +107,14 @@ const InvoiceModal = ({ isOpen, onClose, data }) => {
                 {studentName || "Enrolled Student"}
               </p>
               <p className="text-gray-500 dark:text-slate-400 flex items-center gap-1.5">
-                <LuMail className="text-gray-400" /> {studentEmail}
+                <LuMail className="text-blue-600 dark:text-blue-400" /> {studentEmail}
               </p>
               <p className="text-gray-500 dark:text-slate-400 flex items-center gap-1.5">
-                <LuCalendar className="text-gray-400" /> Date: {formattedDate}
+                <LuCalendar className="text-blue-600 dark:text-blue-400" /> Date: {formattedDate}
               </p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-gray-100 dark:border-slate-800/80 space-y-2">
+            <div className="p-4 rounded-[5px] bg-slate-50 dark:bg-slate-800/50 border border-gray-100 dark:border-slate-800/80 space-y-2">
               <p className="font-bold text-gray-400 dark:text-slate-400 uppercase tracking-wider text-[10px]">
                 Session & Instructor
               </p>
@@ -122,7 +122,7 @@ const InvoiceModal = ({ isOpen, onClose, data }) => {
                 {sessionTitle}
               </p>
               <p className="text-gray-500 dark:text-slate-400 flex items-center gap-1.5">
-                <LuUser className="text-gray-400" /> Tutor: {tutorName} {tutorEmail && `(${tutorEmail})`}
+                <LuUser className="text-blue-600 dark:text-blue-400" /> Tutor: {tutorName} {tutorEmail && `(${tutorEmail})`}
               </p>
               {classStartTime && (
                 <p className="text-gray-500 dark:text-slate-400">
@@ -133,7 +133,7 @@ const InvoiceModal = ({ isOpen, onClose, data }) => {
           </div>
 
           {/* Itemized Table */}
-          <div className="overflow-hidden rounded-2xl border border-gray-100 dark:border-slate-800">
+          <div className="overflow-hidden rounded-[5px] border border-gray-100 dark:border-slate-800">
             <table className="w-full text-left text-xs">
               <thead className="bg-slate-50 dark:bg-slate-800/80 text-gray-500 dark:text-slate-400 uppercase tracking-wider font-bold">
                 <tr>
@@ -151,7 +151,7 @@ const InvoiceModal = ({ isOpen, onClose, data }) => {
                     </p>
                   </td>
                   <td className="px-5 py-4 text-center">
-                    <span className="px-2.5 py-1 rounded-md bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 font-semibold text-[10px]">
+                    <span className="px-2.5 py-1 rounded-[5px] bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 font-semibold text-[10px]">
                       Enrollment
                     </span>
                   </td>
@@ -167,7 +167,7 @@ const InvoiceModal = ({ isOpen, onClose, data }) => {
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-4 border-t border-gray-100 dark:border-slate-800">
             <div className="space-y-1 text-xs text-gray-500 dark:text-slate-400">
               <p className="font-mono text-[11px] flex items-center gap-1">
-                <LuHash className="text-gray-400" /> TxID: <span className="text-gray-800 dark:text-slate-200">{transactionId}</span>
+                <LuHash className="text-blue-600 dark:text-blue-400" /> TxID: <span className="text-gray-800 dark:text-slate-200">{transactionId}</span>
               </p>
               <p className="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium">
                 ✓ Verified by Collaborative Study Platform

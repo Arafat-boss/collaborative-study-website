@@ -93,16 +93,15 @@ const Login = () => {
   return (
     <div className="min-h-[calc(100vh-160px)] flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-950 transition-colors">
       <Fade triggerOnce className="max-w-4xl w-full">
-        <div className="bg-white dark:bg-slate-900 shadow-2xl rounded-3xl overflow-hidden max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 border border-gray-100 dark:border-slate-800 transition-colors">
+        <div className="bg-white dark:bg-slate-900 shadow-xl rounded-[5px] overflow-hidden max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 border border-gray-100 dark:border-slate-800 transition-colors">
 
         {/* Left Section with Illustration */}
-        <div className="hidden md:flex flex-col items-center justify-center p-8 lg:p-12 bg-gradient-to-br from-blue-600 via-indigo-600 to-blue-700 text-white relative overflow-hidden">
-          <div className="absolute -top-20 -left-20 w-60 h-60 bg-white/10 rounded-full filter blur-2xl pointer-events-none" />
+        <div className="hidden md:flex flex-col items-center justify-center p-8 lg:p-12 bg-blue-600 text-white relative overflow-hidden">
           <div className="relative z-10 text-center space-y-4">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 text-blue-100 text-xs font-semibold backdrop-blur-md">
-              <LuSparkles /> Collaborative Study
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[5px] bg-white/15 text-blue-100 text-xs font-semibold backdrop-blur-md">
+              <LuSparkles className="text-white" /> Collaborative Study
             </div>
-            <h2 className="text-2xl lg:text-3xl font-black leading-tight">
+            <h2 className="text-2xl lg:text-3xl font-bold leading-tight">
               Unlock Your Full Learning Potential
             </h2>
             <p className="text-xs lg:text-sm text-blue-100 max-w-xs mx-auto">
@@ -111,7 +110,7 @@ const Login = () => {
             <img
               src={bgImg}
               alt="Illustration"
-              className="object-contain h-56 lg:h-64 mt-4 drop-shadow-xl"
+              className="object-contain h-56 lg:h-64 mt-4 drop-shadow-md"
             />
           </div>
         </div>
@@ -119,7 +118,7 @@ const Login = () => {
         {/* Right Section with Login Form */}
         <div className="p-6 sm:p-10 lg:p-12 flex flex-col justify-center">
           <div className="text-center sm:text-left mb-6 space-y-1">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white tracking-tight">
               Sign In
             </h2>
             <p className="text-xs sm:text-sm text-gray-500 dark:text-slate-400">
@@ -127,9 +126,9 @@ const Login = () => {
             </p>
           </div>
 
-          {/* Protected Access Login Prompt (Only shown when redirected from a session/protected action) */}
+          {/* Protected Access Login Prompt */}
           {location.state?.from && (
-            <div className="mb-5 p-3.5 rounded-2xl bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800 text-blue-800 dark:text-blue-300 text-xs flex items-start gap-2.5 animate-fadeIn">
+            <div className="mb-5 p-3.5 rounded-[5px] bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800 text-blue-800 dark:text-blue-300 text-xs flex items-start gap-2.5 animate-fadeIn">
               <LuLock className="text-base mt-0.5 flex-shrink-0 text-blue-600 dark:text-blue-400" />
               <div>
                 <p className="font-bold">Login Required</p>
@@ -141,7 +140,7 @@ const Login = () => {
           )}
 
           {isDemoFirebase && (
-            <div className="mb-4 p-3 rounded-2xl bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-300 text-xs space-y-1">
+            <div className="mb-4 p-3 rounded-[5px] bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-300 text-xs space-y-1">
               <p className="font-bold flex items-center gap-1">
                 ⚠️ Firebase Keys Required for Live Auth:
               </p>
@@ -158,7 +157,7 @@ const Login = () => {
                 Email Address
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-blue-600 dark:text-blue-400">
                   <LuMail />
                 </div>
                 <input
@@ -166,7 +165,7 @@ const Login = () => {
                   name="email"
                   required
                   placeholder="name@example.com"
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-all"
                 />
               </div>
             </div>
@@ -179,7 +178,7 @@ const Login = () => {
                 </label>
               </div>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-blue-600 dark:text-blue-400">
                   <LuLock />
                 </div>
                 <input
@@ -187,7 +186,7 @@ const Login = () => {
                   name="password"
                   required
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-all"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-all"
                 />
               </div>
             </div>
@@ -196,7 +195,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-sm shadow-md shadow-blue-500/25 hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 mt-2"
+              className="w-full py-3 px-4 rounded-[5px] bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm shadow-sm transition-all duration-200 flex items-center justify-center gap-2 mt-2"
             >
               <span>{isLoading ? "Signing in..." : "Sign In"}</span>
               <LuArrowRight />
@@ -215,16 +214,16 @@ const Login = () => {
             <button
               onClick={handleGoogle}
               disabled={isLoading}
-              className="w-full py-2.5 px-4 rounded-xl border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-800 text-gray-700 dark:text-slate-200 font-semibold text-sm flex items-center justify-center gap-3 transition-colors shadow-sm"
+              className="w-full py-2.5 px-4 rounded-[5px] border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-800 text-gray-700 dark:text-slate-200 font-semibold text-sm flex items-center justify-center gap-3 transition-colors shadow-sm"
             >
-              <FaGoogle className="text-red-500 text-base" />
+              <FaGoogle className="text-blue-600 dark:text-blue-400 text-base" />
               <span>Google Account</span>
             </button>
           </div>
 
           <div className="text-center mt-6 text-xs sm:text-sm text-gray-500 dark:text-slate-400">
             Don't have an account yet?{" "}
-            <Link to="/register" className="text-blue-600 dark:text-blue-400 font-bold hover:underline">
+            <Link to="/register" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">
               Create an account
             </Link>
           </div>

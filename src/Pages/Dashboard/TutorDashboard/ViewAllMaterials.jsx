@@ -80,10 +80,10 @@ const ViewAllMaterials = () => {
           {materials.map((item) => (
             <div
               key={item._id}
-              className="bg-white dark:bg-slate-900 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between"
+              className="bg-white dark:bg-slate-900 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden flex flex-col justify-between"
             >
               <div>
-                <div className="relative aspect-video w-full overflow-hidden bg-gray-100 dark:bg-slate-800">
+                <div className="relative aspect-video w-full overflow-hidden bg-gray-100 dark:bg-slate-800 rounded-t-[5px]">
                   <img
                     src={item.materialImage || "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600"}
                     alt={item.sessionTitle}
@@ -118,13 +118,13 @@ const ViewAllMaterials = () => {
               <div className="p-5 sm:p-6 pt-0 flex items-center justify-between gap-2 border-t border-gray-100 dark:border-slate-800 mt-2">
                 <button
                   onClick={() => setEditingMaterial(item)}
-                  className="flex-1 py-2 px-3 rounded-xl bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-slate-700 text-xs font-bold flex items-center justify-center gap-1.5 transition-colors"
+                  className="flex-1 py-2 px-3 rounded-[5px] bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-slate-700 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
                 >
-                  <LuPencil /> Update Link
+                  <LuPencil className="text-blue-600 dark:text-blue-400" /> Update Link
                 </button>
                 <button
                   onClick={() => handleDelete(item._id)}
-                  className="p-2 text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 rounded-xl text-base transition-colors"
+                  className="p-2 text-rose-500 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 rounded-[5px] text-base transition-colors"
                   title="Delete Material"
                 >
                   <LuTrash2 />
@@ -134,8 +134,8 @@ const ViewAllMaterials = () => {
           ))}
         </div>
       ) : (
-        <div className="py-16 text-center text-gray-500 dark:text-slate-400 bg-white dark:bg-slate-900 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-sm space-y-2">
-          <LuFileText className="text-4xl mx-auto text-gray-400 dark:text-slate-500 mb-2" />
+        <div className="py-16 text-center text-gray-500 dark:text-slate-400 bg-white dark:bg-slate-900 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm space-y-2">
+          <LuFileText className="text-4xl mx-auto text-blue-600 dark:text-blue-400 mb-2" />
           <p className="font-bold text-gray-700 dark:text-slate-200 text-base">No Materials Uploaded Yet</p>
           <p className="text-xs text-gray-400 dark:text-slate-500 max-w-sm mx-auto">
             Go to the "Upload Materials" tab to add learning resources for your approved study sessions.
@@ -146,14 +146,14 @@ const ViewAllMaterials = () => {
       {/* Quick Edit Modal */}
       {editingMaterial && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm">
-          <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl space-y-5 border border-gray-100 dark:border-slate-800">
+          <div className="bg-white dark:bg-slate-900 rounded-[5px] p-6 sm:p-8 max-w-md w-full shadow-xl space-y-5 border border-gray-100 dark:border-slate-800">
             <div className="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-slate-800">
               <h3 className="text-lg font-bold text-gray-900 dark:text-white">Update Material Link</h3>
               <button
                 onClick={() => setEditingMaterial(null)}
-                className="p-1.5 rounded-lg text-gray-400 hover:text-gray-700 dark:hover:text-white"
+                className="p-1.5 rounded-[5px] text-gray-400 hover:text-gray-700 dark:hover:text-white"
               >
-                <LuX className="text-xl" />
+                <LuX className="text-xl text-blue-600 dark:text-blue-400" />
               </button>
             </div>
 
@@ -167,7 +167,7 @@ const ViewAllMaterials = () => {
                   name="link"
                   required
                   defaultValue={editingMaterial.materialLink}
-                  className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
+                  className="w-full px-4 py-2.5 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -175,14 +175,14 @@ const ViewAllMaterials = () => {
                 <button
                   type="button"
                   onClick={() => setEditingMaterial(null)}
-                  className="px-4 py-2 rounded-xl border border-gray-200 dark:border-slate-700 text-xs sm:text-sm font-semibold text-gray-600 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800"
+                  className="px-4 py-2 rounded-[5px] border border-gray-200 dark:border-slate-700 text-xs sm:text-sm font-semibold text-gray-600 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={isUpdating}
-                  className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold shadow-md shadow-blue-500/20 flex items-center gap-1.5"
+                  className="px-5 py-2 rounded-[5px] bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold shadow-sm flex items-center gap-1.5"
                 >
                   <LuSave />
                   <span>{isUpdating ? "Saving..." : "Save Link"}</span>

@@ -110,14 +110,14 @@ const ViewAllStudySession = () => {
   const renderTable = (list, type) => {
     if (list.length === 0) {
       return (
-        <div className="py-12 text-center text-gray-500 dark:text-slate-400 bg-slate-50/60 dark:bg-slate-900/60 rounded-2xl border border-dashed border-gray-200 dark:border-slate-800">
+        <div className="py-12 text-center text-gray-500 dark:text-slate-400 bg-slate-50/60 dark:bg-slate-900/60 rounded-[5px] border border-dashed border-gray-200 dark:border-slate-800">
           No {type} study sessions found.
         </div>
       );
     }
 
     return (
-      <div className="overflow-x-auto w-full rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
+      <div className="overflow-x-auto w-full rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm bg-white dark:bg-slate-900">
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-slate-50 dark:bg-slate-800/80 border-b border-gray-100 dark:border-slate-800 text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-slate-400">
@@ -158,13 +158,13 @@ const ViewAllStudySession = () => {
                       <>
                         <button
                           onClick={() => handleAccept(session._id)}
-                          className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold flex items-center gap-1 shadow-sm"
+                          className="px-3 py-1.5 rounded-[5px] bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold flex items-center gap-1 shadow-sm"
                         >
                           <LuCheck /> Approve
                         </button>
                         <button
                           onClick={() => handleReject(session._id)}
-                          className="px-3 py-1.5 rounded-lg bg-rose-500 hover:bg-rose-600 text-white text-xs font-semibold flex items-center gap-1 shadow-sm"
+                          className="px-3 py-1.5 rounded-[5px] bg-rose-500 hover:bg-rose-600 text-white text-xs font-semibold flex items-center gap-1 shadow-sm"
                         >
                           <LuX /> Reject
                         </button>
@@ -175,13 +175,13 @@ const ViewAllStudySession = () => {
                       <>
                         <Link
                           to={`viewStudyUpdate/${session._id}`}
-                          className="px-3 py-1.5 rounded-lg bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-slate-700 text-xs font-semibold"
+                          className="px-3 py-1.5 rounded-[5px] bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-slate-700 text-xs font-semibold"
                         >
                           Edit Fee
                         </Link>
                         <button
                           onClick={() => handleDelete(session._id)}
-                          className="p-2 rounded-lg text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 text-base"
+                          className="p-2 rounded-[5px] text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 text-base"
                           title="Delete Session"
                         >
                           <LuTrash2 />
@@ -192,7 +192,7 @@ const ViewAllStudySession = () => {
                     {type === "reject" && (
                       <button
                         onClick={() => handleDelete(session._id)}
-                        className="p-2 rounded-lg text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 text-base"
+                        className="p-2 rounded-[5px] text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 text-base"
                         title="Delete Session"
                       >
                         <LuTrash2 />
@@ -216,12 +216,12 @@ const ViewAllStudySession = () => {
       />
 
       {/* Tabs */}
-      <div className="flex flex-wrap gap-2 p-1.5 rounded-2xl bg-white dark:bg-slate-900 border border-gray-200/80 dark:border-slate-800 w-max shadow-sm">
+      <div className="flex flex-wrap gap-2 p-1.5 rounded-[5px] bg-white dark:bg-slate-900 border border-gray-200/80 dark:border-slate-800 w-max shadow-sm">
         <button
           onClick={() => setActiveTab("pending")}
-          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+          className={`flex items-center gap-2 px-4 py-2 rounded-[5px] text-xs sm:text-sm font-bold transition-all ${
             activeTab === "pending"
-              ? "bg-amber-500 text-white shadow-md shadow-amber-500/25"
+              ? "bg-blue-600 text-white shadow-sm"
               : "text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-white"
           }`}
         >
@@ -231,9 +231,9 @@ const ViewAllStudySession = () => {
 
         <button
           onClick={() => setActiveTab("success")}
-          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+          className={`flex items-center gap-2 px-4 py-2 rounded-[5px] text-xs sm:text-sm font-bold transition-all ${
             activeTab === "success"
-              ? "bg-emerald-600 text-white shadow-md shadow-emerald-600/25"
+              ? "bg-emerald-600 text-white shadow-sm"
               : "text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-white"
           }`}
         >
@@ -243,9 +243,9 @@ const ViewAllStudySession = () => {
 
         <button
           onClick={() => setActiveTab("reject")}
-          className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+          className={`flex items-center gap-2 px-4 py-2 rounded-[5px] text-xs sm:text-sm font-bold transition-all ${
             activeTab === "reject"
-              ? "bg-rose-600 text-white shadow-md shadow-rose-600/25"
+              ? "bg-rose-600 text-white shadow-sm"
               : "text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-white"
           }`}
         >
@@ -264,7 +264,7 @@ const ViewAllStudySession = () => {
       {/* Approve / Fee Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm">
-          <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl space-y-5 border border-gray-100 dark:border-slate-800">
+          <div className="bg-white dark:bg-slate-900 rounded-[5px] p-6 sm:p-8 max-w-md w-full shadow-2xl space-y-5 border border-gray-100 dark:border-slate-800">
             <h3 className="text-lg font-bold text-gray-900 dark:text-white">Approve Session & Set Fee</h3>
             <p className="text-xs text-gray-500 dark:text-slate-400 leading-relaxed">
               Set the registration fee for this study session. Enter <strong>0</strong> for a free session.
@@ -276,7 +276,7 @@ const ViewAllStudySession = () => {
               <input
                 type="number"
                 min="0"
-                className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
+                className="w-full px-4 py-2.5 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
                 placeholder="0"
                 value={registrationFee}
                 onChange={(e) => setRegistrationFee(e.target.value)}
@@ -285,13 +285,13 @@ const ViewAllStudySession = () => {
             <div className="flex justify-end gap-2 pt-2">
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="px-4 py-2 rounded-xl border border-gray-200 dark:border-slate-700 text-xs sm:text-sm font-semibold text-gray-600 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800"
+                className="px-4 py-2 rounded-[5px] border border-gray-200 dark:border-slate-700 text-xs sm:text-sm font-semibold text-gray-600 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800"
               >
                 Cancel
               </button>
               <button
                 onClick={handleUpdateSession}
-                className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold shadow-md shadow-blue-500/20"
+                className="px-5 py-2 rounded-[5px] bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold shadow-sm"
               >
                 Approve Session
               </button>
@@ -303,14 +303,14 @@ const ViewAllStudySession = () => {
       {/* Reject Modal */}
       {isRejectModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm">
-          <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl space-y-5 border border-gray-100 dark:border-slate-800">
+          <div className="bg-white dark:bg-slate-900 rounded-[5px] p-6 sm:p-8 max-w-md w-full shadow-2xl space-y-5 border border-gray-100 dark:border-slate-800">
             <h3 className="text-lg font-bold text-gray-900 dark:text-white">Reject Session</h3>
             <p className="text-xs text-gray-500 dark:text-slate-400 leading-relaxed">
               Please explain to the instructor why this session was rejected so they can revise and resubmit.
             </p>
             <textarea
               rows="4"
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-3 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
               placeholder="e.g. Schedule conflicts, incomplete description, or missing requirements..."
               value={rejectionReason}
               onChange={(e) => setRejectionReason(e.target.value)}
@@ -318,13 +318,13 @@ const ViewAllStudySession = () => {
             <div className="flex justify-end gap-2 pt-2">
               <button
                 onClick={() => setIsRejectModalOpen(false)}
-                className="px-4 py-2 rounded-xl border border-gray-200 dark:border-slate-700 text-xs sm:text-sm font-semibold text-gray-600 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800"
+                className="px-4 py-2 rounded-[5px] border border-gray-200 dark:border-slate-700 text-xs sm:text-sm font-semibold text-gray-600 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800"
               >
                 Cancel
               </button>
               <button
                 onClick={handleRejectSession}
-                className="px-5 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs sm:text-sm font-bold shadow-md shadow-rose-500/20"
+                className="px-5 py-2 rounded-[5px] bg-rose-600 hover:bg-rose-700 text-white text-xs sm:text-sm font-bold shadow-sm"
               >
                 Confirm Rejection
               </button>

@@ -15,9 +15,9 @@ const Admin = ({ onItemClick }) => {
   };
 
   const navItemClass = ({ isActive }) =>
-    `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
+    `flex items-center gap-3 px-3.5 py-2.5 rounded-[5px] text-sm font-semibold transition-all duration-200 ${
       isActive
-        ? "bg-blue-600 text-white shadow-md shadow-blue-500/25"
+        ? "bg-blue-600 text-white shadow-sm"
         : "text-gray-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800/80"
     }`;
 
@@ -29,7 +29,7 @@ const Admin = ({ onItemClick }) => {
           onClick={onItemClick}
           className={navItemClass}
         >
-          <LuTrendingUp className="text-xl flex-shrink-0" />
+          <LuTrendingUp className="text-xl flex-shrink-0 text-blue-600 dark:text-blue-400" />
           <span>Sales & Analytics</span>
         </NavLink>
       </li>
@@ -39,7 +39,7 @@ const Admin = ({ onItemClick }) => {
           onClick={onItemClick}
           className={navItemClass}
         >
-          <CiViewList className="text-xl flex-shrink-0" />
+          <CiViewList className="text-xl flex-shrink-0 text-blue-600 dark:text-blue-400" />
           <span>Manage Users</span>
         </NavLink>
       </li>
@@ -49,7 +49,7 @@ const Admin = ({ onItemClick }) => {
           onClick={onItemClick}
           className={navItemClass}
         >
-          <LuNotebookPen className="text-xl flex-shrink-0" />
+          <LuNotebookPen className="text-xl flex-shrink-0 text-blue-600 dark:text-blue-400" />
           <span>All Study Sessions</span>
         </NavLink>
       </li>
@@ -59,21 +59,21 @@ const Admin = ({ onItemClick }) => {
           onClick={onItemClick}
           className={navItemClass}
         >
-          <CiViewTable className="text-xl flex-shrink-0" />
+          <CiViewTable className="text-xl flex-shrink-0 text-blue-600 dark:text-blue-400" />
           <span>All Materials</span>
         </NavLink>
       </li>
 
       <li className="pt-4 mt-4 border-t border-gray-100 dark:border-slate-800">
         <NavLink to="/" onClick={onItemClick} className={navItemClass}>
-          <RxHome className="text-lg flex-shrink-0" />
+          <RxHome className="text-lg flex-shrink-0 text-blue-600 dark:text-blue-400" />
           <span>Back to Home</span>
         </NavLink>
       </li>
       <li>
         <button
           onClick={handleLogOut}
-          className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 transition-colors"
+          className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-[5px] text-sm font-semibold text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors"
         >
           <RiLogoutCircleLine className="text-lg flex-shrink-0" />
           <span>Log Out</span>

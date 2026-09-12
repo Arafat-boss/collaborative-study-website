@@ -97,9 +97,9 @@ const ViewAllUser = () => {
       />
 
       {/* Top Filter & Count Bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 p-4 rounded-2xl bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 shadow-sm transition-colors">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 p-4 rounded-[5px] bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 shadow-sm transition-colors">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold">
+          <div className="w-10 h-10 rounded-[5px] bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold">
             <LuUsers className="text-xl" />
           </div>
           <div>
@@ -112,12 +112,12 @@ const ViewAllUser = () => {
 
         {/* Search Input */}
         <div className="relative w-full sm:w-72">
-          <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400 dark:text-slate-500">
+          <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-blue-600 dark:text-blue-400">
             <FaSearch />
           </div>
           <input
             type="text"
-            className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-all"
+            className="w-full pl-10 pr-4 py-2.5 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-all"
             placeholder="Search name or email..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -126,7 +126,7 @@ const ViewAllUser = () => {
       </div>
 
       {/* Responsive Table Container */}
-      <div className="bg-white dark:bg-slate-900 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-sm overflow-hidden transition-colors">
+      <div className="bg-white dark:bg-slate-900 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm overflow-hidden transition-colors">
         <div className="overflow-x-auto w-full">
           <table className="w-full text-left border-collapse">
             <thead>
@@ -163,7 +163,7 @@ const ViewAllUser = () => {
                             referrerPolicy="no-referrer"
                             src={user.image || "https://placehold.co/80x80?text=User"}
                             alt={user.name || "User"}
-                            className="w-9 h-9 rounded-full object-cover border border-gray-200 dark:border-slate-700"
+                            className="w-9 h-9 rounded-[5px] object-cover border border-gray-200 dark:border-slate-700"
                           />
                           <div className="flex flex-col">
                             <span className="font-semibold text-gray-900 dark:text-white truncate max-w-[140px] sm:max-w-[200px]">
@@ -183,15 +183,15 @@ const ViewAllUser = () => {
                       </td>
 
                       <td className="py-4 px-4 sm:px-6">
-                        <span className={`inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${roleBadge}`}>
-                          {user.role === "admin" ? <LuShield /> : user.role === "tutor" ? <LuGraduationCap /> : <LuBookOpen />}
+                        <span className={`inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-[5px] border ${roleBadge}`}>
+                          <span className="text-blue-600 dark:text-blue-400">{user.role === "admin" ? <LuShield /> : user.role === "tutor" ? <LuGraduationCap /> : <LuBookOpen />}</span>
                           <span>{user?.role || "student"}</span>
                         </span>
                       </td>
 
                       <td className="py-4 px-4 sm:px-6">
                         <select
-                          className="px-3 py-1.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold text-gray-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 shadow-sm"
+                          className="px-3 py-1.5 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold text-gray-700 dark:text-slate-200 focus:outline-none focus:border-blue-500 shadow-sm"
                           value={user.role}
                           onChange={(e) => handleRoleChange(user._id, e.target.value)}
                         >
@@ -205,7 +205,7 @@ const ViewAllUser = () => {
                         <button
                           onClick={() => handleDeleteUser(user._id, user.name, user.email)}
                           disabled={isSelf}
-                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border transition-all text-xs font-semibold ${
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[5px] border transition-all text-xs font-semibold ${
                             isSelf
                               ? "opacity-35 cursor-not-allowed border-gray-200 dark:border-slate-800 text-gray-400"
                               : "border-rose-200 dark:border-rose-900/50 bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 hover:bg-rose-600 hover:text-white dark:hover:bg-rose-600 dark:hover:text-white shadow-sm"

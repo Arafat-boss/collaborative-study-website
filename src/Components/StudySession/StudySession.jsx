@@ -81,16 +81,16 @@ const StudySession = () => {
 
   return (
     <section id="study-sessions" className="py-6 sm:py-10 lg:py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      {/* Header Programming Hero Style */}
+      {/* Header */}
       <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 mb-6 sm:mb-8">
-        <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-violet-100 dark:bg-violet-500/10 text-violet-700 dark:text-violet-300 text-xs sm:text-sm font-extrabold border border-violet-200 dark:border-violet-500/30 backdrop-blur-md">
-          <LuSparkles className="text-fuchsia-600 dark:text-fuchsia-400" />
+        <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-[5px] bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 text-xs sm:text-sm font-bold border border-blue-200 dark:border-blue-900/50 shadow-sm">
+          <LuSparkles className="text-blue-600 dark:text-blue-400" />
           <span>Interactive Live Batches</span>
         </div>
         <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-gray-900 dark:text-white tracking-tight leading-tight">
           Explore Available
           <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-600 via-violet-600 to-cyan-600 dark:from-fuchsia-400 dark:via-violet-300 dark:to-cyan-300">
+          <span className="text-blue-600 dark:text-blue-400">
             Study Sessions & Batches
           </span>
         </h2>
@@ -99,42 +99,42 @@ const StudySession = () => {
         </p>
       </div>
 
-      {/* Programming Hero Glowing Filter Tabs */}
+      {/* Filter Tabs */}
       {!loading && sortedSessions.length > 0 && (
         <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-6 sm:mb-8">
           <button
             onClick={() => { setFilterType("all"); setShowAll(false); }}
-            className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all duration-200 flex items-center gap-2 ${
+            className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-[5px] text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 ${
               filterType === "all"
-                ? "bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-lg shadow-violet-600/30 scale-105"
+                ? "bg-blue-600 text-white shadow-sm"
                 : "bg-white dark:bg-[#111827] text-gray-700 dark:text-slate-300 border border-gray-200 dark:border-slate-800 hover:bg-gray-50 dark:hover:bg-[#151e33] shadow-sm"
             }`}
           >
-            <LuSparkles className="text-fuchsia-500 dark:text-fuchsia-400" />
+            <LuSparkles className={filterType === "all" ? "text-white" : "text-blue-600 dark:text-blue-400"} />
             <span>All Sessions ({sortedSessions.length})</span>
           </button>
 
           <button
             onClick={() => { setFilterType("ongoing"); setShowAll(false); }}
-            className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all duration-200 flex items-center gap-2 ${
+            className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-[5px] text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 ${
               filterType === "ongoing"
-                ? "bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-600/30 scale-105"
+                ? "bg-blue-600 text-white shadow-sm"
                 : "bg-white dark:bg-[#111827] text-gray-700 dark:text-slate-300 border border-gray-200 dark:border-slate-800 hover:bg-gray-50 dark:hover:bg-[#151e33] shadow-sm"
             }`}
           >
-            <LuFlame className="text-emerald-500 dark:text-emerald-400" />
-            <span>🔥 Ongoing Batches ({ongoingCount})</span>
+            <LuFlame className={filterType === "ongoing" ? "text-white" : "text-blue-600 dark:text-blue-400"} />
+            <span>Ongoing Batches ({ongoingCount})</span>
           </button>
 
           <button
             onClick={() => { setFilterType("free"); setShowAll(false); }}
-            className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all duration-200 flex items-center gap-2 ${
+            className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-[5px] text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-2 ${
               filterType === "free"
-                ? "bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-lg shadow-cyan-600/30 scale-105"
+                ? "bg-blue-600 text-white shadow-sm"
                 : "bg-white dark:bg-[#111827] text-gray-700 dark:text-slate-300 border border-gray-200 dark:border-slate-800 hover:bg-gray-50 dark:hover:bg-[#151e33] shadow-sm"
             }`}
           >
-            <LuCheck className="text-cyan-500 dark:text-cyan-400" />
+            <LuCheck className={filterType === "free" ? "text-white" : "text-blue-600 dark:text-blue-400"} />
             <span>Free Sessions ({freeCount})</span>
           </button>
         </div>
@@ -143,11 +143,11 @@ const StudySession = () => {
       {loading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {[1, 2, 3, 4, 5, 6].map((n) => (
-            <div key={n} className="bg-white dark:bg-[#111827] rounded-3xl p-5 border border-gray-200 dark:border-slate-800 shadow-sm animate-pulse space-y-4">
-              <div className="aspect-video bg-gray-200 dark:bg-slate-800 rounded-2xl w-full" />
-              <div className="h-4 bg-gray-200 dark:bg-slate-800 rounded w-1/3" />
-              <div className="h-6 bg-gray-200 dark:bg-slate-800 rounded w-3/4" />
-              <div className="h-10 bg-gray-200 dark:bg-slate-800 rounded w-full" />
+            <div key={n} className="bg-white dark:bg-[#111827] rounded-[5px] p-5 border border-gray-200 dark:border-slate-800 shadow-sm animate-pulse space-y-4">
+              <div className="aspect-video bg-gray-200 dark:bg-slate-800 rounded-[5px] w-full" />
+              <div className="h-4 bg-gray-200 dark:bg-slate-800 rounded-[5px] w-1/3" />
+              <div className="h-6 bg-gray-200 dark:bg-slate-800 rounded-[5px] w-3/4" />
+              <div className="h-10 bg-gray-200 dark:bg-slate-800 rounded-[5px] w-full" />
             </div>
           ))}
         </div>
@@ -163,7 +163,7 @@ const StudySession = () => {
             <div className="flex justify-center mt-8 sm:mt-10">
               <button
                 onClick={() => setShowAll(true)}
-                className="px-8 sm:px-9 py-3 sm:py-3.5 rounded-2xl bg-gradient-to-r from-fuchsia-600 via-violet-600 to-indigo-600 hover:from-fuchsia-500 hover:to-indigo-500 text-white font-black text-xs sm:text-sm md:text-base shadow-xl shadow-violet-950/20 dark:shadow-violet-950/40 transition-all duration-200 flex items-center gap-2 active:scale-95"
+                className="px-8 py-3 rounded-[5px] bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm md:text-base shadow-sm transition-all duration-200 flex items-center gap-2"
               >
                 <span>Explore All Sessions ({filteredSessions.length})</span>
                 <LuArrowRight />
@@ -172,11 +172,11 @@ const StudySession = () => {
           )}
         </>
       ) : (
-        <div className="text-center py-16 px-4 bg-white dark:bg-[#111827] rounded-3xl border border-gray-200 dark:border-slate-800 shadow-xl max-w-lg mx-auto">
-          <div className="w-14 h-14 mx-auto rounded-2xl bg-violet-100 dark:bg-violet-950/80 text-violet-600 dark:text-violet-400 flex items-center justify-center mb-3">
-            <LuBookOpen className="text-2xl" />
+        <div className="text-center py-16 px-4 bg-white dark:bg-[#111827] rounded-[5px] border border-gray-200 dark:border-slate-800 shadow-sm max-w-lg mx-auto">
+          <div className="w-12 h-12 mx-auto rounded-[5px] bg-blue-50 dark:bg-blue-950/80 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-3">
+            <LuBookOpen className="text-xl" />
           </div>
-          <h3 className="text-lg font-black text-gray-900 dark:text-white">No Study Sessions Found</h3>
+          <h3 className="text-lg font-bold text-gray-900 dark:text-white">No Study Sessions Found</h3>
           <p className="text-sm text-gray-500 dark:text-slate-400 mt-1">
             Check back soon as new sessions are published daily by our verified tutors.
           </p>

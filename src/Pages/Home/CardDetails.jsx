@@ -110,31 +110,31 @@ const CardDetails = () => {
       </Link>
 
       <Fade triggerOnce>
-        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0 transition-colors">
+        <div className="bg-white dark:bg-slate-900 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0 transition-colors">
         
         {/* Left Column: Image & Tutor Card */}
         <div className="lg:col-span-5 p-6 sm:p-8 bg-slate-50/70 dark:bg-slate-800/50 border-b lg:border-b-0 lg:border-r border-gray-100 dark:border-slate-800 flex flex-col justify-between space-y-6">
           <div className="space-y-6">
-            <div className="relative aspect-video lg:aspect-square w-full rounded-2xl overflow-hidden shadow-md">
+            <div className="relative aspect-video lg:aspect-square w-full rounded-[5px] overflow-hidden shadow-sm">
               <img
                 src={sessionImage || "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800"}
                 alt={sessionTitle || "Study Session"}
                 className="w-full h-full object-cover"
               />
               <div className="absolute top-3 right-3">
-                <span className="px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-600 text-white shadow">
+                <span className="px-3.5 py-1 rounded-[5px] text-xs font-semibold uppercase tracking-wider bg-blue-600 text-white shadow-sm">
                   {isFree ? "FREE ENROLLMENT" : `$${registrationFee}`}
                 </span>
               </div>
             </div>
 
             {/* Tutor Info Card */}
-            <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 shadow-sm space-y-2">
+            <div className="p-4 rounded-[5px] bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 shadow-sm space-y-2">
               <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-500">
                 Session Instructor
               </h4>
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold text-lg">
+                <div className="w-11 h-11 rounded-[5px] bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-900/50 flex items-center justify-center font-bold text-lg">
                   <MdPerson />
                 </div>
                 <div className="min-w-0">
@@ -142,7 +142,7 @@ const CardDetails = () => {
                     {tutorName || "Verified Tutor"}
                   </h3>
                   <p className="text-xs text-gray-500 dark:text-slate-400 flex items-center gap-1 truncate">
-                    <MdEmail className="text-gray-400" />
+                    <MdEmail className="text-blue-600 dark:text-blue-400" />
                     <span>{tutorEmail || "instructor@example.com"}</span>
                   </p>
                 </div>
@@ -161,10 +161,10 @@ const CardDetails = () => {
             
             {/* Title & Badge */}
             <div className="space-y-2">
-              <span className="inline-block px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 text-xs font-bold border border-blue-100 dark:border-blue-900/40">
+              <span className="inline-block px-3 py-1 rounded-[5px] bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 text-xs font-semibold border border-blue-100 dark:border-blue-900/40">
                 Official Study Session
               </span>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-900 dark:text-white leading-tight">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
                 {sessionTitle}
               </h1>
             </div>
@@ -181,36 +181,36 @@ const CardDetails = () => {
 
             {/* Key Schedule Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-gray-100 dark:border-slate-800 space-y-1">
+              <div className="p-4 rounded-[5px] bg-slate-50 dark:bg-slate-800/60 border border-gray-100 dark:border-slate-800 space-y-1">
                 <div className="flex items-center gap-2 text-xs font-semibold text-gray-500 dark:text-slate-400">
-                  <LuClock className="text-blue-500 dark:text-blue-400" /> Class Timings
+                  <LuClock className="text-blue-600 dark:text-blue-400" /> Class Timings
                 </div>
                 <div className="text-sm font-bold text-gray-800 dark:text-white">
                   {classStartTime || "TBA"} - {classEndTime || "TBA"}
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-gray-100 dark:border-slate-800 space-y-1">
+              <div className="p-4 rounded-[5px] bg-slate-50 dark:bg-slate-800/60 border border-gray-100 dark:border-slate-800 space-y-1">
                 <div className="flex items-center gap-2 text-xs font-semibold text-gray-500 dark:text-slate-400">
-                  <LuUsers className="text-blue-500 dark:text-blue-400" /> Max Capacity
+                  <LuUsers className="text-blue-600 dark:text-blue-400" /> Max Capacity
                 </div>
                 <div className="text-sm font-bold text-gray-800 dark:text-white">
                   {maxParticipant ? `${maxParticipant} Participants` : "Open Seats"}
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-gray-100 dark:border-slate-800 space-y-1">
+              <div className="p-4 rounded-[5px] bg-slate-50 dark:bg-slate-800/60 border border-gray-100 dark:border-slate-800 space-y-1">
                 <div className="flex items-center gap-2 text-xs font-semibold text-gray-500 dark:text-slate-400">
-                  <LuCalendar className="text-blue-500 dark:text-blue-400" /> Reg. Start Date
+                  <LuCalendar className="text-blue-600 dark:text-blue-400" /> Reg. Start Date
                 </div>
                 <div className="text-sm font-bold text-gray-800 dark:text-white">
                   {registrationStartDate || "Open"}
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-gray-100 dark:border-slate-800 space-y-1">
+              <div className="p-4 rounded-[5px] bg-slate-50 dark:bg-slate-800/60 border border-gray-100 dark:border-slate-800 space-y-1">
                 <div className="flex items-center gap-2 text-xs font-semibold text-gray-500 dark:text-slate-400">
-                  <LuCalendar className="text-blue-500 dark:text-blue-400" /> Reg. Deadline
+                  <LuCalendar className="text-blue-600 dark:text-blue-400" /> Reg. Deadline
                 </div>
                 <div className="text-sm font-bold text-gray-800 dark:text-white">
                   {registrationEndDate || "Open"}
@@ -223,33 +223,33 @@ const CardDetails = () => {
           {/* Action CTA Block */}
           <div className="pt-6 border-t border-gray-100 dark:border-slate-800">
             {isBooked ? (
-              <div className="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-center space-y-2">
-                <div className="flex items-center justify-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold text-sm">
-                  <LuCheck className="text-lg" /> You have already booked this session!
+              <div className="p-4 rounded-[5px] bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 text-center space-y-2">
+                <div className="flex items-center justify-center gap-2 text-blue-700 dark:text-blue-400 font-bold text-sm">
+                  <LuCheck className="text-lg text-blue-600 dark:text-blue-400" /> You have already booked this session!
                 </div>
                 <Link
                   to="/dashboard/viewBookedSession"
-                  className="inline-block text-xs font-bold text-emerald-800 dark:text-emerald-300 underline hover:text-emerald-900"
+                  className="inline-block text-xs font-semibold text-blue-800 dark:text-blue-300 underline hover:text-blue-900"
                 >
                   Go to your Booked Sessions in Dashboard →
                 </Link>
               </div>
             ) : role === "admin" || role === "tutor" ? (
-              <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-300 text-center text-sm font-medium">
+              <div className="p-4 rounded-[5px] bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-300 text-center text-sm font-medium">
                 You are currently logged in as an <strong>{role}</strong>. Only student accounts can enroll in sessions.
               </div>
             ) : isFree ? (
               <button
                 onClick={handleFreeBooking}
                 disabled={isBookingFree}
-                className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold text-base shadow-lg shadow-emerald-500/25 hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2"
+                className="w-full py-3.5 px-6 rounded-[5px] bg-blue-600 hover:bg-blue-700 text-white font-semibold text-base shadow-sm transition-all duration-200 flex items-center justify-center gap-2"
               >
                 {isBookingFree ? "Processing Enrollment..." : "Book Session for Free"}
               </button>
             ) : (
               <Link
                 to={`/payment/${_id}`}
-                className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-base shadow-lg shadow-blue-500/25 hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2"
+                className="w-full py-3.5 px-6 rounded-[5px] bg-blue-600 hover:bg-blue-700 text-white font-semibold text-base shadow-sm transition-all duration-200 flex items-center justify-center gap-2"
               >
                 <span>Proceed to Checkout (${registrationFee})</span>
               </Link>

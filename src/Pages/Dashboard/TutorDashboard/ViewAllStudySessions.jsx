@@ -58,7 +58,7 @@ const ViewAllStudySessions = () => {
         />
         <Link
           to="/dashboard/createStudySession"
-          className="flex-shrink-0 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-blue-500/20 flex items-center gap-1.5"
+          className="flex-shrink-0 px-5 py-2.5 rounded-[5px] bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm shadow-sm flex items-center gap-1.5"
         >
           <LuPlus className="text-lg" />
           <span>New Session</span>
@@ -68,10 +68,10 @@ const ViewAllStudySessions = () => {
       {loading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[1, 2, 3].map((n) => (
-            <div key={n} className="bg-white dark:bg-slate-900 rounded-3xl p-5 border border-gray-100 dark:border-slate-800 animate-pulse space-y-3">
-              <div className="aspect-video bg-gray-200 dark:bg-slate-800 rounded-2xl w-full" />
-              <div className="h-5 bg-gray-200 dark:bg-slate-800 rounded w-2/3" />
-              <div className="h-4 bg-gray-200 dark:bg-slate-800 rounded w-full" />
+            <div key={n} className="bg-white dark:bg-slate-900 rounded-[5px] p-5 border border-gray-100 dark:border-slate-800 animate-pulse space-y-3">
+              <div className="aspect-video bg-gray-200 dark:bg-slate-800 rounded-[5px] w-full" />
+              <div className="h-5 bg-gray-200 dark:bg-slate-800 rounded-[5px] w-2/3" />
+              <div className="h-4 bg-gray-200 dark:bg-slate-800 rounded-[5px] w-full" />
             </div>
           ))}
         </div>
@@ -88,17 +88,17 @@ const ViewAllStudySessions = () => {
             return (
               <div
                 key={item._id}
-                className="bg-white dark:bg-slate-900 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between"
+                className="bg-white dark:bg-slate-900 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden flex flex-col justify-between"
               >
                 <div>
-                  <div className="relative aspect-video w-full overflow-hidden bg-gray-100 dark:bg-slate-800">
+                  <div className="relative aspect-video w-full overflow-hidden bg-gray-100 dark:bg-slate-800 rounded-t-[5px]">
                     <img
                       src={item.sessionImage || "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600"}
                       alt={item.sessionTitle}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute top-3 right-3">
-                      <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border shadow-sm ${statusBadge}`}>
+                      <span className={`px-3 py-1 rounded-[5px] text-xs font-semibold uppercase tracking-wider border shadow-sm ${statusBadge}`}>
                         {item.status === "success" ? "Approved" : item.status}
                       </span>
                     </div>
@@ -115,7 +115,7 @@ const ViewAllStudySessions = () => {
                     <div className="space-y-2 text-xs text-gray-600 dark:text-slate-300 pt-2 border-t border-gray-100 dark:border-slate-800">
                       <div className="flex items-center justify-between">
                         <span className="flex items-center gap-1.5 text-gray-400 dark:text-slate-500">
-                          <LuCalendar /> Registration:
+                          <LuCalendar className="text-blue-600 dark:text-blue-400" /> Registration:
                         </span>
                         <span className="font-semibold text-gray-800 dark:text-slate-200">
                           {item.registrationStartDate} - {item.registrationEndDate}
@@ -124,7 +124,7 @@ const ViewAllStudySessions = () => {
 
                       <div className="flex items-center justify-between">
                         <span className="flex items-center gap-1.5 text-gray-400 dark:text-slate-500">
-                          <LuClock /> Class Timing:
+                          <LuClock className="text-blue-600 dark:text-blue-400" /> Class Timing:
                         </span>
                         <span className="font-semibold text-gray-800 dark:text-slate-200">
                           {item.classStartTime} - {item.classEndTime}
@@ -133,7 +133,7 @@ const ViewAllStudySessions = () => {
 
                       <div className="flex items-center justify-between">
                         <span className="flex items-center gap-1.5 text-gray-400 dark:text-slate-500">
-                          <LuUsers /> Capacity:
+                          <LuUsers className="text-blue-600 dark:text-blue-400" /> Capacity:
                         </span>
                         <span className="font-semibold text-gray-800 dark:text-slate-200">
                           {item.maxParticipant} Students
@@ -142,7 +142,7 @@ const ViewAllStudySessions = () => {
                     </div>
 
                     {item.rejectionReason && item.status === "reject" && (
-                      <div className="p-3.5 rounded-2xl bg-rose-50 dark:bg-rose-950/40 border border-rose-100 dark:border-rose-900/50 space-y-1 text-xs">
+                      <div className="p-3.5 rounded-[5px] bg-rose-50 dark:bg-rose-950/40 border border-rose-100 dark:border-rose-900/50 space-y-1 text-xs">
                         <span className="font-bold text-rose-700 dark:text-rose-400 flex items-center gap-1">
                           <LuCircleAlert /> Admin Feedback:
                         </span>
@@ -156,7 +156,7 @@ const ViewAllStudySessions = () => {
                   {item.status === "reject" && (
                     <button
                       onClick={() => handleSendApprovalRequest(item._id)}
-                      className="w-full py-2.5 px-4 rounded-xl bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-colors"
+                      className="w-full py-2.5 px-4 rounded-[5px] bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors"
                     >
                       <LuSend />
                       <span>Resend Approval Request</span>
@@ -168,14 +168,14 @@ const ViewAllStudySessions = () => {
           })}
         </div>
       ) : (
-        <div className="py-16 text-center text-gray-500 dark:text-slate-400 bg-white dark:bg-slate-900 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-sm space-y-4 max-w-lg mx-auto">
+        <div className="py-16 text-center text-gray-500 dark:text-slate-400 bg-white dark:bg-slate-900 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm space-y-4 max-w-lg mx-auto">
           <p className="font-bold text-gray-800 dark:text-white text-lg">No Study Sessions Created Yet</p>
           <p className="text-xs text-gray-400 dark:text-slate-500">
             Publish your first session to start collaborating and sharing resources with students.
           </p>
           <Link
             to="/dashboard/createStudySession"
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-blue-600 text-white text-xs font-bold shadow-md shadow-blue-500/20"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-[5px] bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-sm"
           >
             <LuPlus /> Create Your First Session
           </Link>

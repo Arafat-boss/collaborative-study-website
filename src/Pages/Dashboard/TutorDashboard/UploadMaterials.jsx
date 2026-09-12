@@ -125,9 +125,9 @@ const UploadMaterials = () => {
       {loading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[1, 2, 3].map((n) => (
-            <div key={n} className="bg-white dark:bg-slate-900 rounded-3xl p-5 border border-gray-100 dark:border-slate-800 animate-pulse space-y-3">
-              <div className="aspect-video bg-gray-200 dark:bg-slate-800 rounded-2xl w-full" />
-              <div className="h-5 bg-gray-200 dark:bg-slate-800 rounded w-2/3" />
+            <div key={n} className="bg-white dark:bg-slate-900 rounded-[5px] p-5 border border-gray-100 dark:border-slate-800 animate-pulse space-y-3">
+              <div className="aspect-video bg-gray-200 dark:bg-slate-800 rounded-[5px] w-full" />
+              <div className="h-5 bg-gray-200 dark:bg-slate-800 rounded-[5px] w-2/3" />
             </div>
           ))}
         </div>
@@ -136,17 +136,17 @@ const UploadMaterials = () => {
           {approvedSessions.map((item) => (
             <div
               key={item._id}
-              className="bg-white dark:bg-slate-900 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between"
+              className="bg-white dark:bg-slate-900 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden flex flex-col justify-between"
             >
               <div>
-                <div className="relative aspect-video w-full overflow-hidden bg-gray-100 dark:bg-slate-800">
+                <div className="relative aspect-video w-full overflow-hidden bg-gray-100 dark:bg-slate-800 rounded-t-[5px]">
                   <img
                     src={item.sessionImage || "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600"}
                     alt={item.sessionTitle}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute top-3 right-3">
-                    <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 shadow-sm">
+                    <span className="px-3 py-1 rounded-[5px] text-xs font-semibold uppercase tracking-wider bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800 shadow-sm">
                       Approved
                     </span>
                   </div>
@@ -165,7 +165,7 @@ const UploadMaterials = () => {
               <div className="p-5 sm:p-6 pt-0">
                 <button
                   onClick={() => handleUploadMaterials(item)}
-                  className="w-full py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-blue-500/20 flex items-center justify-center gap-2 transition-all"
+                  className="w-full py-2.5 px-4 rounded-[5px] bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs sm:text-sm shadow-sm flex items-center justify-center gap-2 transition-all"
                 >
                   <LuUpload />
                   <span>Upload Materials</span>
@@ -175,8 +175,8 @@ const UploadMaterials = () => {
           ))}
         </div>
       ) : (
-        <div className="py-16 text-center text-gray-500 dark:text-slate-400 bg-white dark:bg-slate-900 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-sm space-y-2">
-          <LuFileText className="text-4xl mx-auto text-gray-400 dark:text-slate-500 mb-2" />
+        <div className="py-16 text-center text-gray-500 dark:text-slate-400 bg-white dark:bg-slate-900 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm space-y-2">
+          <LuFileText className="text-4xl mx-auto text-blue-600 dark:text-blue-400 mb-2" />
           <p className="font-bold text-gray-700 dark:text-slate-200 text-base">No Approved Sessions Available</p>
           <p className="text-xs text-gray-400 dark:text-slate-500 max-w-sm mx-auto">
             You can upload study materials once your created study sessions are approved by an administrator.
@@ -187,7 +187,7 @@ const UploadMaterials = () => {
       {/* Upload Modal */}
       {isModalOpen && selectedSession && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm">
-          <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl space-y-5 border border-gray-100 dark:border-slate-800">
+          <div className="bg-white dark:bg-slate-900 rounded-[5px] p-6 sm:p-8 max-w-lg w-full shadow-xl space-y-5 border border-gray-100 dark:border-slate-800">
             <div className="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-slate-800">
               <div>
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white">Upload Study Resource</h3>
@@ -197,9 +197,9 @@ const UploadMaterials = () => {
               </div>
               <button
                 onClick={closeModal}
-                className="p-2 rounded-lg text-gray-400 hover:text-gray-700 dark:hover:text-white"
+                className="p-2 rounded-[5px] text-gray-400 hover:text-gray-700 dark:hover:text-white"
               >
-                <LuX className="text-xl" />
+                <LuX className="text-xl text-blue-600 dark:text-blue-400" />
               </button>
             </div>
 
@@ -209,7 +209,7 @@ const UploadMaterials = () => {
                   Google Drive / Document URL *
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-blue-600 dark:text-blue-400">
                     <LuLink />
                   </div>
                   <input
@@ -217,7 +217,7 @@ const UploadMaterials = () => {
                     name="link"
                     required
                     placeholder="https://drive.google.com/..."
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
                   />
                 </div>
               </div>
@@ -230,7 +230,7 @@ const UploadMaterials = () => {
                   type="file"
                   name="fileUpload"
                   accept="image/*"
-                  className="file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 dark:file:bg-slate-800 file:text-blue-700 dark:file:text-blue-300 hover:file:bg-blue-100 text-xs text-gray-500 dark:text-slate-400 w-full"
+                  className="file:mr-4 file:py-2 file:px-4 file:rounded-[5px] file:border-0 file:text-xs file:font-semibold file:bg-blue-50 dark:file:bg-slate-800 file:text-blue-700 dark:file:text-blue-300 hover:file:bg-blue-100 text-xs text-gray-500 dark:text-slate-400 w-full"
                 />
               </div>
 
@@ -238,14 +238,14 @@ const UploadMaterials = () => {
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="px-4 py-2 rounded-xl border border-gray-200 dark:border-slate-700 text-xs sm:text-sm font-semibold text-gray-600 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800"
+                  className="px-4 py-2 rounded-[5px] border border-gray-200 dark:border-slate-700 text-xs sm:text-sm font-semibold text-gray-600 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={isUploading}
-                  className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold shadow-md shadow-blue-500/20 flex items-center gap-1.5"
+                  className="px-5 py-2 rounded-[5px] bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold shadow-sm flex items-center gap-1.5"
                 >
                   <LuUpload />
                   <span>{isUploading ? "Uploading..." : "Publish Material"}</span>

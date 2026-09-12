@@ -54,10 +54,10 @@ const ViewAllMaterialsAdmin = () => {
       {isLoading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {[1, 2, 3, 4].map((n) => (
-            <div key={n} className="bg-white dark:bg-slate-900 rounded-2xl p-4 border border-gray-100 dark:border-slate-800 animate-pulse space-y-3">
-              <div className="h-36 bg-gray-200 dark:bg-slate-800 rounded-xl" />
-              <div className="h-5 bg-gray-200 dark:bg-slate-800 rounded w-3/4" />
-              <div className="h-4 bg-gray-200 dark:bg-slate-800 rounded w-1/2" />
+            <div key={n} className="bg-white dark:bg-slate-900 rounded-[5px] p-4 border border-gray-100 dark:border-slate-800 animate-pulse space-y-3">
+              <div className="h-36 bg-gray-200 dark:bg-slate-800 rounded-[5px]" />
+              <div className="h-5 bg-gray-200 dark:bg-slate-800 rounded-[5px] w-3/4" />
+              <div className="h-4 bg-gray-200 dark:bg-slate-800 rounded-[5px] w-1/2" />
             </div>
           ))}
         </div>
@@ -66,7 +66,7 @@ const ViewAllMaterialsAdmin = () => {
           {allMaterials.map((material) => (
             <div
               key={material._id || material.sessionId}
-              className="bg-white dark:bg-slate-900 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col justify-between"
+              className="bg-white dark:bg-slate-900 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col justify-between"
             >
               <div>
                 <div className="relative aspect-video w-full overflow-hidden bg-gray-100 dark:bg-slate-800">
@@ -84,7 +84,7 @@ const ViewAllMaterialsAdmin = () => {
                   
                   <div className="space-y-1 text-xs text-gray-500 dark:text-slate-400">
                     <p className="flex items-center gap-1.5 truncate">
-                      <LuUser className="text-gray-400 dark:text-slate-500 flex-shrink-0" />
+                      <LuUser className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
                       <span>{material.tutorEmail}</span>
                     </p>
                     <p className="font-mono text-[11px] text-gray-400 dark:text-slate-500 truncate">
@@ -111,7 +111,7 @@ const ViewAllMaterialsAdmin = () => {
 
                 <button
                   onClick={() => handleDelete(material._id)}
-                  className="p-2 text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 rounded-lg text-sm transition-colors"
+                  className="p-2 text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 rounded-[5px] text-sm transition-colors"
                   title="Delete Material"
                 >
                   <LuTrash2 />
@@ -121,8 +121,8 @@ const ViewAllMaterialsAdmin = () => {
           ))}
         </div>
       ) : (
-        <div className="py-16 text-center text-gray-500 dark:text-slate-400 bg-white dark:bg-slate-900 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-sm">
-          <LuFileText className="text-4xl mx-auto text-gray-400 dark:text-slate-500 mb-2" />
+        <div className="py-16 text-center text-gray-500 dark:text-slate-400 bg-white dark:bg-slate-900 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm">
+          <LuFileText className="text-4xl mx-auto text-blue-600 dark:text-blue-400 mb-2" />
           <p className="font-semibold text-gray-700 dark:text-slate-200">No study materials found</p>
           <p className="text-xs text-gray-400 dark:text-slate-500 mt-1">Uploaded materials from tutors will appear here.</p>
         </div>

@@ -105,7 +105,7 @@ const SalesAnalytics = () => {
         </div>
         <button
           onClick={() => refetch()}
-          className="px-4 py-2 rounded-xl bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-slate-700 text-xs font-bold transition-all flex items-center gap-2"
+          className="px-4 py-2 rounded-[5px] bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-slate-700 text-xs font-bold transition-all flex items-center gap-2"
         >
           <LuTrendingUp />
           <span>Refresh Data</span>
@@ -116,12 +116,12 @@ const SalesAnalytics = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         
         {/* Total Revenue */}
-        <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:shadow-lg transition-all duration-300">
+        <div className="bg-white dark:bg-slate-900 p-6 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:shadow-lg transition-all duration-300">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">
               Total Revenue
             </span>
-            <div className="w-10 h-10 rounded-2xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg">
+            <div className="w-10 h-10 rounded-[5px] bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg">
               <LuDollarSign />
             </div>
           </div>
@@ -129,7 +129,7 @@ const SalesAnalytics = () => {
             <h2 className="text-3xl font-black text-gray-900 dark:text-white tracking-tight">
               ${(summary.totalRevenue || 0).toLocaleString()}
             </h2>
-            <p className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold mt-1 flex items-center gap-1">
+            <p className="text-xs text-blue-600 dark:text-blue-400 font-semibold mt-1 flex items-center gap-1">
               <LuSparkles /> Lifetime earnings from paid sessions
             </p>
           </div>
@@ -137,33 +137,33 @@ const SalesAnalytics = () => {
         </div>
 
         {/* This Month Revenue */}
-        <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:shadow-lg transition-all duration-300">
+        <div className="bg-white dark:bg-slate-900 p-6 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:shadow-lg transition-all duration-300">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">
               This Month ({summary.currentMonthName || "Current"})
             </span>
-            <div className="w-10 h-10 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg">
+            <div className="w-10 h-10 rounded-[5px] bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg">
               <LuTrendingUp />
             </div>
           </div>
           <div className="mt-4">
-            <h2 className="text-3xl font-black text-emerald-600 dark:text-emerald-400 tracking-tight">
+            <h2 className="text-3xl font-black text-blue-600 dark:text-blue-400 tracking-tight">
               ${(summary.thisMonthRevenue || 0).toLocaleString()}
             </h2>
             <p className="text-xs text-gray-500 dark:text-slate-400 mt-1">
               Earned in {summary.currentMonthName} {summary.currentYear}
             </p>
           </div>
-          <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-emerald-500/5 rounded-full blur-2xl group-hover:bg-emerald-500/10 transition-colors" />
+          <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-blue-500/5 rounded-full blur-2xl group-hover:bg-blue-500/10 transition-colors" />
         </div>
 
         {/* Total Bookings */}
-        <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:shadow-lg transition-all duration-300">
+        <div className="bg-white dark:bg-slate-900 p-6 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:shadow-lg transition-all duration-300">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">
               Total Enrollments
             </span>
-            <div className="w-10 h-10 rounded-2xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center text-lg">
+            <div className="w-10 h-10 rounded-[5px] bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg">
               <LuBookOpen />
             </div>
           </div>
@@ -171,20 +171,20 @@ const SalesAnalytics = () => {
             <h2 className="text-3xl font-black text-gray-900 dark:text-white tracking-tight">
               {(summary.totalBookings || 0).toLocaleString()}
             </h2>
-            <p className="text-xs text-purple-600 dark:text-purple-400 font-semibold mt-1">
+            <p className="text-xs text-blue-600 dark:text-blue-400 font-semibold mt-1">
               Active student enrollments
             </p>
           </div>
-          <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-purple-500/5 rounded-full blur-2xl group-hover:bg-purple-500/10 transition-colors" />
+          <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-blue-500/5 rounded-full blur-2xl group-hover:bg-blue-500/10 transition-colors" />
         </div>
 
         {/* Paid vs Free Ratio */}
-        <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:shadow-lg transition-all duration-300">
+        <div className="bg-white dark:bg-slate-900 p-6 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:shadow-lg transition-all duration-300">
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">
               Paid vs Free
             </span>
-            <div className="w-10 h-10 rounded-2xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg">
+            <div className="w-10 h-10 rounded-[5px] bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg">
               <LuCreditCard />
             </div>
           </div>
@@ -202,7 +202,7 @@ const SalesAnalytics = () => {
               ? `${Math.round(((summary.paidBookings || 0) / summary.totalBookings) * 100)}% paid conversions`
               : "0% conversions"}
           </p>
-          <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-amber-500/5 rounded-full blur-2xl group-hover:bg-amber-500/10 transition-colors" />
+          <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-blue-500/5 rounded-full blur-2xl group-hover:bg-blue-500/10 transition-colors" />
         </div>
 
       </div>
@@ -211,17 +211,17 @@ const SalesAnalytics = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         {/* Main Monthly Revenue & Booking Trend Chart */}
-        <div className="lg:col-span-2 bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-sm space-y-6">
+        <div className="lg:col-span-2 bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm space-y-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
             <div>
               <h3 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                <FaChartBar className="text-blue-600" /> Monthly Revenue & Enrollment Overview ({summary.currentYear})
+                <FaChartBar className="text-blue-600 dark:text-blue-400" /> Monthly Revenue & Enrollment Overview ({summary.currentYear})
               </h3>
               <p className="text-xs text-gray-500 dark:text-slate-400">
                 Monthly revenue ($) and student booking count breakdown for the year.
               </p>
             </div>
-            <span className="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-slate-700">
+            <span className="px-3 py-1 rounded-[5px] text-xs font-bold bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-slate-700">
               Year {summary.currentYear || new Date().getFullYear()}
             </span>
           </div>
@@ -249,7 +249,7 @@ const SalesAnalytics = () => {
                   contentStyle={{
                     backgroundColor: "#0f172a",
                     borderColor: "#334155",
-                    borderRadius: "16px",
+                    borderRadius: "5px",
                     color: "#f8fafc",
                     fontSize: "12px",
                   }}
@@ -264,7 +264,7 @@ const SalesAnalytics = () => {
                   dataKey="revenue"
                   name="Revenue ($)"
                   fill="#3b82f6"
-                  radius={[8, 8, 0, 0]}
+                  radius={[5, 5, 0, 0]}
                   maxBarSize={40}
                 />
                 <Line
@@ -283,10 +283,10 @@ const SalesAnalytics = () => {
         </div>
 
         {/* Enrollment Distribution Pie Chart */}
-        <div className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-sm flex flex-col justify-between space-y-6">
+        <div className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm flex flex-col justify-between space-y-6">
           <div>
             <h3 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
-              <FaChartPie className="text-emerald-500" /> Enrollment Distribution
+              <FaChartPie className="text-blue-600 dark:text-blue-400" /> Enrollment Distribution
             </h3>
             <p className="text-xs text-gray-500 dark:text-slate-400">
               Ratio of paid course sales versus free enrollments.
@@ -314,7 +314,7 @@ const SalesAnalytics = () => {
                     contentStyle={{
                       backgroundColor: "#0f172a",
                       borderColor: "#334155",
-                      borderRadius: "12px",
+                      borderRadius: "5px",
                       color: "#f8fafc",
                       fontSize: "12px",
                     }}
@@ -329,13 +329,13 @@ const SalesAnalytics = () => {
           <div className="space-y-2 pt-4 border-t border-gray-100 dark:border-slate-800 text-xs">
             <div className="flex justify-between items-center">
               <span className="flex items-center gap-2 text-gray-600 dark:text-slate-300">
-                <span className="w-3 h-3 rounded-full bg-blue-500" /> Paid Enrollments
+                <span className="w-3 h-3 rounded-[5px] bg-blue-500" /> Paid Enrollments
               </span>
               <span className="font-bold text-gray-900 dark:text-white">{summary.paidBookings || 0}</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="flex items-center gap-2 text-gray-600 dark:text-slate-300">
-                <span className="w-3 h-3 rounded-full bg-emerald-500" /> Free Enrollments
+                <span className="w-3 h-3 rounded-[5px] bg-emerald-500" /> Free Enrollments
               </span>
               <span className="font-bold text-gray-900 dark:text-white">{summary.freeBookings || 0}</span>
             </div>
@@ -345,7 +345,7 @@ const SalesAnalytics = () => {
       </div>
 
       {/* Transaction & Invoice Table Section */}
-      <div className="bg-white dark:bg-slate-900 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-sm overflow-hidden space-y-4 p-6 sm:p-8">
+      <div className="bg-white dark:bg-slate-900 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm overflow-hidden space-y-4 p-6 sm:p-8">
         
         {/* Table Controls */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
@@ -368,7 +368,7 @@ const SalesAnalytics = () => {
                 placeholder="Search email, session, invoice..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-xs text-gray-800 dark:text-slate-200 focus:outline-none focus:border-blue-500 transition-all"
+                className="w-full pl-9 pr-4 py-2 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-xs text-gray-800 dark:text-slate-200 focus:outline-none focus:border-blue-500 transition-all"
               />
             </div>
 
@@ -376,7 +376,7 @@ const SalesAnalytics = () => {
             <select
               value={selectedMonth}
               onChange={(e) => setSelectedMonth(e.target.value)}
-              className="px-3 py-2 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-xs font-semibold text-gray-700 dark:text-slate-200 focus:outline-none focus:border-blue-500"
+              className="px-3 py-2 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-xs font-semibold text-gray-700 dark:text-slate-200 focus:outline-none focus:border-blue-500"
             >
               <option value="all">All Months</option>
               {monthlyStats.map((m) => (
@@ -390,7 +390,7 @@ const SalesAnalytics = () => {
             <select
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value)}
-              className="px-3 py-2 rounded-xl border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-xs font-semibold text-gray-700 dark:text-slate-200 focus:outline-none focus:border-blue-500"
+              className="px-3 py-2 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-xs font-semibold text-gray-700 dark:text-slate-200 focus:outline-none focus:border-blue-500"
             >
               <option value="all">All Types</option>
               <option value="paid">Paid Only</option>
@@ -400,7 +400,7 @@ const SalesAnalytics = () => {
         </div>
 
         {/* Transactions Table */}
-        <div className="overflow-x-auto rounded-2xl border border-gray-100 dark:border-slate-800">
+        <div className="overflow-x-auto rounded-[5px] border border-gray-100 dark:border-slate-800">
           <table className="w-full text-left text-xs">
             <thead className="bg-slate-50 dark:bg-slate-800/80 text-gray-500 dark:text-slate-400 uppercase tracking-wider font-bold">
               <tr>
@@ -452,7 +452,7 @@ const SalesAnalytics = () => {
                           {item.registrationFee === 0 ? "FREE" : `$${Number(item.registrationFee).toFixed(2)}`}
                         </span>
                         <span
-                          className={`text-[9px] font-bold px-2 py-0.5 rounded-full ${
+                          className={`text-[9px] font-bold px-2 py-0.5 rounded-[5px] ${
                             item.registrationFee > 0
                               ? "bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400"
                               : "bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400"
@@ -477,7 +477,7 @@ const SalesAnalytics = () => {
                     <td className="px-5 py-4 text-right">
                       <button
                         onClick={() => openInvoice(item)}
-                        className="px-3 py-1.5 rounded-xl bg-blue-50 dark:bg-slate-800 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 text-blue-600 dark:text-blue-400 text-xs font-bold transition-all inline-flex items-center gap-1.5 shadow-sm"
+                        className="px-3 py-1.5 rounded-[5px] bg-blue-50 dark:bg-slate-800 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 text-blue-600 dark:text-blue-400 text-xs font-bold transition-all inline-flex items-center gap-1.5 shadow-sm"
                       >
                         <LuFileText />
                         <span>Invoice</span>

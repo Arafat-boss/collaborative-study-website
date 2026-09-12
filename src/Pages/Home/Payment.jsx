@@ -35,7 +35,7 @@ const Payment = () => {
       </div>
 
       <div className="flex items-center justify-center gap-2 text-xs text-gray-400 mt-8">
-        <LuShieldCheck className="text-emerald-500 text-base" />
+        <LuShieldCheck className="text-blue-600 dark:text-blue-400 text-base" />
         <span>256-bit encrypted SSL checkout powered by Stripe</span>
       </div>
     </div>

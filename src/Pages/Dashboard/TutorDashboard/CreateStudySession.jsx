@@ -96,7 +96,7 @@ const CreateStudySession = () => {
         subHeader="Schedule a new interactive learning session, specify class timing, and submit for platform review."
       />
 
-      <div className="bg-white dark:bg-slate-900 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-xl p-6 sm:p-8 lg:p-10">
+      <div className="bg-white dark:bg-slate-900 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm p-6 sm:p-8 lg:p-10">
         <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           
           {/* Session Title */}
@@ -109,7 +109,7 @@ const CreateStudySession = () => {
               name="sessionTitle"
               required
               placeholder="e.g. Master Data Structures and Algorithms in Python"
-              className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2.5 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -123,7 +123,7 @@ const CreateStudySession = () => {
               name="tutorName"
               readOnly
               value={user?.displayName || "Instructor"}
-              className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm font-semibold text-gray-700 dark:text-slate-300 cursor-not-allowed"
+              className="w-full px-4 py-2.5 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm font-semibold text-gray-700 dark:text-slate-300 cursor-not-allowed"
             />
           </div>
 
@@ -137,7 +137,7 @@ const CreateStudySession = () => {
               name="tutorEmail"
               readOnly
               value={user?.email || ""}
-              className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm font-semibold text-gray-700 dark:text-slate-300 cursor-not-allowed"
+              className="w-full px-4 py-2.5 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm font-semibold text-gray-700 dark:text-slate-300 cursor-not-allowed"
             />
           </div>
 
@@ -150,7 +150,7 @@ const CreateStudySession = () => {
               type="file"
               name="sessionImage"
               accept="image/*"
-              className="w-full file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-blue-50 dark:file:bg-slate-800 file:text-blue-600 dark:file:text-blue-400 hover:file:bg-blue-100 border border-gray-200 dark:border-slate-700 rounded-xl text-xs text-gray-500 dark:text-slate-400 cursor-pointer"
+              className="w-full file:mr-3 file:py-2 file:px-4 file:rounded-[5px] file:border-0 file:text-xs file:font-semibold file:bg-blue-50 dark:file:bg-slate-800 file:text-blue-600 dark:file:text-blue-400 hover:file:bg-blue-100 border border-gray-200 dark:border-slate-700 rounded-[5px] text-xs text-gray-500 dark:text-slate-400 cursor-pointer"
             />
           </div>
 
@@ -163,7 +163,7 @@ const CreateStudySession = () => {
               type="date"
               name="registrationStartDate"
               required
-              className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2.5 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -176,7 +176,7 @@ const CreateStudySession = () => {
               type="date"
               name="registrationEndDate"
               required
-              className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2.5 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -191,7 +191,7 @@ const CreateStudySession = () => {
               placeholder="25"
               defaultValue={25}
               min="1"
-              className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2.5 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -204,7 +204,7 @@ const CreateStudySession = () => {
               type="time"
               name="classStartTime"
               required
-              className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2.5 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -217,7 +217,7 @@ const CreateStudySession = () => {
               type="time"
               name="classEndTime"
               required
-              className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2.5 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -230,7 +230,7 @@ const CreateStudySession = () => {
               type="text"
               readOnly
               value="$0 (Admin sets fee upon review)"
-              className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs text-gray-500 dark:text-slate-400 font-semibold cursor-not-allowed"
+              className="w-full px-4 py-2.5 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs text-gray-500 dark:text-slate-400 font-semibold cursor-not-allowed"
             />
           </div>
 
@@ -244,7 +244,7 @@ const CreateStudySession = () => {
               required
               rows="4"
               placeholder="Outline topics covered, target audience, prerequisites, and learning outcomes..."
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-3 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
             />
           </div>
 
@@ -253,7 +253,7 @@ const CreateStudySession = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-sm sm:text-base shadow-lg shadow-blue-500/25 hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2"
+              className="w-full py-3.5 px-6 rounded-[5px] bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm sm:text-base shadow-sm transition-all duration-200 flex items-center justify-center gap-2"
             >
               <LuPlus className="text-xl" />
               <span>{isLoading ? "Submitting Session..." : "Submit Session for Approval"}</span>

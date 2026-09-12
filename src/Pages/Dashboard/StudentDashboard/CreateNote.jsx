@@ -62,7 +62,7 @@ const CreateNote = () => {
         subHeader="Jot down important exam points, lecture summaries, questions, or key concepts for your revision."
       />
 
-      <div className="bg-white dark:bg-slate-900 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-xl p-6 sm:p-8 md:p-10">
+      <div className="bg-white dark:bg-slate-900 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm p-6 sm:p-8 md:p-10">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           {/* Read-Only Email Field */}
           <div className="space-y-1.5">
@@ -70,14 +70,14 @@ const CreateNote = () => {
               Student Email
             </label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-blue-600 dark:text-blue-400">
                 <LuMail />
               </div>
               <input
                 type="email"
                 value={user?.email || ""}
                 readOnly
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm font-semibold text-gray-600 dark:text-slate-300 cursor-not-allowed"
+                className="w-full pl-10 pr-4 py-2.5 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm font-semibold text-gray-600 dark:text-slate-300 cursor-not-allowed"
               />
             </div>
           </div>
@@ -91,7 +91,7 @@ const CreateNote = () => {
               {...register("title", { required: "Note title is required" })}
               type="text"
               placeholder="e.g. Chapter 4: Database Normalization Concepts"
-              className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2.5 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
             />
             {errors.title && (
               <p className="text-red-500 text-xs font-medium">
@@ -111,7 +111,7 @@ const CreateNote = () => {
                 required: "Note content is required",
               })}
               placeholder="Write your detailed summary, formulas, or bullet points here..."
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-3 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
             />
             {errors.description && (
               <p className="text-red-500 text-xs font-medium">
@@ -125,7 +125,7 @@ const CreateNote = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-sm shadow-md shadow-blue-500/25 hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2"
+              className="w-full py-3.5 px-6 rounded-[5px] bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm shadow-sm transition-all duration-200 flex items-center justify-center gap-2"
             >
               <LuPlus className="text-lg" />
               <span>{isSubmitting ? "Saving Note..." : "Save Note"}</span>

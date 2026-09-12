@@ -87,12 +87,12 @@ const Register = () => {
   return (
     <div className="min-h-[calc(100vh-160px)] flex items-center justify-center py-10 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-950 transition-colors">
       <Fade triggerOnce className="max-w-4xl w-full">
-        <div className="bg-white dark:bg-slate-900 shadow-2xl rounded-3xl overflow-hidden max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 border border-gray-100 dark:border-slate-800 transition-colors">
+        <div className="bg-white dark:bg-slate-900 shadow-xl rounded-[5px] overflow-hidden max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 border border-gray-100 dark:border-slate-800 transition-colors">
 
         {/* Left Section - Form */}
         <div className="p-6 sm:p-10 lg:p-12 flex flex-col justify-center">
           <div className="text-center sm:text-left mb-6 space-y-1">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white tracking-tight">
               Create an Account
             </h2>
             <p className="text-xs sm:text-sm text-gray-500 dark:text-slate-400">
@@ -103,18 +103,18 @@ const Register = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-3.5">
             {/* Full Name */}
             <div className="space-y-1">
-              <label className="block text-xs font-bold uppercase tracking-wider text-gray-700">
+              <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-slate-300">
                 Full Name
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-blue-600 dark:text-blue-400">
                   <LuUser />
                 </div>
                 <input
                   type="text"
                   {...register("name", { required: "Name is required" })}
                   placeholder="John Doe"
-                  className="w-full pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all"
+                  className="w-full pl-10 pr-4 py-2 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-all"
                 />
               </div>
               {errors.name && <p className="text-red-500 text-xs">{errors.name.message}</p>}
@@ -122,36 +122,36 @@ const Register = () => {
 
             {/* Photo URL */}
             <div className="space-y-1">
-              <label className="block text-xs font-bold uppercase tracking-wider text-gray-700">
+              <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-slate-300">
                 Profile Photo URL
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-blue-600 dark:text-blue-400">
                   <LuImage />
                 </div>
                 <input
                   type="url"
                   {...register("photo")}
                   placeholder="https://example.com/avatar.jpg (optional)"
-                  className="w-full pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all"
+                  className="w-full pl-10 pr-4 py-2 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-all"
                 />
               </div>
             </div>
 
             {/* Email */}
             <div className="space-y-1">
-              <label className="block text-xs font-bold uppercase tracking-wider text-gray-700">
+              <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-slate-300">
                 Email Address
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-blue-600 dark:text-blue-400">
                   <LuMail />
                 </div>
                 <input
                   type="email"
                   {...register("email", { required: "Email is required" })}
                   placeholder="name@example.com"
-                  className="w-full pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all"
+                  className="w-full pl-10 pr-4 py-2 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-all"
                 />
               </div>
               {errors.email && <p className="text-red-500 text-xs">{errors.email.message}</p>}
@@ -159,11 +159,11 @@ const Register = () => {
 
             {/* Password */}
             <div className="space-y-1">
-              <label className="block text-xs font-bold uppercase tracking-wider text-gray-700">
+              <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-slate-300">
                 Password
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-blue-600 dark:text-blue-400">
                   <LuLock />
                 </div>
                 <input
@@ -173,7 +173,7 @@ const Register = () => {
                     minLength: { value: 6, message: "Password must be at least 6 characters" },
                   })}
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all"
+                  className="w-full pl-10 pr-4 py-2 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-all"
                 />
               </div>
               {errors.password && <p className="text-red-500 text-xs">{errors.password.message}</p>}
@@ -181,17 +181,17 @@ const Register = () => {
 
             {/* Category / Role */}
             <div className="space-y-1">
-              <label className="block text-xs font-bold uppercase tracking-wider text-gray-700">
+              <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-slate-300">
                 I am joining as
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-blue-600 dark:text-blue-400">
                   <LuGraduationCap />
                 </div>
                 <select
                   defaultValue="student"
                   {...register("role", { required: "Please select a category" })}
-                  className="w-full pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 bg-white transition-all"
+                  className="w-full pl-10 pr-4 py-2 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 transition-all"
                 >
                   <option value="student">Student (Learn & Book Sessions)</option>
                   <option value="tutor">Tutor / Instructor (Teach & Publish)</option>
@@ -203,7 +203,7 @@ const Register = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-sm shadow-md shadow-blue-500/25 hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 mt-2"
+              className="w-full py-3 px-4 rounded-[5px] bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm shadow-sm transition-all duration-200 flex items-center justify-center gap-2 mt-2"
             >
               <span>{isLoading ? "Creating Account..." : "Create Account"}</span>
             </button>
@@ -212,8 +212,8 @@ const Register = () => {
           {/* Social Google Login */}
           <div className="mt-5 space-y-3">
             <div className="relative flex items-center justify-center">
-              <div className="border-t border-gray-200 w-full" />
-              <span className="bg-white px-3 text-xs text-gray-400 uppercase font-semibold absolute">
+              <div className="border-t border-gray-200 dark:border-slate-800 w-full" />
+              <span className="bg-white dark:bg-slate-900 px-3 text-xs text-gray-400 dark:text-slate-500 uppercase font-semibold absolute">
                 Or sign up with
               </span>
             </div>
@@ -221,29 +221,28 @@ const Register = () => {
             <button
               onClick={handleGoogle}
               disabled={isLoading}
-              className="w-full py-2.5 px-4 rounded-xl border border-gray-200 hover:bg-gray-50 text-gray-700 font-semibold text-sm flex items-center justify-center gap-3 transition-colors shadow-sm"
+              className="w-full py-2.5 px-4 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-700 text-gray-700 dark:text-slate-200 font-semibold text-sm flex items-center justify-center gap-3 transition-colors shadow-sm"
             >
-              <FaGoogle className="text-red-500 text-base" />
+              <FaGoogle className="text-blue-600 dark:text-blue-400 text-base" />
               <span>Google Account</span>
             </button>
           </div>
 
-          <div className="text-center mt-5 text-xs sm:text-sm text-gray-500">
+          <div className="text-center mt-5 text-xs sm:text-sm text-gray-500 dark:text-slate-400">
             Already have an account?{" "}
-            <Link to="/login" className="text-blue-600 font-bold hover:underline">
+            <Link to="/login" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">
               Sign In
             </Link>
           </div>
         </div>
 
         {/* Right Section with Illustration */}
-        <div className="hidden md:flex flex-col items-center justify-center p-8 lg:p-12 bg-gradient-to-br from-indigo-600 via-blue-600 to-blue-700 text-white relative overflow-hidden">
-          <div className="absolute -top-20 -right-20 w-60 h-60 bg-white/10 rounded-full filter blur-2xl pointer-events-none" />
+        <div className="hidden md:flex flex-col items-center justify-center p-8 lg:p-12 bg-blue-600 text-white relative overflow-hidden">
           <div className="relative z-10 text-center space-y-4">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 text-blue-100 text-xs font-semibold backdrop-blur-md">
-              <LuSparkles /> Collaborative Study
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[5px] bg-white/15 text-blue-100 text-xs font-semibold backdrop-blur-md">
+              <LuSparkles className="text-white" /> Collaborative Study
             </div>
-            <h2 className="text-2xl lg:text-3xl font-black leading-tight">
+            <h2 className="text-2xl lg:text-3xl font-bold leading-tight">
               Join a Community of Lifelong Learners
             </h2>
             <p className="text-xs lg:text-sm text-blue-100 max-w-xs mx-auto">
@@ -252,7 +251,7 @@ const Register = () => {
             <img
               src={bgImg}
               alt="Sign up illustration"
-              className="object-contain h-56 lg:h-64 mt-4 drop-shadow-xl"
+              className="object-contain h-56 lg:h-64 mt-4 drop-shadow-md"
             />
           </div>
         </div>

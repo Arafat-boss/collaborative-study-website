@@ -40,11 +40,11 @@ const ReviewForm = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 p-5">
-      <div className="bg-white shadow-lg rounded-lg p-6 max-w-3xl w-full">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-slate-950 p-5">
+      <div className="bg-white dark:bg-slate-900 shadow-lg rounded-[5px] p-6 sm:p-8 max-w-3xl w-full border border-gray-100 dark:border-slate-800">
         {/* Header */}
-        <h2 className="text-2xl font-bold text-center mb-4">Submit Your Review</h2>
-        <p className="text-center text-gray-600 mb-6">
+        <h2 className="text-2xl font-bold text-center mb-2 text-gray-900 dark:text-white">Submit Your Review</h2>
+        <p className="text-center text-gray-500 dark:text-slate-400 mb-6 text-sm">
           Share your experience and rate us!
         </p>
 
@@ -52,52 +52,52 @@ const ReviewForm = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Student Name */}
           <div>
-            <label className="block text-gray-700 mb-1">Student Name</label>
+            <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-slate-300 mb-1">Student Name</label>
             <input
               type="text"
               name="studentName"
-              value={user?.displayName}
+              value={user?.displayName || ""}
               readOnly
               placeholder="Enter your name"
-              className="input input-bordered w-full"
+              className="w-full px-4 py-2.5 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm text-gray-800 dark:text-white focus:outline-none"
               required
             />
           </div>
 
           {/* Student Email */}
           <div>
-            <label className="block text-gray-700 mb-1">Student Email</label>
+            <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-slate-300 mb-1">Student Email</label>
             <input
               type="email"
               name="studentEmail"
-              value={user?.email}
+              value={user?.email || ""}
               readOnly
               placeholder="Enter your email"
-              className="input input-bordered w-full"
+              className="w-full px-4 py-2.5 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm text-gray-800 dark:text-white focus:outline-none"
               required
             />
           </div>
 
           {/* Review Text */}
           <div>
-            <label className="block text-gray-700 mb-1">Your Review</label>
+            <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-slate-300 mb-1">Your Review</label>
             <textarea
               name="reviewText"
               placeholder="Write your review here"
-              className="textarea textarea-bordered w-full h-28"
+              className="w-full px-4 py-3 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 h-28"
               required
             ></textarea>
           </div>
 
           {/* Rating */}
           <div>
-            <label className="block text-gray-700 mb-1">Add Rating</label>
+            <label className="block text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-slate-300 mb-1">Add Rating</label>
             <div className="flex space-x-2">
               {[1, 2, 3, 4, 5].map((star) => (
                 <FaStar
                   key={star}
                   className={`text-2xl cursor-pointer ${
-                    star <= rating ? "text-yellow-400" : "text-gray-300"
+                    star <= rating ? "text-amber-400" : "text-gray-300 dark:text-slate-700"
                   }`}
                   onClick={() => setRating(star)}
                 />
@@ -106,7 +106,7 @@ const ReviewForm = () => {
           </div>
 
           {/* Submit Button */}
-          <button type="submit" className="btn btn-primary w-full">
+          <button type="submit" className="w-full py-3 px-6 rounded-[5px] bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-sm transition-all">
             Submit Review
           </button>
         </form>

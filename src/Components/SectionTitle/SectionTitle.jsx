@@ -11,7 +11,7 @@ const SectionTitle = ({ header, subHeader }) => {
           {subHeader}
         </p>
       )}
-      <div className="w-16 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full mt-3" />
+      <div className="w-12 h-1 bg-blue-600 dark:bg-blue-500 mx-auto rounded-[5px] mt-3" />
     </div>
   );
 };

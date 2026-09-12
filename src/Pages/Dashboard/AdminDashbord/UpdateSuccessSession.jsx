@@ -99,7 +99,7 @@ const UpdateSuccessSession = () => {
         subHeader="Modify pricing and access fee structure for this approved session."
       />
 
-      <div className="bg-white dark:bg-slate-900 rounded-3xl border border-gray-100 dark:border-slate-800 shadow-xl p-6 sm:p-8 space-y-6">
+      <div className="bg-white dark:bg-slate-900 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-xl p-6 sm:p-8 space-y-6">
         <form onSubmit={handleUpdate} className="space-y-5">
           {/* Read Only Details */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -111,7 +111,7 @@ const UpdateSuccessSession = () => {
                 type="text"
                 readOnly
                 value={sessionDetails.sessionTitle || ""}
-                className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm font-semibold text-gray-800 dark:text-white"
+                className="w-full px-4 py-2.5 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm font-semibold text-gray-800 dark:text-white"
               />
             </div>
 
@@ -123,7 +123,7 @@ const UpdateSuccessSession = () => {
                 type="text"
                 readOnly
                 value={`${sessionDetails.tutorName} (${sessionDetails.tutorEmail})`}
-                className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs text-gray-600 dark:text-slate-300 truncate"
+                className="w-full px-4 py-2.5 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs text-gray-600 dark:text-slate-300 truncate"
               />
             </div>
 
@@ -135,7 +135,7 @@ const UpdateSuccessSession = () => {
                 type="text"
                 readOnly
                 value={`${sessionDetails.classStartTime} - ${sessionDetails.classEndTime}`}
-                className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs text-gray-600 dark:text-slate-300"
+                className="w-full px-4 py-2.5 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs text-gray-600 dark:text-slate-300"
               />
             </div>
           </div>
@@ -146,14 +146,14 @@ const UpdateSuccessSession = () => {
               Registration Fee ($)
             </label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-blue-600 dark:text-blue-400">
                 <LuDollarSign />
               </div>
               <input
                 type="number"
                 min="0"
                 required
-                className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-base font-bold text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
+                className="w-full pl-10 pr-4 py-3 rounded-[5px] border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-base font-bold text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
                 value={registrationFee}
                 onChange={(e) => setRegistrationFee(e.target.value)}
                 placeholder="0"
@@ -167,7 +167,7 @@ const UpdateSuccessSession = () => {
           <button
             type="submit"
             disabled={isUpdating}
-            className="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-sm shadow-md shadow-blue-500/25 flex items-center justify-center gap-2 transition-all"
+            className="w-full py-3.5 px-6 rounded-[5px] bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-sm flex items-center justify-center gap-2 transition-all"
           >
             <LuSave className="text-lg" />
             <span>{isUpdating ? "Saving..." : "Save Updated Fee"}</span>
