@@ -20,8 +20,12 @@ import { FaCheckCircle, FaChartBar, FaChartPie } from "react-icons/fa";
 import {
   ResponsiveContainer,
   ComposedChart,
+  BarChart,
+  LineChart,
+  AreaChart,
   Bar,
   Line,
+  Area,
   XAxis,
   YAxis,
   Tooltip,
@@ -41,6 +45,7 @@ const SalesAnalytics = () => {
   const [selectedStatus, setSelectedStatus] = useState("all");
   const [selectedInvoice, setSelectedInvoice] = useState(null);
   const [isInvoiceOpen, setIsInvoiceOpen] = useState(false);
+  const [chartType, setChartType] = useState("bar");
 
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["admin-sales-analytics"],
@@ -213,7 +218,7 @@ const SalesAnalytics = () => {
         
         {/* Main Monthly Revenue & Booking Trend Chart */}
         <div className="lg:col-span-2 bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm space-y-6">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
             <div>
               <h3 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
                 <FaChartBar className="text-blue-600 dark:text-blue-400" /> Monthly Revenue & Enrollment Overview ({summary.currentYear})
@@ -222,63 +227,246 @@ const SalesAnalytics = () => {
                 Monthly revenue ($) and student booking count breakdown for the year.
               </p>
             </div>
-            <span className="px-3 py-1 rounded-[5px] text-xs font-bold bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-slate-700">
-              Year {summary.currentYear || new Date().getFullYear()}
-            </span>
+            
+            <div className="flex items-center gap-2 flex-wrap">
+              {/* Chart Variation Selector Tabs */}
+              <div className="inline-flex p-1 bg-gray-100 dark:bg-slate-800/80 rounded-[5px] border border-gray-200 dark:border-slate-700/80 text-xs">
+                {[
+                  { id: "bar", label: "Bar Chart" },
+                  { id: "line", label: "Line Chart" },
+                  { id: "area", label: "Area Chart" },
+                  { id: "combo", label: "Combo" },
+                ].map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => setChartType(item.id)}
+                    className={`px-3 py-1 rounded-[5px] transition-all text-xs font-semibold ${
+                      chartType === item.id
+                        ? "bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 shadow-sm font-bold border border-gray-200/60 dark:border-slate-700"
+                        : "text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-white"
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+
+              <span className="px-3 py-1 rounded-[5px] text-xs font-bold bg-blue-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-slate-700">
+                Year {summary.currentYear || new Date().getFullYear()}
+              </span>
+            </div>
           </div>
 
           <div className="h-80 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={monthlyStats} margin={{ top: 20, right: 20, bottom: 20, left: 10 }}>
-                <CartesianGrid strokeDasharray="3 3" opacity={0.15} />
-                <XAxis dataKey="month" stroke="#94a3b8" fontSize={12} tickLine={false} />
-                <YAxis
-                  yAxisId="left"
-                  stroke="#3b82f6"
-                  fontSize={12}
-                  tickFormatter={(val) => `$${val}`}
-                  tickLine={false}
-                />
-                <YAxis
-                  yAxisId="right"
-                  orientation="right"
-                  stroke="#10b981"
-                  fontSize={12}
-                  tickLine={false}
-                />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "#0f172a",
-                    borderColor: "#334155",
-                    borderRadius: "5px",
-                    color: "#f8fafc",
-                    fontSize: "12px",
-                  }}
-                  formatter={(value, name) => [
-                    name === "Revenue ($)" ? `$${value}` : `${value} enrollments`,
-                    name,
-                  ]}
-                />
-                <Legend wrapperStyle={{ fontSize: "12px", paddingTop: "10px" }} />
-                <Bar
-                  yAxisId="left"
-                  dataKey="revenue"
-                  name="Revenue ($)"
-                  fill="#3b82f6"
-                  radius={[5, 5, 0, 0]}
-                  maxBarSize={40}
-                />
-                <Line
-                  yAxisId="right"
-                  type="monotone"
-                  dataKey="bookings"
-                  name="Bookings Count"
-                  stroke="#10b981"
-                  strokeWidth={3}
-                  dot={{ r: 4, fill: "#10b981" }}
-                  activeDot={{ r: 7 }}
-                />
-              </ComposedChart>
+              {chartType === "bar" ? (
+                <BarChart data={monthlyStats} margin={{ top: 20, right: 20, bottom: 20, left: 10 }}>
+                  <CartesianGrid strokeDasharray="3 3" opacity={0.15} />
+                  <XAxis dataKey="month" stroke="#94a3b8" fontSize={12} tickLine={false} />
+                  <YAxis
+                    yAxisId="left"
+                    stroke="#3b82f6"
+                    fontSize={12}
+                    tickFormatter={(val) => `$${val}`}
+                    tickLine={false}
+                  />
+                  <YAxis
+                    yAxisId="right"
+                    orientation="right"
+                    stroke="#10b981"
+                    fontSize={12}
+                    tickLine={false}
+                  />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: "#0f172a",
+                      borderColor: "#334155",
+                      borderRadius: "5px",
+                      color: "#f8fafc",
+                      fontSize: "12px",
+                    }}
+                    formatter={(value, name) => [
+                      name === "Revenue ($)" ? `$${value}` : `${value} enrollments`,
+                      name,
+                    ]}
+                  />
+                  <Legend wrapperStyle={{ fontSize: "12px", paddingTop: "10px" }} />
+                  <Bar
+                    yAxisId="left"
+                    dataKey="revenue"
+                    name="Revenue ($)"
+                    fill="#3b82f6"
+                    radius={[5, 5, 0, 0]}
+                    maxBarSize={32}
+                  />
+                  <Bar
+                    yAxisId="right"
+                    dataKey="bookings"
+                    name="Bookings Count"
+                    fill="#10b981"
+                    radius={[5, 5, 0, 0]}
+                    maxBarSize={32}
+                  />
+                </BarChart>
+              ) : chartType === "line" ? (
+                <LineChart data={monthlyStats} margin={{ top: 20, right: 20, bottom: 20, left: 10 }}>
+                  <CartesianGrid strokeDasharray="3 3" opacity={0.15} />
+                  <XAxis dataKey="month" stroke="#94a3b8" fontSize={12} tickLine={false} />
+                  <YAxis
+                    yAxisId="left"
+                    stroke="#3b82f6"
+                    fontSize={12}
+                    tickFormatter={(val) => `$${val}`}
+                    tickLine={false}
+                  />
+                  <YAxis
+                    yAxisId="right"
+                    orientation="right"
+                    stroke="#10b981"
+                    fontSize={12}
+                    tickLine={false}
+                  />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: "#0f172a",
+                      borderColor: "#334155",
+                      borderRadius: "5px",
+                      color: "#f8fafc",
+                      fontSize: "12px",
+                    }}
+                    formatter={(value, name) => [
+                      name === "Revenue ($)" ? `$${value}` : `${value} enrollments`,
+                      name,
+                    ]}
+                  />
+                  <Legend wrapperStyle={{ fontSize: "12px", paddingTop: "10px" }} />
+                  <Line
+                    yAxisId="left"
+                    type="monotone"
+                    dataKey="revenue"
+                    name="Revenue ($)"
+                    stroke="#3b82f6"
+                    strokeWidth={3}
+                    dot={{ r: 4, fill: "#3b82f6" }}
+                    activeDot={{ r: 7 }}
+                  />
+                  <Line
+                    yAxisId="right"
+                    type="monotone"
+                    dataKey="bookings"
+                    name="Bookings Count"
+                    stroke="#10b981"
+                    strokeWidth={3}
+                    dot={{ r: 4, fill: "#10b981" }}
+                    activeDot={{ r: 7 }}
+                  />
+                </LineChart>
+              ) : chartType === "area" ? (
+                <AreaChart data={monthlyStats} margin={{ top: 20, right: 20, bottom: 20, left: 10 }}>
+                  <CartesianGrid strokeDasharray="3 3" opacity={0.15} />
+                  <XAxis dataKey="month" stroke="#94a3b8" fontSize={12} tickLine={false} />
+                  <YAxis
+                    yAxisId="left"
+                    stroke="#3b82f6"
+                    fontSize={12}
+                    tickFormatter={(val) => `$${val}`}
+                    tickLine={false}
+                  />
+                  <YAxis
+                    yAxisId="right"
+                    orientation="right"
+                    stroke="#10b981"
+                    fontSize={12}
+                    tickLine={false}
+                  />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: "#0f172a",
+                      borderColor: "#334155",
+                      borderRadius: "5px",
+                      color: "#f8fafc",
+                      fontSize: "12px",
+                    }}
+                    formatter={(value, name) => [
+                      name === "Revenue ($)" ? `$${value}` : `${value} enrollments`,
+                      name,
+                    ]}
+                  />
+                  <Legend wrapperStyle={{ fontSize: "12px", paddingTop: "10px" }} />
+                  <Area
+                    yAxisId="left"
+                    type="monotone"
+                    dataKey="revenue"
+                    name="Revenue ($)"
+                    stroke="#3b82f6"
+                    strokeWidth={2.5}
+                    fill="#3b82f6"
+                    fillOpacity={0.2}
+                  />
+                  <Area
+                    yAxisId="right"
+                    type="monotone"
+                    dataKey="bookings"
+                    name="Bookings Count"
+                    stroke="#10b981"
+                    strokeWidth={2.5}
+                    fill="#10b981"
+                    fillOpacity={0.2}
+                  />
+                </AreaChart>
+              ) : (
+                <ComposedChart data={monthlyStats} margin={{ top: 20, right: 20, bottom: 20, left: 10 }}>
+                  <CartesianGrid strokeDasharray="3 3" opacity={0.15} />
+                  <XAxis dataKey="month" stroke="#94a3b8" fontSize={12} tickLine={false} />
+                  <YAxis
+                    yAxisId="left"
+                    stroke="#3b82f6"
+                    fontSize={12}
+                    tickFormatter={(val) => `$${val}`}
+                    tickLine={false}
+                  />
+                  <YAxis
+                    yAxisId="right"
+                    orientation="right"
+                    stroke="#10b981"
+                    fontSize={12}
+                    tickLine={false}
+                  />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: "#0f172a",
+                      borderColor: "#334155",
+                      borderRadius: "5px",
+                      color: "#f8fafc",
+                      fontSize: "12px",
+                    }}
+                    formatter={(value, name) => [
+                      name === "Revenue ($)" ? `$${value}` : `${value} enrollments`,
+                      name,
+                    ]}
+                  />
+                  <Legend wrapperStyle={{ fontSize: "12px", paddingTop: "10px" }} />
+                  <Bar
+                    yAxisId="left"
+                    dataKey="revenue"
+                    name="Revenue ($)"
+                    fill="#3b82f6"
+                    radius={[5, 5, 0, 0]}
+                    maxBarSize={40}
+                  />
+                  <Line
+                    yAxisId="right"
+                    type="monotone"
+                    dataKey="bookings"
+                    name="Bookings Count"
+                    stroke="#10b981"
+                    strokeWidth={3}
+                    dot={{ r: 4, fill: "#10b981" }}
+                    activeDot={{ r: 7 }}
+                  />
+                </ComposedChart>
+              )}
             </ResponsiveContainer>
           </div>
         </div>
