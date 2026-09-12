@@ -4,7 +4,6 @@ import {
   LuVideo,
   LuBookOpen,
   LuAward,
-  LuSparkles,
   LuCheck
 } from "react-icons/lu";
 
@@ -42,8 +41,7 @@ const FastSection = () => {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3 sm:space-y-4 mb-8 sm:mb-10 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-[5px] bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 text-xs sm:text-sm font-bold border border-blue-200 dark:border-blue-900/50 shadow-sm">
-            <LuSparkles className="text-blue-600 dark:text-blue-400" />
+          <div className="inline-flex items-center px-3.5 sm:px-4 py-1.5 rounded-[5px] bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 text-xs sm:text-sm font-bold border border-blue-200 dark:border-blue-900/50 shadow-sm">
             <span>Structured Learning Experience</span>
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-5xl font-black text-gray-900 dark:text-white tracking-tight leading-tight">

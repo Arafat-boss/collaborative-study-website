@@ -4,7 +4,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import { useNavigate, Link } from "react-router-dom";
-import { LuCreditCard, LuLock, LuCalendar, LuUser, LuFileText, LuArrowRight, LuSparkles } from "react-icons/lu";
+import { LuCreditCard, LuLock, LuCalendar, LuUser, LuFileText, LuArrowRight } from "react-icons/lu";
 import { FaCheckCircle } from "react-icons/fa";
 import InvoiceModal from "../../Components/InvoiceModal/InvoiceModal";
 

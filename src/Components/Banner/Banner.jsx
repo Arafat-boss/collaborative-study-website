@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  LuArrowRight,
-  LuFlame
-} from "react-icons/lu";
+import { LuArrowRight } from "react-icons/lu";
 import CountUp from "react-countup";
 import ScrollTrigger from "react-scroll-trigger";
 
@@ -20,7 +17,6 @@ const Banner = () => {
         
         {/* Top Badge */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[5px] bg-blue-50 dark:bg-blue-950/50 border border-blue-200 dark:border-blue-900/50 text-blue-700 dark:text-blue-300 text-xs sm:text-sm font-semibold shadow-sm">
-          <LuFlame className="text-blue-600 dark:text-blue-400" />
           <span>Next-Gen Collaborative Study & Career Hub</span>
           <span className="hidden sm:inline-block px-2 py-0.5 rounded-[5px] bg-blue-600/10 dark:bg-blue-600/30 text-[10px] uppercase font-bold text-blue-700 dark:text-blue-300 border border-blue-300 dark:border-blue-800">
             Batch 2026

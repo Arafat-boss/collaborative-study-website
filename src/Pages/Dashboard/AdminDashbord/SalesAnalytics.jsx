@@ -15,7 +15,6 @@ import {
   LuFileText,
   LuPrinter,
   LuArrowUpRight,
-  LuSparkles,
 } from "react-icons/lu";
 import { FaCheckCircle, FaChartBar, FaChartPie } from "react-icons/fa";
 import {
@@ -129,8 +128,8 @@ const SalesAnalytics = () => {
             <h2 className="text-3xl font-black text-gray-900 dark:text-white tracking-tight">
               ${(summary.totalRevenue || 0).toLocaleString()}
             </h2>
-            <p className="text-xs text-blue-600 dark:text-blue-400 font-semibold mt-1 flex items-center gap-1">
-              <LuSparkles /> Lifetime earnings from paid sessions
+            <p className="text-xs text-blue-600 dark:text-blue-400 font-semibold mt-1">
+              Lifetime earnings from paid sessions
             </p>
           </div>
           <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-blue-500/5 rounded-full blur-2xl group-hover:bg-blue-500/10 transition-colors" />

@@ -8,7 +8,7 @@ import {
   LuFileText,
   LuPlus,
   LuUsers,
-  LuSparkles,
+  LuLayoutDashboard,
   LuArrowRight,
   LuGraduationCap,
   LuShield
@@ -31,12 +31,12 @@ const Welcome = () => {
       <div className="relative overflow-hidden rounded-[5px] bg-blue-600 text-white p-6 sm:p-10 shadow-sm">
         <div className="relative z-10 space-y-4 max-w-2xl">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[5px] bg-white/15 text-blue-100 text-xs font-semibold backdrop-blur-md">
-            <LuSparkles className="text-white" />
+            <LuLayoutDashboard className="text-white" />
             <span>Dashboard Overview</span>
           </div>
 
           <h1 className="text-2xl sm:text-4xl font-bold tracking-tight leading-tight">
-            Welcome back, {user?.displayName || "Student"}! 👋
+            Welcome back, {user?.displayName || "Student"}!
           </h1>
 
           <p className="text-sm sm:text-base text-blue-100 leading-relaxed">

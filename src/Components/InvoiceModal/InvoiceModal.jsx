@@ -169,8 +169,8 @@ const InvoiceModal = ({ isOpen, onClose, data }) => {
               <p className="font-mono text-[11px] flex items-center gap-1">
                 <LuHash className="text-blue-600 dark:text-blue-400" /> TxID: <span className="text-gray-800 dark:text-slate-200">{transactionId}</span>
               </p>
-              <p className="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium">
-                ✓ Verified by Collaborative Study Platform
+              <p className="text-[11px] text-emerald-600 dark:text-emerald-400 font-medium flex items-center gap-1">
+                <FaCheckCircle className="text-[11px]" /> Verified by Collaborative Study Platform
               </p>
             </div>
 

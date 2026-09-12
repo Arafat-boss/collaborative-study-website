@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
-import { FaGoogle } from "react-icons/fa";
+import { FaGoogle, FaExclamationCircle } from "react-icons/fa";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import bgImg from "../../assets/authenticationLogin.png";
 import { AuthContext } from "../../Context/AuthProvider";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import toast from "react-hot-toast";
-import { LuMail, LuLock, LuArrowRight, LuSparkles } from "react-icons/lu";
+import { LuMail, LuLock, LuArrowRight, LuGraduationCap } from "react-icons/lu";
 import { Fade } from "react-awesome-reveal";
 
 const Login = () => {
@@ -99,7 +99,7 @@ const Login = () => {
         <div className="hidden md:flex flex-col items-center justify-center p-8 lg:p-12 bg-blue-600 text-white relative overflow-hidden">
           <div className="relative z-10 text-center space-y-4">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[5px] bg-white/15 text-blue-100 text-xs font-semibold backdrop-blur-md">
-              <LuSparkles className="text-white" /> Collaborative Study
+              <LuGraduationCap className="text-white text-sm" /> Collaborative Study
             </div>
             <h2 className="text-2xl lg:text-3xl font-bold leading-tight">
               Unlock Your Full Learning Potential
@@ -141,8 +141,8 @@ const Login = () => {
 
           {isDemoFirebase && (
             <div className="mb-4 p-3 rounded-[5px] bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-300 text-xs space-y-1">
-              <p className="font-bold flex items-center gap-1">
-                ⚠️ Firebase Keys Required for Live Auth:
+              <p className="font-bold flex items-center gap-1.5">
+                <FaExclamationCircle className="text-amber-600 dark:text-amber-400 text-sm" /> Firebase Keys Required for Live Auth:
               </p>
               <p className="text-[11px] leading-relaxed text-amber-700 dark:text-amber-400">
                 Put your real Firebase credentials in <code>.env.local</code> to enable live Google Popup Sign-in and email authentication.

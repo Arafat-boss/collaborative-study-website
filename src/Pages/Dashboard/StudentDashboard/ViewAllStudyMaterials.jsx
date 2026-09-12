@@ -12,7 +12,6 @@ import {
   LuUser,
   LuCalendar,
   LuFilter,
-  LuSparkles,
 } from "react-icons/lu";
 
 const ViewAllStudyMaterials = () => {
@@ -134,7 +133,7 @@ const ViewAllStudyMaterials = () => {
             to="/#study-sessions"
             className="inline-flex items-center gap-2 px-6 py-2.5 rounded-[5px] bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs shadow-sm transition-all"
           >
-            <LuSparkles /> Browse & Enroll in Study Sessions
+            <LuBookOpen /> Browse & Enroll in Study Sessions
           </Link>
         </div>
       ) : filteredMaterials.length > 0 ? (

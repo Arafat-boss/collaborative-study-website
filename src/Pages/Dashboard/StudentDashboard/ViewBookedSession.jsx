@@ -6,7 +6,7 @@ import useAuth from "../../../Hooks/useAuth";
 import Card from "../../../Components/StudySessionCard/Card";
 import InvoiceModal from "../../../Components/InvoiceModal/InvoiceModal";
 import { Link } from "react-router-dom";
-import { LuBookOpen, LuCalendar, LuSparkles } from "react-icons/lu";
+import { LuBookOpen, LuCalendar } from "react-icons/lu";
 
 const ViewBookedSession = () => {
   const axiosPublic = useAxiosPublic();
@@ -73,7 +73,7 @@ const ViewBookedSession = () => {
             to="/#study-sessions"
             className="inline-flex items-center gap-2 px-6 py-2.5 rounded-[5px] bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-sm transition-all"
           >
-            <LuSparkles /> Browse Available Sessions
+            <LuBookOpen /> Browse Available Sessions
           </Link>
         </div>
       )}

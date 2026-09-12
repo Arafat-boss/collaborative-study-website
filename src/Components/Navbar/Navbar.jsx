@@ -5,7 +5,7 @@ import { CiLogout } from "react-icons/ci";
 import { IoLogInOutline } from "react-icons/io5";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import { RxDashboard, RxHome } from "react-icons/rx";
-import { LuGraduationCap, LuSparkles } from "react-icons/lu";
+import { LuGraduationCap, LuBookOpen } from "react-icons/lu";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
 const Navbar = () => {
@@ -42,7 +42,7 @@ const Navbar = () => {
           onClick={() => setMobileMenuOpen(false)}
           className="flex items-center gap-2 px-4 py-2 rounded-[5px] font-semibold text-sm text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white hover:bg-blue-50 dark:hover:bg-slate-800 transition-all duration-200"
         >
-          <LuSparkles className="text-blue-600 dark:text-blue-400" />
+          <LuBookOpen className="text-blue-600 dark:text-blue-400" />
           <span>Study Sessions</span>
         </a>
       </li>

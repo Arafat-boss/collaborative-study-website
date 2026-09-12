@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { LuGraduationCap, LuHeart, LuSparkles, LuMail } from "react-icons/lu";
+import { LuGraduationCap, LuHeart, LuMail } from "react-icons/lu";
 import { FaFacebook, FaGithub, FaLinkedin, FaYoutube, FaDiscord } from "react-icons/fa";
 
 const Footer = () => {

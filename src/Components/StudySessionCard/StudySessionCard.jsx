@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { LuCalendar, LuUser, LuArrowRight, LuSparkles, LuCheck } from "react-icons/lu";
+import { LuCalendar, LuUser, LuArrowRight, LuCheck } from "react-icons/lu";
 import useAuth from "../../Hooks/useAuth";
 
 const StudySessionCard = ({ data }) => {

@@ -6,7 +6,7 @@ import bgImg from "../../assets/Sign.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import toast from "react-hot-toast";
-import { LuUser, LuMail, LuLock, LuImage, LuGraduationCap, LuSparkles } from "react-icons/lu";
+import { LuUser, LuMail, LuLock, LuImage, LuGraduationCap } from "react-icons/lu";
 import { Fade } from "react-awesome-reveal";
 
 const Register = () => {
@@ -240,7 +240,7 @@ const Register = () => {
         <div className="hidden md:flex flex-col items-center justify-center p-8 lg:p-12 bg-blue-600 text-white relative overflow-hidden">
           <div className="relative z-10 text-center space-y-4">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[5px] bg-white/15 text-blue-100 text-xs font-semibold backdrop-blur-md">
-              <LuSparkles className="text-white" /> Collaborative Study
+              <LuGraduationCap className="text-white text-sm" /> Collaborative Study
             </div>
             <h2 className="text-2xl lg:text-3xl font-bold leading-tight">
               Join a Community of Lifelong Learners
