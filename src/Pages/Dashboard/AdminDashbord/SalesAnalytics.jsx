@@ -115,88 +115,90 @@ const SalesAnalytics = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         
         {/* Total Revenue */}
-        <div className="bg-white dark:bg-slate-900 p-6 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:shadow-lg transition-all duration-300">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">
+        <div className="bg-white dark:bg-slate-900 p-6 sm:p-7 rounded-[5px] border border-gray-200/80 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-200">
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400 truncate">
               Total Revenue
             </span>
-            <div className="w-10 h-10 rounded-[5px] bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg">
+            <div className="w-10 h-10 rounded-[5px] bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/40 flex items-center justify-center text-lg shrink-0">
               <LuDollarSign />
             </div>
           </div>
-          <div className="mt-4">
-            <h2 className="text-3xl font-black text-gray-900 dark:text-white tracking-tight">
+          <div className="mt-4 mb-2">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white tracking-tight leading-none">
               ${(summary.totalRevenue || 0).toLocaleString()}
             </h2>
-            <p className="text-xs text-blue-600 dark:text-blue-400 font-semibold mt-1">
-              Lifetime earnings from paid sessions
-            </p>
           </div>
+          <p className="text-xs text-gray-500 dark:text-slate-400 font-medium leading-relaxed">
+            Lifetime earnings from paid sessions
+          </p>
           <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-blue-500/5 rounded-full blur-2xl group-hover:bg-blue-500/10 transition-colors" />
         </div>
 
         {/* This Month Revenue */}
-        <div className="bg-white dark:bg-slate-900 p-6 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:shadow-lg transition-all duration-300">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">
+        <div className="bg-white dark:bg-slate-900 p-6 sm:p-7 rounded-[5px] border border-gray-200/80 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-200">
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400 truncate">
               This Month ({summary.currentMonthName || "Current"})
             </span>
-            <div className="w-10 h-10 rounded-[5px] bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg">
+            <div className="w-10 h-10 rounded-[5px] bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/40 flex items-center justify-center text-lg shrink-0">
               <LuTrendingUp />
             </div>
           </div>
-          <div className="mt-4">
-            <h2 className="text-3xl font-black text-blue-600 dark:text-blue-400 tracking-tight">
+          <div className="mt-4 mb-2">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-blue-600 dark:text-blue-400 tracking-tight leading-none">
               ${(summary.thisMonthRevenue || 0).toLocaleString()}
             </h2>
-            <p className="text-xs text-gray-500 dark:text-slate-400 mt-1">
-              Earned in {summary.currentMonthName} {summary.currentYear}
-            </p>
           </div>
+          <p className="text-xs text-gray-500 dark:text-slate-400 font-medium leading-relaxed">
+            Earned in {summary.currentMonthName} {summary.currentYear}
+          </p>
           <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-blue-500/5 rounded-full blur-2xl group-hover:bg-blue-500/10 transition-colors" />
         </div>
 
         {/* Total Bookings */}
-        <div className="bg-white dark:bg-slate-900 p-6 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:shadow-lg transition-all duration-300">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">
+        <div className="bg-white dark:bg-slate-900 p-6 sm:p-7 rounded-[5px] border border-gray-200/80 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-200">
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400 truncate">
               Total Enrollments
             </span>
-            <div className="w-10 h-10 rounded-[5px] bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg">
+            <div className="w-10 h-10 rounded-[5px] bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/40 flex items-center justify-center text-lg shrink-0">
               <LuBookOpen />
             </div>
           </div>
-          <div className="mt-4">
-            <h2 className="text-3xl font-black text-gray-900 dark:text-white tracking-tight">
+          <div className="mt-4 mb-2">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white tracking-tight leading-none">
               {(summary.totalBookings || 0).toLocaleString()}
             </h2>
-            <p className="text-xs text-blue-600 dark:text-blue-400 font-semibold mt-1">
-              Active student enrollments
-            </p>
           </div>
+          <p className="text-xs text-gray-500 dark:text-slate-400 font-medium leading-relaxed">
+            Active student course enrollments
+          </p>
           <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-blue-500/5 rounded-full blur-2xl group-hover:bg-blue-500/10 transition-colors" />
         </div>
 
         {/* Paid vs Free Ratio */}
-        <div className="bg-white dark:bg-slate-900 p-6 rounded-[5px] border border-gray-100 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:shadow-lg transition-all duration-300">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">
+        <div className="bg-white dark:bg-slate-900 p-6 sm:p-7 rounded-[5px] border border-gray-200/80 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-200">
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400 truncate">
               Paid vs Free
             </span>
-            <div className="w-10 h-10 rounded-[5px] bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg">
+            <div className="w-10 h-10 rounded-[5px] bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/40 flex items-center justify-center text-lg shrink-0">
               <LuCreditCard />
             </div>
           </div>
-          <div className="mt-4 flex items-baseline gap-2">
-            <span className="text-2xl font-black text-blue-600 dark:text-blue-400">
-              {summary.paidBookings || 0} Paid
+          <div className="mt-4 mb-2 flex items-baseline gap-2">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white tracking-tight leading-none">
+              {summary.paidBookings || 0}
+            </h2>
+            <span className="text-sm font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
+              Paid
             </span>
-            <span className="text-sm font-bold text-gray-400 dark:text-slate-500">/</span>
-            <span className="text-lg font-bold text-gray-600 dark:text-slate-400">
-              {summary.freeBookings || 0} Free
+            <span className="text-xs font-semibold text-gray-400 dark:text-slate-500">
+              / {summary.freeBookings || 0} Free
             </span>
           </div>
-          <p className="text-xs text-gray-500 dark:text-slate-400 mt-1">
+          <p className="text-xs text-gray-500 dark:text-slate-400 font-medium leading-relaxed">
             {summary.totalBookings > 0
               ? `${Math.round(((summary.paidBookings || 0) / summary.totalBookings) * 100)}% paid conversions`
               : "0% conversions"}
