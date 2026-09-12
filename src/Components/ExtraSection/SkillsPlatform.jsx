@@ -50,60 +50,66 @@ export default function SkillsPlatform() {
           </div>
         </div>
 
-        {/* Categories Swiper Carousel (with padding & overflow handling to avoid card clipping on hover) */}
-        <div className="relative mt-8 sm:mt-10 px-1 sm:px-6 z-10">
-          <Swiper
-            className="!overflow-visible py-4 -my-4 px-1"
-            modules={[Navigation, Autoplay]}
-            spaceBetween={16}
-            slidesPerView={1.15}
-            autoplay={{ delay: 3500, disableOnInteraction: false }}
-            breakpoints={{
-              480: { slidesPerView: 1.35, spaceBetween: 16 },
-              640: { slidesPerView: 2, spaceBetween: 18 },
-              768: { slidesPerView: 2.3, spaceBetween: 20 },
-              1024: { slidesPerView: 3.1, spaceBetween: 22 }
-            }}
-            navigation={{
-              nextEl: '.skills-swiper-next',
-              prevEl: '.skills-swiper-prev'
-            }}
-          >
-            {categories.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <SwiperSlide key={index} className="pt-2 pb-2">
-                  <div className="bg-slate-50 dark:bg-[#111827] hover:bg-white dark:hover:bg-[#151e33] border border-gray-200 dark:border-slate-800 hover:border-blue-500/50 p-6 rounded-[5px] transition-all duration-200 group flex flex-col justify-between h-56 sm:h-60 shadow-sm hover:shadow-md hover:-translate-y-1">
-                    <div className="w-12 h-12 rounded-[5px] bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-900/50 flex items-center justify-center text-xl transition-transform group-hover:scale-105">
-                      <Icon />
-                    </div>
-                    <div className="space-y-1.5">
-                      <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-1">
-                        {item.title}
-                      </h3>
-                      <p className="text-xs text-gray-500 dark:text-slate-400 font-semibold flex items-center gap-1">
-                        <span className="text-blue-600 dark:text-blue-400">{item.courses}</span> available
-                      </p>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
+        {/* Categories Swiper Carousel */}
+        <div className="relative mt-8 sm:mt-10 z-10">
+          <div className="flex items-center gap-2 sm:gap-4">
+            {/* Left Prev Navigation Button */}
+            <button
+              className="skills-swiper-prev flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-[5px] bg-slate-50 dark:bg-slate-800/80 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 text-gray-700 dark:text-slate-200 flex items-center justify-center border border-gray-200 dark:border-slate-700 shadow-sm transition-all"
+              aria-label="Previous slide"
+            >
+              <FaChevronLeft className="text-xs sm:text-sm" />
+            </button>
 
-          {/* Navigation Controls */}
-          <button
-            className="skills-swiper-prev hidden sm:flex absolute -left-2 sm:-left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-[5px] bg-white dark:bg-slate-900 hover:bg-blue-600 hover:text-white text-gray-700 dark:text-slate-300 items-center justify-center border border-gray-200 dark:border-slate-700 shadow-md transition-all"
-            aria-label="Previous slide"
-          >
-            <FaChevronLeft className="text-xs" />
-          </button>
-          <button
-            className="skills-swiper-next hidden sm:flex absolute -right-2 sm:-right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-[5px] bg-white dark:bg-slate-900 hover:bg-blue-600 hover:text-white text-gray-700 dark:text-slate-300 items-center justify-center border border-gray-200 dark:border-slate-700 shadow-md transition-all"
-            aria-label="Next slide"
-          >
-            <FaChevronRight className="text-xs" />
-          </button>
+            {/* Slider Container with overflow-hidden and padding for hover clearance */}
+            <div className="flex-1 overflow-hidden min-w-0 py-2">
+              <Swiper
+                className="w-full"
+                modules={[Navigation, Autoplay]}
+                spaceBetween={18}
+                slidesPerView={1}
+                loop={true}
+                autoplay={{ delay: 3500, disableOnInteraction: false }}
+                breakpoints={{
+                  640: { slidesPerView: 2, spaceBetween: 18 },
+                  1024: { slidesPerView: 3, spaceBetween: 20 },
+                }}
+                navigation={{
+                  nextEl: '.skills-swiper-next',
+                  prevEl: '.skills-swiper-prev',
+                }}
+              >
+                {categories.map((item, index) => {
+                  const Icon = item.icon;
+                  return (
+                    <SwiperSlide key={index} className="pt-2 pb-3 px-0.5">
+                      <div className="bg-slate-50 dark:bg-[#111827] hover:bg-white dark:hover:bg-[#151e33] border border-gray-200 dark:border-slate-800 hover:border-blue-500/50 p-6 rounded-[5px] transition-all duration-200 group flex flex-col justify-between h-56 sm:h-60 shadow-sm hover:shadow-md hover:-translate-y-1">
+                        <div className="w-12 h-12 rounded-[5px] bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-900/50 flex items-center justify-center text-xl transition-transform group-hover:scale-105">
+                          <Icon />
+                        </div>
+                        <div className="space-y-1.5">
+                          <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-1">
+                            {item.title}
+                          </h3>
+                          <p className="text-xs text-gray-500 dark:text-slate-400 font-semibold flex items-center gap-1">
+                            <span className="text-blue-600 dark:text-blue-400">{item.courses}</span> available
+                          </p>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
+            </div>
+
+            {/* Right Next Navigation Button */}
+            <button
+              className="skills-swiper-next flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-[5px] bg-slate-50 dark:bg-slate-800/80 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 text-gray-700 dark:text-slate-200 flex items-center justify-center border border-gray-200 dark:border-slate-700 shadow-sm transition-all"
+              aria-label="Next slide"
+            >
+              <FaChevronRight className="text-xs sm:text-sm" />
+            </button>
+          </div>
         </div>
 
       </div>
