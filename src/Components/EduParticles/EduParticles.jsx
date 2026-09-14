@@ -30,26 +30,24 @@ const EDU_CATEGORIES = {
 
 const CATEGORY_KEYS = Object.keys(EDU_CATEGORIES);
 
-// Rich, high-contrast, beautiful palette for Light Mode (crisp & clearly readable)
+// Subdued, subtle palette for Light Mode (low contrast, soft watermark style)
 const LIGHT_COLORS = [
-  "rgba(15, 23, 42, ",    // Slate 900 (Deep, high readability)
-  "rgba(29, 78, 216, ",   // Blue 700 (Royal Academic Blue)
-  "rgba(67, 56, 202, ",   // Indigo 700
-  "rgba(109, 40, 217, ",  // Violet 700
-  "rgba(4, 120, 87, ",    // Emerald 700
-  "rgba(3, 105, 161, ",   // Sky 700
-  "rgba(190, 24, 93, ",   // Rose 700
+  "rgba(71, 85, 105, ",   // Slate 600
+  "rgba(37, 99, 235, ",   // Blue 600
+  "rgba(79, 70, 229, ",   // Indigo 600
+  "rgba(124, 58, 237, ",  // Violet 600
+  "rgba(13, 148, 136, ",  // Teal 600
+  "rgba(2, 132, 199, ",   // Sky 600
 ];
 
-// Vibrant celestial pastel neons for Dark Mode (glowing against dark blue/black)
+// Subdued, elegant palette for Dark Mode (celestial pastel neons)
 const DARK_COLORS = [
-  "rgba(203, 213, 225, ", // Slate 300
+  "rgba(148, 163, 184, ", // Slate 400
   "rgba(96, 165, 250, ",  // Blue 400
   "rgba(129, 140, 248, ", // Indigo 400
   "rgba(167, 139, 250, ", // Violet 400
   "rgba(56, 189, 248, ",  // Sky 400
   "rgba(52, 211, 153, ",  // Emerald 400
-  "rgba(244, 114, 182, ", // Pink 400
 ];
 
 const EduParticles = () => {
@@ -65,13 +63,13 @@ const EduParticles = () => {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    // Smooth mouse tracking with lerped positions for fluid interaction
+    // Smooth mouse tracker with target and current positions for elastic damping
     const mouse = {
       x: -2000,
       y: -2000,
       currX: -2000,
       currY: -2000,
-      radius: 170,
+      radius: 160,
       isActive: false,
     };
 
@@ -79,11 +77,12 @@ const EduParticles = () => {
       document.documentElement.classList.contains("dark") ||
       document.documentElement.getAttribute("data-theme") === "dark";
 
+    // Modest density so screen never feels crowded or distracting
     const getParticleCount = () => {
       const area = window.innerWidth * window.innerHeight;
-      if (window.innerWidth < 640) return Math.floor(area / 36000); // ~22 on mobile
-      if (window.innerWidth < 1024) return Math.floor(area / 28000); // ~32 on tablet
-      return Math.min(50, Math.floor(area / 22000)); // ~44-50 on desktop
+      if (window.innerWidth < 640) return Math.floor(area / 38000); // ~20 on mobile
+      if (window.innerWidth < 1024) return Math.floor(area / 30000); // ~30 on tablet
+      return Math.min(48, Math.floor(area / 24000)); // ~40-48 on desktop
     };
 
     let categoryIndexTracker = 0;
@@ -97,7 +96,7 @@ const EduParticles = () => {
         this.x = Math.random() * width;
         this.y = initial ? Math.random() * height : height + 30;
 
-        // Balanced category assignment
+        // Balanced category assignment across all education domains
         const catKey = CATEGORY_KEYS[categoryIndexTracker % CATEGORY_KEYS.length];
         categoryIndexTracker++;
         const symbolsList = EDU_CATEGORIES[catKey];
@@ -106,37 +105,35 @@ const EduParticles = () => {
 
         // Ultra-slow, peaceful floating drift
         this.vx = (Math.random() - 0.5) * 0.12;
-        this.vy = -(0.08 + Math.random() * 0.12);
+        this.vy = -(0.08 + Math.random() * 0.12); // Very slow upward motion
 
         // Smooth physical force displacement
         this.fx = 0;
         this.fy = 0;
 
-        // Proportional sizing for maximum readability
+        // Proportional sizing
         const isWord = this.symbol.length > 2;
         this.size = isWord
-          ? Math.floor(13 + Math.random() * 4)   // 13px - 17px for words like 'বাংলা', 'Grammar'
-          : Math.floor(15 + Math.random() * 8);  // 15px - 23px for symbols like 'π', 'অ', '∑</p>'
+          ? Math.floor(11 + Math.random() * 4)   // 11px - 14px for words
+          : Math.floor(13 + Math.random() * 7);  // 13px - 19px for symbols
 
-        // Mode-scaled base opacities
-        this.lightBaseAlpha = 0.22 + Math.random() * 0.10; // 0.22 - 0.32 in light mode (clearly visible)
-        this.darkBaseAlpha = 0.18 + Math.random() * 0.10;  // 0.18 - 0.28 in dark mode
-        this.alpha = this.lightBaseAlpha;
-        this.targetAlpha = this.lightBaseAlpha;
+        // Subdued, very low base opacity for subtle watermark aesthetic
+        this.baseAlpha = 0.08 + Math.random() * 0.07; // ~0.08 - 0.15
+        this.alpha = this.baseAlpha;
+        this.targetAlpha = this.baseAlpha;
 
         this.colorIndex = Math.floor(Math.random() * LIGHT_COLORS.length);
-        this.rotation = (Math.random() - 0.5) * 0.2;
+        this.rotation = (Math.random() - 0.5) * 0.25; // Gentle tilt
         this.wobbleSpeed = 0.008 + Math.random() * 0.01;
         this.wobbleVal = Math.random() * Math.PI * 2;
       }
 
-      update(darkMode) {
+      update() {
+        // Very gentle side-to-side harmonic swaying
         this.wobbleVal += this.wobbleSpeed;
         const wobbleX = Math.sin(this.wobbleVal) * 0.12;
 
-        const baseAlpha = darkMode ? this.darkBaseAlpha : this.lightBaseAlpha;
-
-        // Smooth mouse interaction (gentle, elastic glide)
+        // Smooth mouse interaction (soft, elastic glide)
         if (mouse.isActive) {
           const dx = this.x - mouse.currX;
           const dy = this.y - mouse.currY;
@@ -145,41 +142,40 @@ const EduParticles = () => {
           if (dist < mouse.radius && dist > 0) {
             const force = (mouse.radius - dist) / mouse.radius;
             const angle = Math.atan2(dy, dx);
-            
+
             // Soft gradual acceleration away from cursor
             const targetFx = Math.cos(angle) * force * 1.8;
             const targetFy = Math.sin(angle) * force * 1.8;
             this.fx += (targetFx - this.fx) * 0.08;
             this.fy += (targetFy - this.fy) * 0.08;
 
-            // Highlight opacity when near mouse (distinct and readable)
-            const maxHighlight = darkMode ? 0.70 : 0.65;
-            this.targetAlpha = Math.min(maxHighlight, baseAlpha + force * 0.38);
+            // Graceful slight highlight when near mouse (still soft, not glaring)
+            this.targetAlpha = Math.min(0.32, this.baseAlpha + force * 0.20);
           } else {
-            this.targetAlpha = baseAlpha;
+            this.targetAlpha = this.baseAlpha;
           }
         } else {
-          this.targetAlpha = baseAlpha;
+          this.targetAlpha = this.baseAlpha;
         }
 
-        // Smooth alpha interpolation
-        this.alpha += (this.targetAlpha - this.alpha) * 0.05;
+        // Smooth opacity lerp
+        this.alpha += (this.targetAlpha - this.alpha) * 0.04;
 
         // Position update
         this.x += this.vx + wobbleX + this.fx;
         this.y += this.vy + this.fy;
 
-        // Friction damping for fluid-like gliding
+        // High friction damping for smooth, fluid-like deceleration
         this.fx *= 0.96;
         this.fy *= 0.96;
 
-        // Wrap around boundaries
-        if (this.y < -40) {
+        // Boundary wrapping
+        if (this.y < -35) {
           this.y = height + 30;
           this.x = Math.random() * width;
         }
-        if (this.x < -40) this.x = width + 30;
-        if (this.x > width + 40) this.x = -30;
+        if (this.x < -35) this.x = width + 30;
+        if (this.x > width + 35) this.x = -30;
       }
 
       draw(darkMode) {
@@ -190,15 +186,8 @@ const EduParticles = () => {
         const palette = darkMode ? DARK_COLORS : LIGHT_COLORS;
         const colorPrefix = palette[this.colorIndex];
 
-        // Soft glow when hovered or active
-        if (this.alpha > 0.38) {
-          ctx.shadowColor = darkMode ? "rgba(147, 197, 253, 0.45)" : "rgba(30, 64, 175, 0.25)";
-          ctx.shadowBlur = 6;
-        }
-
         ctx.fillStyle = `${colorPrefix}${this.alpha})`;
-        // Semi-bold Hind Siliguri / modern multi-script font for maximum clarity
-        ctx.font = `600 ${this.size}px 'Hind Siliguri', 'Segoe UI', system-ui, -apple-system, Roboto, 'Noto Sans Bengali', sans-serif`;
+        ctx.font = `500 ${this.size}px 'Hind Siliguri', 'Segoe UI', system-ui, -apple-system, Roboto, 'Noto Sans Bengali', sans-serif`;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         ctx.fillText(this.symbol, 0, 0);
@@ -209,10 +198,10 @@ const EduParticles = () => {
 
     let particles = Array.from({ length: getParticleCount() }, () => new Particle());
 
-    // Faint constellation connection lines between neighboring particles
+    // Faint constellation connection lines between adjacent particles
     const drawConnections = (darkMode) => {
       if (!mouse.isActive) return;
-      const maxConnDist = 95;
+      const maxConnDist = 90;
       const palette = darkMode ? DARK_COLORS : LIGHT_COLORS;
 
       for (let i = 0; i < particles.length; i++) {
@@ -227,10 +216,11 @@ const EduParticles = () => {
           const dist = Math.hypot(dx, dy);
 
           if (dist < maxConnDist) {
-            const lineAlpha = (1 - dist / maxConnDist) * (darkMode ? 0.18 : 0.22);
+            // Very subtle connection line alpha
+            const lineAlpha = (1 - dist / maxConnDist) * 0.12;
             ctx.beginPath();
             ctx.strokeStyle = `${palette[0]}${lineAlpha})`;
-            ctx.lineWidth = 1;
+            ctx.lineWidth = 0.8;
             ctx.setLineDash([3, 4]);
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
@@ -254,7 +244,7 @@ const EduParticles = () => {
       const darkMode = isDark();
 
       particles.forEach((p) => {
-        p.update(darkMode);
+        p.update();
         p.draw(darkMode);
       });
 
