@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { LuArrowRight } from "react-icons/lu";
 import CountUp from "react-countup";
 import ScrollTrigger from "react-scroll-trigger";
+import CreativeButton from "../UI/CreativeButton";
 
 const Banner = () => {
   const [counterOn, setCounterOn] = useState(false);
@@ -39,19 +40,26 @@ const Banner = () => {
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-1 sm:pt-2">
-          <a
+          <CreativeButton
+            as="a"
             href="#study-sessions"
-            className="w-full sm:w-auto px-6 sm:px-8 py-3 rounded-[5px] bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm sm:text-base shadow-sm hover:shadow transition-all duration-200 flex items-center justify-center gap-2 group"
+            variant="blue"
+            direction={1}
+            className="w-full sm:w-auto"
           >
             <span>Explore Study Sessions</span>
             <LuArrowRight className="text-white group-hover:translate-x-1 transition-transform" />
-          </a>
-          <Link
+          </CreativeButton>
+
+          <CreativeButton
+            as="Link"
             to="/register"
-            className="w-full sm:w-auto px-6 sm:px-8 py-3 rounded-[5px] bg-white dark:bg-slate-900 hover:bg-gray-50 dark:hover:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-800 dark:text-slate-200 font-bold text-sm sm:text-base transition-all duration-200 text-center shadow-sm"
+            variant="indigo"
+            direction={-1}
+            className="w-full sm:w-auto"
           >
-            Join as Tutor / Student
-          </Link>
+            <span>Join as Tutor / Student</span>
+          </CreativeButton>
         </div>
 
         {/* Stats Highlight Bar with Animated ScrollTrigger CountUp */}
