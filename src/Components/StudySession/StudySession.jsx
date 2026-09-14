@@ -2,6 +2,7 @@ import { useEffect, useState, useMemo } from "react";
 import StudySessionCard from "../StudySessionCard/StudySessionCard";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { LuBookOpen, LuCalendar, LuCheck, LuArrowRight } from "react-icons/lu";
+import CreativeButton from "../UI/CreativeButton";
 
 const StudySession = () => {
   const [allData, setAllData] = useState([]);
@@ -160,13 +161,14 @@ const StudySession = () => {
 
           {!showAll && filteredSessions.length > 6 && (
             <div className="flex justify-center mt-8 sm:mt-10">
-              <button
+              <CreativeButton
                 onClick={() => setShowAll(true)}
-                className="px-8 py-3 rounded-[5px] bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm md:text-base shadow-sm transition-all duration-200 flex items-center gap-2"
+                variant="blue"
+                direction={1}
               >
                 <span>Explore All Sessions ({filteredSessions.length})</span>
-                <LuArrowRight />
-              </button>
+                <LuArrowRight className="text-white group-hover:translate-x-1 transition-transform" />
+              </CreativeButton>
             </div>
           )}
         </>
