@@ -8,6 +8,7 @@ import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import useAdmin from "../../Hooks/useAdmin";
 import { Fade } from "react-awesome-reveal";
+import CreativeButton from "../../Components/UI/CreativeButton";
 
 const CardDetails = () => {
   const [role, isRoleLoading] = useAdmin();
@@ -239,20 +240,25 @@ const CardDetails = () => {
                 You are currently logged in as an <strong>{role}</strong>. Only student accounts can enroll in sessions.
               </div>
             ) : isFree ? (
-              <button
+              <CreativeButton
                 onClick={handleFreeBooking}
                 disabled={isBookingFree}
-                className="w-full py-3.5 px-6 rounded-[5px] bg-blue-600 hover:bg-blue-700 text-white font-semibold text-base shadow-sm transition-all duration-200 flex items-center justify-center gap-2"
+                variant="blue"
+                direction={1}
+                className="w-full py-3.5"
               >
-                {isBookingFree ? "Processing Enrollment..." : "Book Session for Free"}
-              </button>
+                <span>{isBookingFree ? "Processing Enrollment..." : "Book Session for Free"}</span>
+              </CreativeButton>
             ) : (
-              <Link
+              <CreativeButton
+                as="Link"
                 to={`/payment/${_id}`}
-                className="w-full py-3.5 px-6 rounded-[5px] bg-blue-600 hover:bg-blue-700 text-white font-semibold text-base shadow-sm transition-all duration-200 flex items-center justify-center gap-2"
+                variant="blue"
+                direction={1}
+                className="w-full py-3.5"
               >
                 <span>Proceed to Checkout (${registrationFee})</span>
-              </Link>
+              </CreativeButton>
             )}
           </div>
 
