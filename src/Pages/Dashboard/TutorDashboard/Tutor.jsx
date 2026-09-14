@@ -18,7 +18,7 @@ const Tutor = ({ onItemClick }) => {
   const navItemClass = ({ isActive }) =>
     `flex items-center gap-3 px-3.5 py-2.5 rounded-[5px] text-sm font-semibold transition-all duration-200 ${
       isActive
-        ? "bg-blue-600 text-white shadow-sm"
+        ? "bg-blue-600 text-white shadow-sm [&>svg]:!text-white"
         : "text-gray-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800/80"
     }`;
 

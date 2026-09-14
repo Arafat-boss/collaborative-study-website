@@ -22,17 +22,28 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/"
+          end
           onClick={() => setMobileMenuOpen(false)}
           className={({ isActive }) =>
             `flex items-center gap-2 px-4 py-2 rounded-[5px] font-semibold text-sm transition-all duration-200 ${
               isActive
-                ? "bg-blue-600 text-white shadow-sm"
+                ? "bg-blue-600 text-white shadow-sm [&>svg]:!text-white"
                 : "text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white hover:bg-blue-50 dark:hover:bg-slate-800"
             }`
           }
         >
-          <RxHome className="text-base text-blue-600 dark:text-blue-400 group-hover:text-blue-600" />
-          <span>Home</span>
+          {({ isActive }) => (
+            <>
+              <RxHome
+                className={`text-base transition-colors ${
+                  isActive
+                    ? "!text-white text-white"
+                    : "text-blue-600 dark:text-blue-400 group-hover:text-blue-600"
+                }`}
+              />
+              <span>Home</span>
+            </>
+          )}
         </NavLink>
       </li>
 
@@ -55,13 +66,23 @@ const Navbar = () => {
             className={({ isActive }) =>
               `flex items-center gap-2 px-4 py-2 rounded-[5px] font-semibold text-sm transition-all duration-200 ${
                 isActive
-                  ? "bg-blue-600 text-white shadow-sm"
+                  ? "bg-blue-600 text-white shadow-sm [&>svg]:!text-white"
                   : "text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white hover:bg-blue-50 dark:hover:bg-slate-800"
               }`
             }
           >
-            <RxDashboard className="text-base text-blue-600 dark:text-blue-400" />
-            <span>Dashboard</span>
+            {({ isActive }) => (
+              <>
+                <RxDashboard
+                  className={`text-base transition-colors ${
+                    isActive
+                      ? "!text-white text-white"
+                      : "text-blue-600 dark:text-blue-400"
+                  }`}
+                />
+                <span>Dashboard</span>
+              </>
+            )}
           </NavLink>
         </li>
       )}
